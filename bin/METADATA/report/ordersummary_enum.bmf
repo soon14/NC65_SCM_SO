@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createIndustry="0" createTime="2012-09-24 21:45:40" creator="" description="" displayName="ordersummary_enum" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="239a8100-21f7-4c02-a504-0e8c61e94c12" industry="0" industryChanged="false" industryIncrease="false" industryName="基础行业" isSource="false" isbizmodel="false" mainEntity="" modifier="" modifyIndustry="0" modifyTime="2013-01-24 09:24:02" name="ordersummary_enum" namespace="so" ownModule="so" preLoad="false" programcode="" resModuleName="4006005_2" resid="2400600504-0016" version="6" versionType="0">
+    <celllist>
+        <Enumerate componentID="239a8100-21f7-4c02-a504-0e8c61e94c12" createIndustry="0" createTime="2012-09-24 21:45:56" creator="" dataType="BS000010000100001001" dbtype="varchar" description="" displayName="销售订单执行汇总枚举" fullClassName="nc.voso.ordersummary_enum.enum" height="316" help="" id="b2946082-5551-436a-98d2-fa42babc8361" industryChanged="false" isSource="false" modInfoClassName="" modifier="" modifyIndustry="0" modifyTime="2013-01-24 09:24:02" name="enum" resid="2400600504-0000" typeDisplayName="String" typeName="String" versionType="0" visibility="public" width="147" x="339" y="92">
+            <enumitemlist>
+                <enumitem createIndustry="0" description="" enumDisplay="销售组织" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="pk_org" hidden="false" id="3610a055-de41-465b-b58b-d4e029dc8bc9" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0006" sequence="0" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="库存组织" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="csendstockorgid" hidden="false" id="7d2d48ba-a580-49c4-b962-32db3f948522" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0002" sequence="1" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="部门" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="cdeptid" hidden="false" id="5d5f8ae3-4a13-485b-8d15-c872db75fad8" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0010" sequence="2" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="业务员" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="cemployeeid" hidden="false" id="89873072-a3a2-446a-a636-07f3ebb863f9" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0004" sequence="3" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="销售渠道类型" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="cchanneltypeid" hidden="false" id="f58a8589-9f20-4bce-9d99-40d0fd922ba1" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0013" sequence="4" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="客户基本分类" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="pk_custclass" hidden="false" id="677d73fc-58ac-48bf-8974-246b93b6f6c4" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0003" sequence="5" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="客户销售分类" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="pk_custsaleclass" hidden="false" id="f05a6c2b-9026-4b84-b265-ef1c47bf507b" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0014" sequence="6" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="地区分类" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="pk_areacl" hidden="false" id="e0a43442-bd8a-45cf-a238-1922553a6d3f" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0001" sequence="7" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="订单客户" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="ccustomerid" hidden="false" id="f8a2207d-bad8-45f7-b316-faef2ca96e60" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0009" sequence="8" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="物料基本分类" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="pk_marbasclass" hidden="false" id="480a5563-bd68-42a1-a683-1453f9406b7d" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0012" sequence="9" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="物料销售分类" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="pk_marsaleclass" hidden="false" id="f96b9c3a-2003-4a0a-bd5e-e19a3a1179b1" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0005" sequence="10" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="物料" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="cmaterialid" hidden="false" id="e498073a-53ba-4bad-99c8-d714c7dd7ce4" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0015" sequence="11" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="批次" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="vbatchcode" hidden="false" id="8420536c-b3d5-4e56-8da8-8925cd0c050b" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0007" sequence="12" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="订单类型" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="ctrantypeid" hidden="false" id="16073377-f4e5-4bcf-8cdb-4283694be50a" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0011" sequence="13" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="赠品" enumID="b2946082-5551-436a-98d2-fa42babc8361" enumValue="blargessflag" hidden="false" id="1b0ffd52-7be2-45a6-a55d-24c7c5bb9d6f" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600504-0008" sequence="14" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

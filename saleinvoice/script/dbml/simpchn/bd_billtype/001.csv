@@ -1,0 +1,5 @@
+bd_billtype
+pk_billtypeid,billtypename
+32,销售发票
+1002Z810000000010L4U,增值税专用发票
+1002Z810000000010L56,普通发票

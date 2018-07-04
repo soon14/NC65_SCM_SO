@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding='gb2312'?>
+<businessprocessors>
+    <businessprocessor baseclassname="" billtype="30" classname="nc.pubimpl.so.m30.pfxx.M30PfxxPlugin" locklevel="3" metadataid="b4bde646-3f4d-4b95-919f-8ebe03c5f849" name="销售订单">
+    </businessprocessor>
+    <businessprocessor baseclassname="" billtype="32" classname="nc.pubimpl.so.m32.pfxx.M32PfxxPlugin" locklevel="3" metadataid="08958fdf-e3fa-4cc9-96d6-1c15cec4645f" name="销售发票">
+    </businessprocessor>
+    <businessprocessor baseclassname="" billtype="38" classname="nc.pubimpl.so.m38.pfxx.M38PfxxPlugin" locklevel="3" metadataid="575c639d-8dcb-4692-b151-c91f38525c70" name="预订单">
+    </businessprocessor>
+    <businessprocessor baseclassname="" billtype="4331" classname="nc.pubimpl.so.m4331.pfxx.M4331PfxxPlugin" locklevel="3" metadataid="d13a8eb1-f24d-499b-bd78-88d0d77a6581" name="发货单">
+    </businessprocessor>
+    <businessprocessor baseclassname="" billtype="4310" classname="nc.pubimpl.so.m4310.pfxx.M4310PfxxPlugin" locklevel="3" metadataid="288c9102-654a-4dec-8832-8856edfc5dcd" name="销售报价单">
+    </businessprocessor>
+</businessprocessors>

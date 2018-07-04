@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createIndustry="0" createTime="2012-05-29 11:33:32" creator="" description="" displayName="m30closemanage" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="3266b3ef-8d5b-44e1-9b3b-66e034101a17" industry="0" industryChanged="false" industryIncrease="false" industryName="基础行业" isSource="false" isbizmodel="true" mainEntity="" modifier="" modifyIndustry="0" modifyTime="2013-01-28 11:14:13" name="m30closemanage" namespace="so" ownModule="so" preLoad="false" programcode="" resModuleName="4006011_2" resid="2400601109-0000" version="1" versionType="0">
+    <celllist/>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

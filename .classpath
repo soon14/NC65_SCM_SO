@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="api/classes" path="api/src/public"/>
+	<classpathentry kind="src" path="so"/>
+	<classpathentry kind="src" output="api/classes" path="api/src/private"/>
+	<classpathentry kind="src" output="api/classes" path="api/src/test"/>
+	<classpathentry kind="src" output="ardeduction/classes" path="ardeduction/src/client"/>
+	<classpathentry kind="src" output="delivery/classes" path="delivery/src/public"/>
+	<classpathentry kind="src" output="delivery/classes" path="delivery/src/client"/>
+	<classpathentry kind="src" output="delivery/classes" path="delivery/src/private"/>
+	<classpathentry kind="src" output="delivery/classes" path="delivery/resources"/>
+	<classpathentry kind="src" output="gwprule/classes" path="gwprule/src/public"/>
+	<classpathentry kind="src" output="gwprule/classes" path="gwprule/src/client"/>
+	<classpathentry kind="src" output="gwprule/classes" path="gwprule/src/private"/>
+	<classpathentry kind="src" output="gwprule/classes" path="gwprule/resources"/>
+	<classpathentry kind="src" output="pub/classes" path="pub/src/public"/>
+	<classpathentry kind="src" output="pub/classes" path="pub/src/client"/>
+	<classpathentry kind="src" output="pub/classes" path="pub/src/private"/>
+	<classpathentry kind="src" output="pub/classes" path="pub/resources"/>
+	<classpathentry kind="src" output="report/classes" path="report/src/public"/>
+	<classpathentry kind="src" output="report/classes" path="report/src/client"/>
+	<classpathentry kind="src" output="report/classes" path="report/src/private"/>
+	<classpathentry kind="src" output="report/classes" path="report/resources"/>
+	<classpathentry kind="src" output="returnpolicy/classes" path="returnpolicy/src/public"/>
+	<classpathentry kind="src" output="returnpolicy/classes" path="returnpolicy/src/client"/>
+	<classpathentry kind="src" output="returnpolicy/classes" path="returnpolicy/src/private"/>
+	<classpathentry kind="src" output="returnpolicy/classes" path="returnpolicy/resources"/>
+	<classpathentry kind="src" output="salebusirule/classes" path="salebusirule/src/public"/>
+	<classpathentry kind="src" output="salebusirule/classes" path="salebusirule/src/client"/>
+	<classpathentry kind="src" output="salebusirule/classes" path="salebusirule/src/private"/>
+	<classpathentry kind="src" output="salebusirule/classes" path="salebusirule/resources"/>
+	<classpathentry kind="src" output="saleinvoice/classes" path="saleinvoice/src/public"/>
+	<classpathentry kind="src" output="saleinvoice/classes" path="saleinvoice/src/client"/>
+	<classpathentry kind="src" output="saleinvoice/classes" path="saleinvoice/src/private"/>
+	<classpathentry kind="src" output="saleinvoice/classes" path="saleinvoice/resources"/>
+	<classpathentry kind="src" output="salequotation/classes" path="salequotation/src/public"/>
+	<classpathentry kind="src" output="salequotation/classes" path="salequotation/src/client"/>
+	<classpathentry kind="src" output="salequotation/classes" path="salequotation/src/private"/>
+	<classpathentry kind="src" output="salequotation/classes" path="salequotation/resources"/>
+	<classpathentry kind="src" output="salesettle/classes" path="salesettle/src/public"/>
+	<classpathentry kind="src" output="salesettle/classes" path="salesettle/src/client"/>
+	<classpathentry kind="src" output="salesettle/classes" path="salesettle/src/private"/>
+	<classpathentry kind="src" output="salesettle/classes" path="salesettle/resources"/>
+	<classpathentry kind="src" output="salesorder/classes" path="salesorder/src/public"/>
+	<classpathentry kind="src" output="salesorder/classes" path="salesorder/src/client"/>
+	<classpathentry kind="src" output="salesorder/classes" path="salesorder/src/private"/>
+	<classpathentry kind="src" output="salesorder/classes" path="salesorder/resources"/>
+	<classpathentry kind="src" output="sellingrequisition/classes" path="sellingrequisition/src/public"/>
+	<classpathentry kind="src" output="sellingrequisition/classes" path="sellingrequisition/src/client"/>
+	<classpathentry kind="src" output="sellingrequisition/classes" path="sellingrequisition/src/private"/>
+	<classpathentry kind="src" output="sellingrequisition/classes" path="sellingrequisition/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="com.yonyou.studio.udt.core.container/Ant_Library"/>
+	<classpathentry kind="con" path="com.yonyou.studio.udt.core.container/Product_Common_Library"/>
+	<classpathentry kind="con" path="com.yonyou.studio.udt.core.container/Middleware_Library"/>
+	<classpathentry kind="con" path="com.yonyou.studio.udt.core.container/Framework_Library"/>
+	<classpathentry kind="con" path="com.yonyou.studio.udt.core.container/Module_Public_Library"/>
+	<classpathentry kind="con" path="com.yonyou.studio.udt.core.container/Module_Client_Library"/>
+	<classpathentry kind="con" path="com.yonyou.studio.udt.core.container/Module_Private_Library"/>
+	<classpathentry kind="con" path="com.yonyou.studio.udt.core.container/Module_Lang_Library"/>
+	<classpathentry kind="con" path="com.yonyou.studio.udt.core.container/Generated_EJB"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+  <public>
+	<!--销售毛利分析-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.orderprofit.IOrderProfitMaintain</interface>
+      <implementation>nc.impl.so.orderprofit.OrderProfitMaintainImpl</implementation>
+    </component>
+    <!--销售IUFO函数-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.iufo.ISOToUFOFunc</interface>
+      <implementation>nc.pubimpl.iufo.SOToUFOFuncImpl</implementation>
+    </component>
+    <!--预算联查销售明细-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface> nc.pubitf.so.tbb.detail.ISOTbbDetail</interface>
+      <implementation>nc.pubimpl.tbb.OrderDetailImpl</implementation>
+    </component>
+    <!-- 移动应用销售订单分析接口 -->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.mobile.analy.ISaleOrderAnaly</interface>
+      <implementation>nc.pubimpl.mobile.analy.SaleOrderAnalyImpl</implementation>
+    </component>
+    <!--销售出库毛利分析 -->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+		<interface>nc.itf.so.outprifit.IOutProfitMaintain</interface>
+		<implementation>nc.impl.so.outprofit.OutProfitMaintainImpl</implementation>
+	</component>
+	<!--销售发票执行汇总 -->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+		<interface>nc.itf.so.invoicesummary.IInvSummaryMaintain</interface>
+		<implementation>nc.impl.so.invoicesummary.InvSummaryMaintainImpl</implementation>
+	</component>
+	<!--销售订单执行汇总 -->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+		<interface>nc.itf.so.ordersummary.IOrderSummaryMaintain</interface>
+		<implementation>nc.impl.so.ordersummary.OrderSuammaryMaintainImpl</implementation>
+	</component>
+	<!--销售出库执行汇总 -->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+		<interface>nc.itf.so.outsummary.IOutSummaryMaintain</interface>
+		<implementation>nc.impl.so.outsummary.OutSummaryMaintainImpl</implementation>
+	</component>
+	<!--综合毛利分析 -->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+		<interface>nc.itf.so.multipleprofit.IMultipleProfitMaintain</interface>
+		<implementation>nc.impl.so.multipleprofit.MultipleProfitMaintainImpl</implementation>
+	</component>
+  </public>
+</module>
+

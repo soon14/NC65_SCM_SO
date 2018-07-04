@@ -1,0 +1,3 @@
+insert into bd_billtype(pk_billtypeid,accountclass,billcoderule,billstyle,billtypename,canextendtransaction,checkclassname,classname,component,datafinderclz,def1,def2,def3,dr,emendenumclass,forwardbilltype,isaccount,isapprovebill,isbizflowbill,iseditableproperty,isenablebutton,islock,isroot,istransaction,ncbrcode,nodecode,parentbilltype,pk_billtypecode,pk_group,pk_org,referclassname,systemcode,transtype_class,ts,webnodecode,wherestring,comp,isenabletranstypebcr) values('38',null,'~',null,'~','Y','nc.impl.so.m38.pf.PreOrderCheckStatusCallback','<Y>40060201','preorder',null,null,null,null,null,null,'30','N','N','N','Y','Y',null,'Y','N','38','40060201','~','38','~','GLOBLE00000000000000',null,'SO',null,'2015-05-06 14:56:51','~','so_preorder.dr=0',null,'N')
+go
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 单据元素配置 -->
+	<bean id="elementconfig" class="nc.ui.so.m30.config.DefaultElementItemConfig">
+		<property name="elementitemmap">
+			<map>
+				<entry key="numpricemoney">
+					<list>
+						<value>nnum</value>
+						<value>nastnum</value>
+						<value>nqtunitnum</value>
+						
+						<value>norigprice</value>
+						<value>norigtaxprice</value>
+						<value>norignetprice</value>
+						<value>norigtaxnetprice</value>
+						
+						<value>nprice</value>
+						<value>ntaxprice</value>
+						<value>nnetprice</value>
+						<value>ntaxnetprice</value>
+						
+						<value>nqtorigprice</value>
+						<value>nqtorigtaxprice</value>
+						<value>nqtorignetprc</value>
+						<value>nqtorigtaxnetprc</value>
+						
+						<value>nqtnetprice</value>
+						<value>nqttaxnetprice</value>
+						<value>nqtprice</value>
+						<value>nqttaxprice</value>
+						
+						<value>norigmny</value>
+						<value>norigtaxmny</value>
+						<value>norigtax</value>
+						
+						<value>nmny</value>
+						<value>ntaxmny</value>
+						<value>ntax</value>
+					</list>
+				</entry>
+				
+				<entry key="pieceweightvolume">
+					<list>
+						<value>npiece</value>
+						<value>nweight</value>
+						<value>nvolume</value>
+					</list>
+				</entry>
+				
+			</map>
+		</property>
+	</bean>
+
+</beans>

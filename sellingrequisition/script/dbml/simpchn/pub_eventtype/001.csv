@@ -1,0 +1,4 @@
+pub_eventtype
+pk_eventtype,eventtypename,sourcename
+1001Z810000000000JAI,预订单迁移前,销售预订单
+1001Z810000000000JAJ,预订单迁移后,销售预订单

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext" />
+	
+	<!-- 应用服务类，负责进行模型操作的处理 -->
+	<bean id="ManageModelService" class="nc.ui.so.custmatrel.model.CustMatRelModelService">
+	</bean>
+
+	<!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+	<bean id="boadatorfactory" class="nc.ui.pubapp.uif2app.view.value.AggVOMetaBDObjectAdapterFactory"/>
+	
+	<!-- 管理应用模型 -->
+	<bean id="ManageAppModel" class="nc.ui.so.custmatrel.model.CustMatRelBillManageModel">
+		<property name="service" ref="ManageModelService"></property>
+		<property name="businessObjectAdapterFactory" ref="boadatorfactory"></property>
+		<property name="context" ref="context"></property>
+	</bean>
+	
+	<!-- 分隔符 -->
+  <bean id="separatorAction" class="nc.funcnode.ui.action.SeparatorAction" />
+	
+	<!-- 数据模型管理器，主要负责各种方式的模型初始化 -->
+	<bean id="modelDataManager" class="nc.ui.so.custmatrel.model.CustMatRelModelDataManager">
+		<property name="model" ref="ManageAppModel"></property>
+		<property name="service" ref="ManageModelService"></property>
+	</bean>
+	
+	<!-- 模板容器，负责对模板的统一装载 -->
+	<bean id="templateContainer" class="nc.ui.uif2.editor.TemplateContainer"  init-method="load">
+		<property name="context" ref="context"/>
+	</bean>
+	
+	<bean name="qryCondDLGInitializer" class="nc.ui.so.custmatrel.model.CustMatRelDLGInitializer">
+		<!-- <property name="model" ref="ManageAppModel" /> -->
+	</bean>
+	<!-- 界面元素 ###########################################################-->
+	<!-- 提供了一组默认实现 -->
+	<bean id="AddLineAction" class="nc.ui.pubapp.uif2app.actions.BodyAddLineAction" />
+	<bean id="DelLineAction" class="nc.ui.pubapp.uif2app.actions.BodyDelLineAction"/>
+	<bean id="InsertLineAction" class="nc.ui.pubapp.uif2app.actions.BodyInsertLineAction" />
+	<bean id="CopyLineAction" class="nc.ui.pubapp.uif2app.actions.BodyCopyLineAction" />
+	<bean id="PasteLineAction" class="nc.ui.pubapp.uif2app.actions.BodyPasteLineAction">
+		<property name="clearItems">
+			<list>
+				<value>pk_custmatrel_b</value>
+				<value>ts</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="PasteToTailAction" class="nc.ui.pubapp.uif2app.actions.BodyPasteToTailAction">
+		<property name="clearItems">
+			<list>
+				<value>pk_custmatrel_b</value>
+				<value>ts</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--卡控件-->
+	<bean id="billFormEditor" class="nc.ui.so.custmatrel.view.CardForm" init-method="initUI">
+		<property name="model" ref="ManageAppModel"></property>
+		<property name="templateContainer" ref="templateContainer"/>
+		<property name="dataManager" ref="modelDataManager"></property>
+		<!-- 是否进行模板非空校验 -->
+		<property name="templateNotNullValidate" value="true" />
+		<!-- 是否自动增行 -->
+		<property name="autoAddLine" value="true"/>
+		<!-- 空行过滤器，卡片界面根据此过滤器删除表体空行 -->
+		<property name="blankChildrenFilter">
+			<!-- 简单的根据一个字段是否为空的空行过滤器，因为多数情况下都是判断存货是否为空来过滤空行 -->
+			<bean class="nc.ui.pubapp.uif2app.view.value.MultiFieldsBlankChildrenFilter">
+				<!-- 指定用来判断空行的字段名称，可能多数情况下是存货字段 -->
+				<property name="filterMap">
+					<map>
+						<entry>
+							<key><value>pk_custmatrel_b</value></key><!--页签code-->
+							<list>
+							<value>pk_materialbaseclass</value>
+							<value>pk_materialsaleclass</value>
+							<value>pk_material_v</value>
+							<value>pk_custsaleclass</value>
+							<value>pk_customer</value>
+							<value>pk_custbaseclass</value>
+							</list><!--检验是否空行字段code-->
+						</entry>
+					</map>
+				</property>
+				<property name="nullAssertByOr" value = "false" />
+			</bean>
+		</property>
+		
+		<!-- 表体行操作按钮注册，与表体右键菜单保持一致 -->
+		<property name="bodyLineActions">
+			<list>
+				<ref bean="AddLineAction"/>
+				<ref bean="InsertLineAction"/>
+				<ref bean="DelLineAction"/>	
+				<ref bean="CopyLineAction"/>
+				<ref bean="PasteLineAction"/>
+				<ref bean="PasteToTailAction"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 关闭节点的提示 -->
+	<bean id="ClosingListener" class="nc.ui.uif2.FunNodeClosingHandler">
+		<property name="model" ref="ManageAppModel" />
+		<property name="saveaction" ref="saveAction" />
+		<property name="cancelaction" ref="cancelAction" />
+	</bean>
+
+    <!-- 自动修正卡片界面的分数显示控件(换算率) -->
+    <bean class="nc.ui.pubapp.uif2app.view.FractionFixMediator" init-method="initUI">
+        <constructor-arg ref="billFormEditor"/>
+    </bean>
+    
+	<!-- 编辑事件 -->
+	<bean id="appEventHandlerMediator" class="nc.ui.pubapp.uif2app.model.AppEventHandlerMediator">
+		<property name="model" ref="ManageAppModel" />
+		<property name="handlerMap">
+			<map>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailBeforeEditEvent">
+					<list>
+						<bean class="nc.ui.so.custmatrel.eventhandler.HeadBeforeEditEventDispatcher">
+						</bean>
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailAfterEditEvent">
+					<list>
+						<bean class="nc.ui.so.custmatrel.eventhandler.HeadAfterEditEventDispatcher">
+						</bean>
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyBeforeEditEvent">
+					<list>
+						<bean class="nc.ui.so.custmatrel.eventhandler.BodyBeforeEditEventDispatcher">
+						</bean>
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyAfterEditEvent">
+					<list>
+						<bean class="nc.ui.so.custmatrel.eventhandler.BodyAfterEditEventDispatcher">
+						</bean>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- 界面布局总装########################################################### -->
+	<bean id="container" class="nc.ui.uif2.TangramContainer"
+		init-method="initUI">
+		<property name="constraints">
+			<list>
+				<bean class="nc.ui.uif2.tangramlayout.TangramLayoutConstraint">
+					<property name="newComponent"><ref bean="billFormEditor" /></property>
+				</bean>
+			</list>
+		</property>
+		<!-- 此处配置的Action始终可见 -->
+		<property name="actions">
+			<list>
+				<ref bean="addAction"/>
+				<ref bean="editAction"/>
+				<ref bean="deleteAction" />
+				<ref bean="separatorAction" />
+				<ref bean="queryAction" />
+				<ref bean="refreshAction" />
+				<ref bean="separatorAction" />
+				<ref bean="exportActionMenu"/>
+				<ref bean="actionGroupgt5"/>
+			</list>
+		</property>
+		<property name="editActions">
+			<list>
+				<ref bean="saveAction" />
+				<ref bean="separatorAction" />
+				<ref bean="cancelAction" />
+			</list>
+		</property>
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+
+ 
+	<!-- Actions ###########################################################-->
+	
+	<!-- 自制新增-->
+	<bean id="addAction" class="nc.ui.so.custmatrel.action.CustMatRelAddAction">
+		<property name="model" ref="ManageAppModel"/>
+		<property name="billForm" ref="billFormEditor"/>
+	</bean>
+	
+	<bean id="editAction" class="nc.ui.so.custmatrel.action.CustMatRelEditAction">
+		<property name="model" ref="ManageAppModel"/>
+	</bean>
+	
+	<!-- 删除 -->
+	<bean id="deleteAction" class="nc.ui.so.custmatrel.action.CustMatRelDeleteAction">
+		<property name="model" ref="ManageAppModel"/>
+	</bean>
+
+	<bean id="saveAction" class="nc.ui.so.custmatrel.action.CustMatRelSaveAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="view" ref="billFormEditor" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	
+	<bean id="cancelAction" class="nc.ui.so.custmatrel.action.CustMatRelCancelAction">
+		<property name="model" ref="ManageAppModel"/>
+		<property name="view" ref="billFormEditor" />
+		<property name="editor" ref="billFormEditor"/>
+	</bean>
+	
+	<bean id="refreshAction" class="nc.ui.so.custmatrel.action.CustMatRelRefreshAction">
+		<property name="model" ref="ManageAppModel"/>
+		<property name="dataManager" ref="modelDataManager" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+
+	<!-- 查询 -->
+	<bean id="queryAction" class="nc.ui.so.custmatrel.action.CustMatRelQueryAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="dataManager" ref="modelDataManager" />
+	    <property name="qryCondDLGInitializer" ref="qryCondDLGInitializer" />
+	</bean>
+	
+	<!-- 导出编辑器接口 -->
+	<bean id="custMaterExptableEditor" class="nc.ui.so.custmatrel.action.CustMaterExptableEditor">
+		<property name="addAction" ref="addAction" />
+		<property name="cancelAction" ref="cancelAction" />
+		<property name="billcardPanelEditor" ref="billFormEditor" />
+		<property name="saveAction" ref="saveAction" />
+		<property name="appModel" ref="ManageAppModel" />
+	</bean>
+
+	<!-- 导出 按钮 -->
+	<bean id="excelExportAction" class="nc.ui.so.custmatrel.action.ExcelExpAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="cardform" ref="billFormEditor" />
+		<property name="importableEditor" ref="custMaterExptableEditor" />
+	</bean>
+
+
+	<!-- 导入辑器接口 -->
+	<bean id="custMaterImportableEditor" class="nc.ui.so.custmatrel.action.CustMaterImportableEditor">
+		<property name="addAction" ref="addAction" />
+		<property name="cancelAction" ref="cancelAction" />
+		<property name="billcardPanelEditor" ref="billFormEditor" />
+		<property name="saveAction" ref="saveAction" />
+		<property name="appModel" ref="ManageAppModel" />
+	</bean>
+
+	<!-- 导入按钮 -->
+	<bean id="excelImportAction" class="nc.ui.so.custmatrel.action.ExcelImpAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="importableEditor" ref="custMaterImportableEditor" />
+	</bean>
+
+	<!-- 导入导出按钮 -->
+	<bean id="exportActionMenu" class="nc.ui.so.custmatrel.action.ExportMenuAction">
+		<property name="actions">
+			<list>
+				<ref bean="excelImportAction" />
+				<ref bean="excelExportAction" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="custmatrelorgpanel" class="nc.ui.so.base.view.CustMatRelOrgPanel"
+		init-method="initUI">
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+
+	<!-- 预览 -->
+	<bean id="previewAction" class="nc.ui.so.custmatrel.action.CustMatRelPrintAction">
+		<property name="DirectPrint" value="false" />
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	
+	<!-- 打印 nc.ui.pubapp.uif2app.actions.MasterDetailPrintAction -->
+	<bean id="printAction" class="nc.ui.so.custmatrel.action.CustMatRelPrintAction">
+		<property name="DirectPrint" value="true" />
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	
+	<bean id="actionGroupgt5" class="nc.funcnode.ui.action.GroupAction">
+		<property name="code" value="printMenuAction" />
+<!--		<property name="name" value="打印" />-->
+		<property name="name">
+           <bean class="nc.ui.uif2.I18nFB">
+              <property name="resDir" value="4006007_0"/>
+              <property name="resId" value="04006007-0030"/>
+              <property name="defaultValue" value="打印"/>
+           </bean>
+       </property>
+		<property name="actions">
+			<list>
+				<ref bean="printAction" />
+				<ref bean="previewAction" />
+			</list>
+		</property>
+	</bean>
+	
+</beans>

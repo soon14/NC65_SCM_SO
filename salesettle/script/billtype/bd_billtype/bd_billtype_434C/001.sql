@@ -1,0 +1,3 @@
+insert into bd_billtype(pk_billtypeid,accountclass,billcoderule,billstyle,billtypename,canextendtransaction,checkclassname,classname,component,datafinderclz,def1,def2,def3,dr,emendenumclass,forwardbilltype,isaccount,isapprovebill,isbizflowbill,iseditableproperty,isenablebutton,islock,isroot,istransaction,ncbrcode,nodecode,parentbilltype,pk_billtypecode,pk_group,pk_org,referclassname,systemcode,transtype_class,ts,webnodecode,wherestring,comp,isenabletranstypebcr) values('434C',null,'~',null,'~','N',null,null,'salesquare4C',null,null,null,null,null,null,'F0,23E0,I5','N','N','N','Y','Y',null,'Y','N','434C','40060603','~','434C','~','GLOBLE00000000000000',null,'SO',null,'2015-05-06 14:56:13','~',null,null,'N')
+go
+

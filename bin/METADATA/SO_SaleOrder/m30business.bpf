@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><component conRouterType="手动" createIndustry="0" createTime="2011-03-30 16:02:28" creator="" description="" displayName="销售订单业务操作" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" industry="0" industryChanged="false" industryIncrease="false" industryName="基础行业" isSource="false" isbizmodel="true" mainEntity="" metaType=".bpf" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="m30business" namespace="so" ownModule="so" preLoad="false" programcode="0" resModuleName="4006011_2" resid="2400601108-0000" version="81" versionType="0">
+    <celllist>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2011-03-30 16:04:55" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="删除操作" fullClassName="nc.voso.m30business.delete" height="100" help="BUSILOG" id="60e7fcc2-b517-46cf-b571-00842695bd70" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="DELETE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="delete" needlog="true" resid="2400601108-0002" typeDisplayName="销售订单主表" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="457" y="230">
+            <refoperationlist>
+                <refoperation id="93a785e6-53ed-4938-a4c4-4b89b0d57301" industry="0" isAuthorization="true" isSource="false" opItfID="4f8033c7-7d7b-4766-aeb8-74a441af0bef" ownerElementID="60e7fcc2-b517-46cf-b571-00842695bd70" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2011-03-30 16:04:56" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="取消审批操作" fullClassName="nc.voso.m30business.unapprove" height="100" help="BUSILOG" id="2accf4fe-2b69-4653-b31a-03f23a2b16bd" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="DELETE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="unapprove" needlog="true" resid="2400601108-0004" typeDisplayName="销售订单主表" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="318" y="257">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2011-03-30 16:04:58" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="审批操作" fullClassName="nc.voso.m30business.approve" height="100" help="BUSILOG" id="877dd716-e455-4635-b9eb-bf4abdbbcf2a" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="DELETE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="approve" needlog="true" resid="2400601108-0003" typeDisplayName="销售订单主表" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="145" y="208">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2011-03-30 16:04:59" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="修改操作" fullClassName="nc.voso.m30business.edit" height="100" help="BUSILOG" id="ab6b7067-3bcc-4b53-aed7-e548560ed6cb" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="MODIFY" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="edit" needlog="true" resid="2400601108-0001" typeDisplayName="销售订单主表" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="258" y="35">
+            <refoperationlist>
+                <refoperation id="d5e33791-b447-4e5d-9047-102aa5367452" industry="0" isAuthorization="true" isSource="false" opItfID="4f8033c7-7d7b-4766-aeb8-74a441af0bef" ownerElementID="ab6b7067-3bcc-4b53-aed7-e548560ed6cb" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2011-03-30 16:11:19" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="打印操作" fullClassName="nc.voso.m30business.print" height="100" help="" id="1b01b54d-718d-4fa1-9183-ff01522a4bae" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="print" needlog="false" resid="2400601108-0007" typeDisplayName="销售订单主表" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="399" y="57">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2011-06-23 09:39:54" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="提交操作" fullClassName="nc.voso.m30business.commit" height="100" help="" id="0638fd24-f63b-4c67-8db6-e3feb07836a3" industryChanged="false" isAuthorization="false" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="commit" needlog="false" resid="2400601108-0005" typeDisplayName="销售订单主表" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="81" y="60">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2011-06-23 09:41:21" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="收回操作" fullClassName="nc.voso.m30business.uncommit" height="100" help="" id="8a6af892-8937-479e-8594-e1c86bdb96a5" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="uncommit" needlog="false" resid="2400601108-0006" typeDisplayName="销售订单主表" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="45" y="223">
+            <refoperationlist/>
+        </busioperation>
+        <opinterface componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-04-27 10:50:11" creator="" description="" displayName="销售订单" fullClassName="nc.itf.so.m30.self.ISaleOrderScriptMaintain" height="100" help="BUSILOG" id="4f8033c7-7d7b-4766-aeb8-74a441af0bef" implClsName="nc.impl.so.m30.self.SaleOrderScriptMaintainImpl" industryChanged="false" isAuthorization="true" isBusiActivity="false" isBusiOperation="false" isSource="false" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:42:01" name="ISaleOrderScriptMaintain" remote="true" resid="2400601108-0018" singleton="true" transprop="CMT" version="" versionType="0" visibility="public" width="80" x="584" y="201">
+            <operationlist>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="删除" forBusinessEntity="N" help="" id="93a785e6-53ed-4938-a4c4-4b89b0d57301" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="saleOrderDelete" opItfID="4f8033c7-7d7b-4766-aeb8-74a441af0bef" ownerElementID="4f8033c7-7d7b-4766-aeb8-74a441af0bef" resid="BatchDelLineAction-000000" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单vo" isAggVO="true" name="vos" operationID="93a785e6-53ed-4938-a4c4-4b89b0d57301" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="用户操作" isAggVO="false" name="userObj" operationID="93a785e6-53ed-4938-a4c4-4b89b0d57301" paramTypeForLog="7" paramdefclassname="" sequence="1" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="修改" forBusinessEntity="N" help="" id="d5e33791-b447-4e5d-9047-102aa5367452" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="saleOrderUpdate" opItfID="4f8033c7-7d7b-4766-aeb8-74a441af0bef" ownerElementID="4f8033c7-7d7b-4766-aeb8-74a441af0bef" resid="ActionRegistry-000005" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单vo" isAggVO="true" name="vos" operationID="d5e33791-b447-4e5d-9047-102aa5367452" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="用户操作" isAggVO="false" name="userObj" operationID="d5e33791-b447-4e5d-9047-102aa5367452" paramTypeForLog="7" paramdefclassname="" sequence="1" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="新增" forBusinessEntity="N" help="" id="83e02055-2c31-487f-9f0f-b7e0fdb43c71" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="saleOrderInsert" opItfID="4f8033c7-7d7b-4766-aeb8-74a441af0bef" ownerElementID="4f8033c7-7d7b-4766-aeb8-74a441af0bef" resid="BatchAddLineAction-000000" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单vo" isAggVO="true" name="vos" operationID="83e02055-2c31-487f-9f0f-b7e0fdb43c71" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="用户操作" isAggVO="false" name="userObj" operationID="83e02055-2c31-487f-9f0f-b7e0fdb43c71" paramTypeForLog="7" paramdefclassname="" sequence="1" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+            </operationlist>
+            <opImpllist/>
+        </opinterface>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-05-29 09:40:50" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="新增操作" fullClassName="nc.voso.m30business.addnew" height="100" help="BUSILOG" id="e2d45512-31c9-4348-8b82-0a16d1430587" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="ADD" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="addnew" needlog="true" resid="2400601108-0008" typeDisplayName="销售订单主实体" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="692" y="133">
+            <refoperationlist>
+                <refoperation id="83e02055-2c31-487f-9f0f-b7e0fdb43c71" industry="0" isAuthorization="true" isSource="false" opItfID="4f8033c7-7d7b-4766-aeb8-74a441af0bef" ownerElementID="e2d45512-31c9-4348-8b82-0a16d1430587" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-05-29 10:45:29" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="冻结/解冻操作" fullClassName="nc.voso.m30business.freezingop" height="100" help="BUSILOG" id="20b7ac61-3bb9-4c4e-89fb-589cd004fde6" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="DELETE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="freezingop" needlog="true" resid="2400601108-0009" typeDisplayName="销售订单主实体" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="119" y="378">
+            <refoperationlist>
+                <refoperation id="d9228a3c-8f4c-4605-a563-73063fffba3e" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="20b7ac61-3bb9-4c4e-89fb-589cd004fde6" versiontype="0"/>
+                <refoperation id="e6bcbb52-d803-4296-8678-fdabadfea2de" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="20b7ac61-3bb9-4c4e-89fb-589cd004fde6" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-05-29 10:46:48" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="出库关闭/打开操作" fullClassName="nc.voso.m30business.saleoutclose" height="100" help="BUSILOG" id="279fc8aa-013e-4f27-a47e-3d732c051846" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="MODIFY" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="saleoutclose" needlog="true" resid="2400601108-0010" typeDisplayName="销售订单主实体" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="422" y="417">
+            <refoperationlist>
+                <refoperation id="6a93f347-3d5f-4eda-b269-e9178bc06529" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="279fc8aa-013e-4f27-a47e-3d732c051846" versiontype="0"/>
+                <refoperation id="16687129-80d5-45c0-a72a-5f9d8c381c86" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="279fc8aa-013e-4f27-a47e-3d732c051846" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-05-29 10:48:06" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="发货关闭/打开操作" fullClassName="nc.voso.m30business.deliveryclose" height="100" help="BUSILOG" id="aec3eb35-42fd-41a7-b6f9-47ec71923ac1" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="MODIFY" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="sendclose" needlog="true" resid="2400601108-0011" typeDisplayName="销售订单主实体" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="312" y="433">
+            <refoperationlist>
+                <refoperation id="572851da-b017-4818-b00f-5f4dca75db04" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="aec3eb35-42fd-41a7-b6f9-47ec71923ac1" versiontype="0"/>
+                <refoperation id="dbecb339-8827-45d9-97c7-fc4081feb586" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="aec3eb35-42fd-41a7-b6f9-47ec71923ac1" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-05-29 10:48:50" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="开票关闭/打开操作" fullClassName="nc.voso.m30business.invoiceclose" height="100" help="BUSILOG" id="1680146c-cdbd-4210-89ab-70641fb5ddfa" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="MODIFY" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="invoiceclose" needlog="true" resid="2400601108-0012" typeDisplayName="销售订单主实体" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="215" y="380">
+            <refoperationlist>
+                <refoperation id="659e7208-15c8-4648-a7a6-d02799c18ae3" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="1680146c-cdbd-4210-89ab-70641fb5ddfa" versiontype="0"/>
+                <refoperation id="0f2c9d73-4f18-41ab-9f36-0ea69ca770df" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="1680146c-cdbd-4210-89ab-70641fb5ddfa" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-05-29 10:50:05" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="结算关闭/打开操作" fullClassName="nc.voso.m30business.financeclose" height="100" help="BUSILOG" id="e72316be-bbb2-4b0e-ad33-b752d87206dd" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="MODIFY" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="settleclose" needlog="true" resid="2400601108-0013" typeDisplayName="销售订单主实体" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="589" y="441">
+            <refoperationlist>
+                <refoperation id="81eba5c6-dcf5-43a2-93a6-9a4e751f1d99" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="e72316be-bbb2-4b0e-ad33-b752d87206dd" versiontype="0"/>
+                <refoperation id="3dc049b3-5cad-455d-917b-5f7015ab3c26" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="e72316be-bbb2-4b0e-ad33-b752d87206dd" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-05-29 10:51:21" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="整单关闭/打开操作" fullClassName="nc.voso.m30business.close" height="100" help="BUSILOG" id="76750968-78cc-4edf-8675-0b4e8c424ce1" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="MODIFY" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="close" needlog="true" resid="2400601108-0014" typeDisplayName="销售订单主实体" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="554" y="321">
+            <refoperationlist>
+                <refoperation id="59ab0615-c8e6-4557-b105-b4af74db53be" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="76750968-78cc-4edf-8675-0b4e8c424ce1" versiontype="0"/>
+                <refoperation id="ba6cc6ce-fe30-490a-aa2a-884a19d5fa8b" industry="0" isAuthorization="true" isSource="false" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="76750968-78cc-4edf-8675-0b4e8c424ce1" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <opinterface componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-05-29 11:45:52" creator="" description="" displayName="销售订单关闭管理" fullClassName="nc.itf.so.m30.closemanage.ISaleOrderCloseManageMaintain" height="124" help="BUSILOG" id="97f65cae-0630-41a7-b441-67342e08aae2" implClsName="nc.impl.so.m30.closemanage.SaleOrderCloseManageMaintainImpl" industryChanged="false" isAuthorization="true" isBusiActivity="false" isBusiOperation="false" isSource="false" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:38:06" name="ISaleOrderCloseManageMaintain" remote="true" resid="2400601108-0016" singleton="true" transprop="CMT" version="" versionType="0" visibility="public" width="80" x="583" y="45">
+            <operationlist>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="开票关闭" forBusinessEntity="N" help="" id="659e7208-15c8-4648-a7a6-d02799c18ae3" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="closeSaleOrderInvoice" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0408" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单view" isAggVO="true" name="vos" operationID="659e7208-15c8-4648-a7a6-d02799c18ae3" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="整单关闭" forBusinessEntity="N" help="" id="59ab0615-c8e6-4557-b105-b4af74db53be" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="closeSaleOrder" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0286" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="bills" operationID="59ab0615-c8e6-4557-b105-b4af74db53be" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="出库关闭" forBusinessEntity="N" help="" id="6a93f347-3d5f-4eda-b269-e9178bc06529" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="closeSaleOrderOut" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0288" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="vos" operationID="6a93f347-3d5f-4eda-b269-e9178bc06529" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="发货关闭" forBusinessEntity="N" help="" id="572851da-b017-4818-b00f-5f4dca75db04" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="closeSaleOrderSend" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0406" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="vos" operationID="572851da-b017-4818-b00f-5f4dca75db04" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="结算关闭" forBusinessEntity="N" help="" id="81eba5c6-dcf5-43a2-93a6-9a4e751f1d99" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="closeSaleOrderSettle" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0292" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="vos" operationID="81eba5c6-dcf5-43a2-93a6-9a4e751f1d99" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="订单冻结" forBusinessEntity="N" help="" id="d9228a3c-8f4c-4605-a563-73063fffba3e" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="freezeSaleOrder" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0054" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="billVOs" operationID="d9228a3c-8f4c-4605-a563-73063fffba3e" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="整单打开" forBusinessEntity="N" help="" id="ba6cc6ce-fe30-490a-aa2a-884a19d5fa8b" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="openSaleOrder" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0377" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="vos" operationID="ba6cc6ce-fe30-490a-aa2a-884a19d5fa8b" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="开票打开" forBusinessEntity="N" help="" id="0f2c9d73-4f18-41ab-9f36-0ea69ca770df" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="openSaleOrderInvoice" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0539" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="views" operationID="0f2c9d73-4f18-41ab-9f36-0ea69ca770df" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="出库打开" forBusinessEntity="N" help="" id="16687129-80d5-45c0-a72a-5f9d8c381c86" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="openSaleOrderOut" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0379" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="vos" operationID="16687129-80d5-45c0-a72a-5f9d8c381c86" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="发货打开" forBusinessEntity="N" help="" id="dbecb339-8827-45d9-97c7-fc4081feb586" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="openSaleOrderSend" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0384" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="vos" operationID="dbecb339-8827-45d9-97c7-fc4081feb586" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="结算打开" forBusinessEntity="N" help="" id="3dc049b3-5cad-455d-917b-5f7015ab3c26" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="openSaleOrderSettle" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0386" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="vos" operationID="3dc049b3-5cad-455d-917b-5f7015ab3c26" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="订单解冻" forBusinessEntity="N" help="" id="e6bcbb52-d803-4296-8678-fdabadfea2de" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="unFreezeSaleOrder" opItfID="97f65cae-0630-41a7-b441-67342e08aae2" ownerElementID="97f65cae-0630-41a7-b441-67342e08aae2" resid="04006011-0540" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="billVOs" operationID="e6bcbb52-d803-4296-8678-fdabadfea2de" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="检查" isAggVO="false" name="businessCheckMap" operationID="e6bcbb52-d803-4296-8678-fdabadfea2de" paramTypeForLog="7" paramdefclassname="" sequence="1" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+            </operationlist>
+            <opImpllist/>
+        </opinterface>
+        <opinterface componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-06-06 08:59:10" creator="" description="" displayName="销售订单修订" fullClassName="nc.itf.so.m30.revise.IM30ReviseMaintain" height="100" help="" id="049e78a0-578d-4667-9ce3-1f24e4749cea" implClsName="nc.itf.so.m30.revise.M30ReviseMaintainImpl" industryChanged="false" isAuthorization="true" isBusiActivity="false" isBusiOperation="false" isSource="false" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:42:48" name="IM30ReviseMaintain" remote="true" resid="2400601108-0017" singleton="true" transprop="CMT" version="" versionType="0" visibility="public" width="80" x="677" y="353">
+            <operationlist>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="修订保存操作" forBusinessEntity="N" help="" id="4ecf5ef5-0889-4656-b2fd-fd83a9ae4249" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="reviseSave" opItfID="049e78a0-578d-4667-9ce3-1f24e4749cea" ownerElementID="049e78a0-578d-4667-9ce3-1f24e4749cea" resid="04006011-0541" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售订单" isAggVO="true" name="bills" operationID="4ecf5ef5-0889-4656-b2fd-fd83a9ae4249" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+            </operationlist>
+            <opImpllist/>
+        </opinterface>
+        <busioperation componentID="7f8ba6c5-924a-40ff-be7a-7300d9ca4a2b" createIndustry="0" createTime="2012-06-06 09:06:05" creator="" dataType="b4bde646-3f4d-4b95-919f-8ebe03c5f849" dbtype="" description="" displayName="修订保存" fullClassName="nc.voso.m30business.revise" height="100" help="BUSILOG" id="7d67b803-1b98-4346-8489-5959385873e8" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="MODIFY" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:29:57" name="revise" needlog="true" resid="2400601108-0015" typeDisplayName="销售订单主实体" typeName="so_saleorder" version="" versionType="0" visibility="public" width="80" x="294" y="137">
+            <refoperationlist>
+                <refoperation id="4ecf5ef5-0889-4656-b2fd-fd83a9ae4249" industry="0" isAuthorization="true" isSource="false" opItfID="049e78a0-578d-4667-9ce3-1f24e4749cea" ownerElementID="7d67b803-1b98-4346-8489-5959385873e8" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

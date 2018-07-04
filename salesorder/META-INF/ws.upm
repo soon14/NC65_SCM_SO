@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module>
+	<public>
+		<component name="ws">
+			<interface>nc.itf.so.m30.msg.IMsgCgag000002</interface>
+			<implementation>nc.impl.so.m30.msg.MsgCgag000002Impl</implementation>
+			<extension class="nc.uap.ws.deploy.OxbWSExtensionProcessor">
+				<wsdl>/nc/wsitf/so/m30/IMsgCgag000002.wsdl</wsdl>
+				<address>/ws</address>
+			</extension>
+		</component>
+	</public>
+	<private>
+	</private>
+</module>

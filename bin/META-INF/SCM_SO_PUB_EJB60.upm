@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+  <public>
+	<!--基于签收数量开票的业务流程-->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.pub.para.IBasedOnSignNumQuery</interface>
+      <implementation>nc.impl.so.para.BasedOnSignNumImpl</implementation>
+    </component>
+    <!--不进行超发货单出库检查接口-->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.vo.so.pub.tolerance.IAbandonToleranceCheck</interface>
+      <implementation>nc.impl.so.tolerance.AbandonToleranceCheckImpl</implementation>
+    </component>
+    <!--提供给库存的基于签收数量开票的业务流程-->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.ic.m4c.ISaleFor4CParaQuery</interface>
+      <implementation>nc.pubimpl.so.ic.m4c.SaleFor4CParaQueryImpl</implementation>
+    </component>
+    <!--重量体积参数接口-->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.pub.para.IWeightAndVolMaintain</interface>
+      <implementation>nc.impl.so.para.WeightAndVolMaintainImpl</implementation>
+    </component>
+    <!--毛利计算获取成本单价接口-->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.pub.profit.IQueryCostPrice</interface>
+      <implementation>nc.impl.so.pub.profit.QueryCostPriceImpl</implementation>
+    </component>
+    <!--校验scm11参数是否可修改-->
+	<component name="socheckSCM11" remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.scmpub.para.ICheckParaForSCM11</interface>
+      <implementation>nc.impl.so.para.CheckParaForSCM11Impl</implementation>
+    </component>
+    <!--校验scm12参数是否可修改-->
+	<component name="socheckSCM12" remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.scmpub.para.ICheckParaForSCM12</interface>
+      <implementation>nc.impl.so.para.CheckParaForSCM12Impl</implementation>
+    </component>
+  </public>
+</module>
+

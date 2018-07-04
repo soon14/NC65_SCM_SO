@@ -1,0 +1,5 @@
+bd_billtype
+pk_billtypeid,billtypename
+4331,发货单
+1001Z81000000000602D,普通
+1001Z81000000000602M,退换货

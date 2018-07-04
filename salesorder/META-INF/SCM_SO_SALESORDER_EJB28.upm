@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+	<public>
+	
+		<!--拉价格审批单操作       2017-06-06-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.billrefFor28.IM28RefQueryService</interface>
+			<implementation>nc.impl.so.m30.billrefFor28.M28RefQueryService</implementation>
+		</component>
+</public>
+</module>

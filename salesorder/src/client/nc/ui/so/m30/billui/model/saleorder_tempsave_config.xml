@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 1、扩展暂存按钮 -->
+	<bean id="addTempSaveAction" class="nc.ui.pubapp.plugin.action.InsertActionInfo">
+		<property name="action" ref="saveTempAction" />
+		<property name="actionContainer" ref="actionsOfCard" />
+		<property name="target" ref="saveAction" />
+		<property name="actionType" value="edit" />
+		<property name="pos" value="after" />
+	</bean>
+
+	<!-- 2、暂存按钮 -->
+	<bean id="saveTempAction" class="nc.ui.scmpub.tempsave.action.SaveTemporaryAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="interceptor" ref="saveTempActionInterceptor"></property>
+	</bean>
+
+	<!-- 3、暂存控制（业务节点根据情况注册） -->
+	<bean id="saveTempActionInterceptor" class="nc.ui.so.m30.billui.action.interceptor.SaveTempActionInterceptor">
+		<property name="billFormEditor" ref="billFormEditor"></property>
+	</bean>
+
+	<!-- 4、扩展显示暂存按钮 -->
+	<bean id="toobarMediator" class="nc.ui.scmpub.tempsave.adapter.CardToolBarPnlMediator"
+		init-method="init">
+		<property name="originActions">
+			<list>
+				<bean class="nc.ui.pub.beans.ActionsBar$ActionsBarSeparator" />
+				<ref bean="headZoomActionInner" />
+			</list>
+		</property>
+		<property name="showTempSaveAction" ref="showTempDataAction" />
+		<property name="toolbarPanel" ref="cardToolbarPnl" />
+	</bean>
+
+	<!-- 5、列表扩展显示暂存按钮 -->
+	<bean id="listToolbarMediator" class="nc.ui.scmpub.tempsave.adapter.ListToolBarPnlMediator"
+		init-method="init">
+		<property name="showTempSaveAction" ref="showTempDataAction" />
+		<property name="toolbarPanel" ref="listToolbarPnl" />
+	</bean>
+
+	<!-- 原来的表头最大化按钮 -->
+	<bean id="headZoomActionInner" class="nc.ui.pubapp.uif2app.actions.DefaultHeadZoomAction">
+		<property name="billForm" ref="billFormEditor" />
+		<property name="model" ref="ManageAppModel" />
+		<property name="pos" value="0" />
+	</bean>
+
+	<!-- 6、显示暂存记录按钮 -->
+	<bean id="showTempDataAction" class="nc.ui.scmpub.tempsave.action.DraftViewAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="tempdataLoader" ref="saleOrderTempDataLoader"></property>
+	</bean>
+
+	<!-- 7、暂存数据加载器（销售订单特殊业务需要处理，否则使用平台默认） -->
+	<bean id="saleOrderTempDataLoader" class="nc.ui.so.m30.billui.view.SaleOrderTempDataLoader">
+		<property name="editor" ref="billFormEditor" />
+		<property name="model" ref="ManageAppModel" />
+		<property name="addAction" ref="addManualAction"></property>
+	</bean>
+
+	<!-- 8、保存按钮拦截器。保存后刷新界面暂存数据 -->
+	<bean id="refreshTempSaveData4Save" class="nc.ui.pubapp.plugin.action.ActionInterceptorInfo">
+		<property name="interceptor" ref="saveActionInterceptor" />
+		<property name="target" ref="saveAction" /> <!-- 需要检查beanname -->
+	</bean>
+	<bean id="saveActionInterceptor"
+		class="nc.ui.scmpub.tempsave.interceptor.SaveInterceptor4TempSave">
+		<property name="editor" ref="billFormEditor" /> <!-- 需要检查beanname -->
+		<property name="model" ref="ManageAppModel" /> <!-- 需要检查beanname -->
+	</bean>
+
+</beans>

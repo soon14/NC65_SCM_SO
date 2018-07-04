@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">  
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+    <property name="location"> 
+      <value>D:\yonyouworkspace\SCM_SO\saleinvoice\src/test/resources/data/spring//spring.properties</value> 
+    </property> 
+  </bean>  
+  <bean class="nc.vo.pub.lang.UFDateTime" id="ufdatetime"> 
+    <constructor-arg index="0"> 
+      <value>${ufdatetime.constructor_args.0}</value> 
+    </constructor-arg>  
+    <constructor-arg index="1"> 
+      <null/> 
+    </constructor-arg> 
+  </bean>  
+  <bean class="nc.vo.so.m30.entity.OffsetTempVO" id="offsettempvo">
+    <property name="hmArsubRelation">
+      <null/>
+    </property>
+    <property name="isCancelOffset" value="${offsettempvo.isCancelOffset}"/>
+  </bean>
+</beans>

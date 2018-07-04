@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+  <public>
+   <!--退货原因-->
+     <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.mreturnreason.IReturnReasonMaintain</interface>
+      <implementation>nc.impl.so.mreturnreason.service.ReturnReasonMaintainImpl</implementation>
+    </component>
+   <!--退货条件-->
+     <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.mreturncondition.IReturnConditionMaintain</interface>
+      <implementation>nc.impl.so.mreturncondition.service.ReturnConditionMaintainImpl</implementation>
+    </component>
+   <!--退货政策设置-->
+     <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.mreturnpolicy.IReturnPolicyMaintain</interface>
+      <implementation>nc.impl.so.mreturnpolicy.service.ReturnPolicyMaintainImpl</implementation>
+    </component>
+   <!--退货政策分配-->
+     <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.mreturnassign.IReturnAssignMaintain</interface>
+      <implementation>nc.impl.so.mreturnassign.service.ReturnAssignMaintainImpl</implementation>
+    </component>
+   <!--退货政策检查函数 提供给销售订单用-->
+     <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m30.IReturnAssignMatch</interface>
+      <implementation>nc.pubimpl.so.ReturnAssignMatchImpl</implementation>
+    </component>
+     <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m30.ICustomFunction</interface>
+      <implementation>nc.pubimpl.so.CustomFunctionImpl</implementation>
+    </component>
+    <!--退货原因设置，为订单统一处理中心预订单提供的REP退货原因信息查询接口 -->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+    	<interface>nc.pubitf.so.mreturnreason.opc.mecc1.IQueryReturnReasonInfo</interface>
+    	<implementation>nc.pubimpl.so.mreturnreason.opc.mecc1.QueryReturnReasonInfoImpl</implementation>
+    </component>
+  </public>
+</module>
+

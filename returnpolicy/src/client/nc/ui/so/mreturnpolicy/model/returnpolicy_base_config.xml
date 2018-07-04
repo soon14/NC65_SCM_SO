@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext"></bean>
+
+	<!--
+		模型部分配置###########################################################
+	-->
+
+	<!-- 应用服务类，负责进行模型操作的处理 -->
+	<bean id="batchModelService"
+		class="nc.ui.pubapp.pub.smart.SmartBatchAppModelService">
+		<!-- 修改为自己的VO类名 -->
+		<property name="voClass"
+			value="nc.vo.so.mreturnpolicy.entity.ReturnPolicyVO" />
+		<!-- 修改为upm文件中配置的接口名称，前提是实现了ISmartService接口 -->
+		<property name="serviceItf"
+			value="nc.itf.so.mreturnpolicy.IReturnPolicyMaintain" />
+	</bean>
+
+	<!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+	<!-- 对于有元数据的VO，可以使用下面的配置-->
+	<bean id="boadatorfactory"
+		class="nc.vo.bd.meta.BDObjectAdpaterFactory" />
+
+	<!-- 对于没有元数据的普通循环VO，可以使用下面的配置并制定各个属性字段
+	-->
+
+	<!-- 批量操作前台校验 -->
+	<bean id="batchValidateSerice"
+		class="nc.ui.so.mreturnpolicy.model.ReturnPolicyValidationService">
+		<property name="editor" ref="list" />
+	</bean>
+
+	<!-- 批量操作应用模型 -->
+	<bean id="batchBillTableModel"
+		class="nc.ui.so.mreturnpolicy.model.ReturnPolicyModel">
+		<property name="context" ref="context"></property>
+		<property name="service" ref="batchModelService"></property>
+		<property name="businessObjectAdapterFactory"
+			ref="boadatorfactory">
+		</property>
+		<property name="validationService" ref="batchValidateSerice"></property>
+	</bean>
+
+	<!-- 数据模型管理器，主要负责各种方式的模型初始化 -->
+	<!-- 如果有界面中有通用的查询Action要引用此bean，此bean必须实现IAppModelQueryDataManager接口 -->
+	<bean id="modelDataManager"
+		class="nc.ui.pubapp.uif2app.model.BatchModelDataManager">
+		<property name="model" ref="batchBillTableModel"></property>
+		<property name="service" ref="batchModelService"></property>
+	</bean>
+	<bean id="templateContainer" class="nc.ui.uif2.editor.TemplateContainer" init-method="load">
+		<property name="context" ref="context"></property>
+	</bean>
+	<!-- 界面元素 ###########################################################-->
+	<!-- 组织面板 -->
+	<bean id="orgPanel" class="nc.ui.pubapp.uif2app.view.OrgPanel"
+		init-method="initUI">
+		<property name="model" ref="batchBillTableModel" />
+		<property name="dataManager" ref="modelDataManager" />
+		<!-- 输入组织类型，值与各种参照的值相同 -->
+		<property name="type" value="销售组织" />
+	</bean>
+	<!-- 列表控件的取值策略 -->
+	<bean id="componentValueManager"
+		class="nc.ui.uif2.editor.value.BillCardPanelMetaDataValueAdapter">
+	</bean>
+	<!-- 编辑页签控件 -->
+	<bean id="list" class="nc.ui.so.mreturnpolicy.view.ReturnPolicyBillView"
+		init-method="initUI">
+		<property name="model" ref="batchBillTableModel"></property>
+		<property name="componentValueManager"
+			ref="componentValueManager">
+		</property>
+		<property name="isBodyAutoAddLine" value="false"></property>
+		<property name="moreRowEdit" value="false" />
+		<property name="bodyMultiSelectEnable" value="true"></property>
+		<property name="addLineAction" ref="addAction" />
+	</bean>
+	<!--
+		Actions ###########################################################
+	-->
+	<bean id="maintainActionGroup" class="nc.funcnode.ui.action.GroupAction">
+		<property name="code">
+			<value>maintain</value>
+		</property>
+		<property name="name" value="打印" />
+		<property name="actions">
+			<list>
+				<ref bean="printAction" />
+				<ref bean="previewAction" />
+			</list>
+		</property>
+	</bean>
+	<bean id="addAction" class="nc.ui.so.mreturnpolicy.action.ReturnPolicyAddLineAction">
+		<property name="model" ref="batchBillTableModel" />
+		<!-- 修改为自己的VO类名 -->
+		<property name="voClassName" value="nc.vo.so.mreturnpolicy.entity.ReturnPolicyVO" />
+	</bean>
+	<bean id="editAction" class="nc.ui.so.mreturnpolicy.action.ReturnPolicyEditAction">
+		<property name="model" ref="batchBillTableModel" />
+	</bean>
+	<bean id="delAction" class="nc.ui.so.mreturnpolicy.action.ReturnPolicyDelAction">
+		<property name="model" ref="batchBillTableModel" />
+	</bean>
+	<bean id="saveAction" class="nc.ui.uif2.actions.batch.BatchSaveAction">
+		<property name="model" ref="batchBillTableModel" />
+		<property name="editor" ref="list" />
+		<property name="validationService" ref="batchValidateSerice" /> 
+	</bean>
+	<bean id="cancelAction" class="nc.ui.so.mreturnpolicy.action.ReturnPoliceCancleAction">
+		<property name="model" ref="batchBillTableModel" />
+		<property name="editor" ref="list" />
+	</bean>
+		<bean id="printAction" class="nc.ui.pubapp.uif2app.actions.SingleTablePrintAction">
+		<property name="model" ref="batchBillTableModel"/>
+		<property name="editor"  ref="list"  /> 
+		<property name="preview" value="false"/>
+	</bean>
+	
+	<bean id="previewAction" class="nc.ui.pubapp.uif2app.actions.SingleTablePrintAction">
+		<property name="model" ref="batchBillTableModel"/>
+		<property name="editor"  ref="list"  /> 
+		<property name="preview" value="true"/>
+	</bean>
+	
+	<bean id="refreshAction" class="nc.ui.so.mreturnpolicy.action.ReturnPoliceRefrshAction">
+		<property name="model" ref="batchBillTableModel"/>
+		<property name="manager" ref="modelDataManager" />
+	</bean>
+
+</beans>

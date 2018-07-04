@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding='gb2312'?>
+<items docType="SDP_SCRIPT_ITEM">
+
+    <item>
+		<itemKey>CFG_120201</itemKey>
+		<itemName>单据模版</itemName>
+		<itemRule>pub_billtemplet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>nodecode</grpField>
+		<fixedWhere>bill_templetname='SYSTEM' and (nodecode in ('40060601','40060602','40060603') or PK_BILLTYPECODE = 'OutRush' )</fixedWhere>
+	</item>
+	<item>
+		<itemKey>CFG_120202</itemKey>
+		<itemName>查询模版</itemName>
+		<itemRule>pub_query_templet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>node_code</grpField>
+		<fixedWhere>node_code in ('40060601','40060602','40060603')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>CFG_120203</itemKey>
+		<itemName>打印模版</itemName>
+		<itemRule>pub_print_template</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>vnodecode</grpField>
+		<fixedWhere>vnodecode in ('40060601','40060602','40060603')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>CFG_120207</itemKey>
+		<itemName>默认模版</itemName>
+		<itemRule>pub_systemplate_base</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>funnode</grpField>
+		<fixedWhere>funnode in ('40060601','40060602','40060603','40060604')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>CFG_120208</itemKey>
+		<itemName>单据类型</itemName>
+		<itemRule>bd_billtype</itemRule>
+		<sysField>systemcode</sysField>
+		<corpField></corpField>
+		<grpField>pk_billtypecode</grpField>
+		<fixedWhere>pk_billtypecode in ('434C','4332','4353') </fixedWhere>
+	</item>
+	
+	<item>
+		<itemKey>CFG_120211</itemKey>
+		<itemName>功能节点</itemName>
+		<itemRule>sm_funcregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>funcode in('400606','40060601','40060602','40060603','40060604')</fixedWhere>
+	</item>
+	
+	<item>
+		<itemKey>CFG_120213</itemKey>
+		<itemName>单据号对象</itemName>
+		<itemRule>pub_bcr_nbcr</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere> code in ('434C','4332','4353')</fixedWhere>
+	</item>
+	
+	<item>
+		 <itemKey>CFG_120213</itemKey>
+		 <itemName>数据交换</itemName>
+		 <itemRule>pub_vochange</itemRule>
+		 <sysField></sysField>
+		 <corpField></corpField>
+		 <grpField></grpField>
+		 <fixedWhere>dest_billtype in ('434C','4332','4353') and pk_group = 'global00000000000000' </fixedWhere>
+	</item>
+	<item>
+        <itemKey>CFG_120214</itemKey>
+        <itemName>分单条件</itemName>
+        <itemRule>pub_vosplititem</itemRule>
+        <sysField></sysField>
+        <corpField></corpField>
+        <grpField></grpField>
+        <fixedWhere>dest_billtype = '434C'</fixedWhere>
+    </item>
+    <item>
+        <itemKey>CFG_120215</itemKey>
+        <itemName>自定义菜单</itemName>
+        <itemRule>sm_menuitemreg</itemRule>
+        <sysField></sysField>
+        <corpField></corpField>
+        <grpField></grpField>
+        <fixedWhere>menuitemcode like '400935%'</fixedWhere>
+    </item>
+</items>

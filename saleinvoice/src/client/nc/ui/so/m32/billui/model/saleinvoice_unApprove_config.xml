@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="true">
+	<!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext" />
+
+	<!-- 模型部分配置################################################## -->
+	<!-- 应用服务类，负责进行模型操作的处理 -->
+	
+<!-- need change with the change of vo class below -->
+	<bean id="modelService" class="nc.ui.so.pub.closingcheck.ClosingCheckModelService" />
+
+	<!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+	<bean id="boadatorfactory"
+		class="nc.ui.so.pub.closingcheck.ClosingCheckObjectAdpaterFactory" />
+		
+	<!-- 查询结果界面 ######################################## -->
+	<!-- 查询结果界面应用模型 -->
+	<bean id="manageAppModel" class="nc.ui.so.m32.closingcheck.IA2012Model">
+		<property name="context" ref="context" />
+		<property name="businessObjectAdapterFactory" ref="boadatorfactory" />
+	</bean>
+	
+<!-- top addition -->
+	<!-- 界面元素 ###########################################################-->
+		<bean id="listView" class="nc.ui.so.pub.closingcheck.IABatchTable" init-method="initUI">
+	    <property name="model" ref ="manageAppModel" />
+   <!-- need change this vo class -->
+	    <property name="voClassName" value="nc.vo.so.m32.entity.SaleInvoiceHVO" />
+	    <property name="isBodyAutoAddLine" value="false" />
+	    <property name="bodyMultiSelectEnable" value="true" />
+	    <property name="nodekey" value="query" />
+	    
+	</bean>
+	
+	<bean id="printGroupAction" class="nc.funcnode.ui.action.GroupAction">
+		<property name="code" value = "print"/>
+		<property name="name">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="10140curtp"></property>
+				<property name="defaultValue" value="打印"></property>
+				<property name="resId" value="010140curtp0011"></property>
+			</bean>
+		</property>
+		<property name="actions">
+			<list>
+				<ref bean="printAction" />
+				<ref bean="preViewAction" />
+				<ref bean="outputAction" />
+			</list>
+		</property>
+	</bean>
+	<bean id="preViewAction" class="nc.ui.so.m32.closingcheck.ClosePrintAction">
+		<property name="directPrint" value="true" />
+     	<property name="model" ref="manageAppModel"/>
+     	<property name="editor" ref="listView" />
+	</bean>
+	<bean id="printAction" class="nc.ui.so.m32.closingcheck.ClosePrintAction">
+		<property name="directPrint" value="true"/>
+     	<property name="model" ref="manageAppModel"/>
+     	<property name="editor" ref="listView" />
+	</bean>
+	<bean id="outputAction" class="nc.ui.so.pub.closingcheck.CloseOutPrintAction">
+		<constructor-arg ref="printAction"/>
+		<property name="model" ref="manageAppModel" />
+	</bean>
+    <!-- bottom addition -->
+
+	<!-- 查询结果界面数据模型管理器 -->
+	<bean id="modelDataManager" class="nc.ui.pubapp.uif2app.query2.model.ModelDataManager">
+		<property name="model" ref="manageAppModel" />
+	</bean>
+
+	<bean id="separatorAction" class="nc.funcnode.ui.action.SeparatorAction" />
+
+	<!-- ############## 界面总布局  ########################## -->
+	<bean id="container" class="nc.ui.uif2.TangramContainer"
+		init-method="initUI">
+		<property name="tangramLayoutRoot">
+			<bean id="vsnode" class="nc.ui.uif2.tangramlayout.node.TBNode">
+				<property name="showMode" value="CardLayout" />
+				<property name="tabs">
+					<list>
+						<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+							<property name="component" ref="listView" />
+						</bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+		<property name="actions">
+			<list>
+			<ref bean="separatorAction" />
+				<ref bean="checkAction" />
+				<ref bean="printGroupAction" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 模板容器，主要负责加载单据模板 -->
+	<bean id="templateContainer" class="nc.ui.uif2.editor.TemplateContainer"
+		init-method="load">
+		<property name="context" ref="context" />
+	</bean>
+
+	<!-- 动作按钮 ######################################## -->
+	<bean id="checkAction" class="nc.ui.org.closeaccbook.check.CheckAction">
+		<property name="model" ref="manageAppModel" />
+		<property name = "code" value="000222000" />
+	</bean>
+
+
+	<!--界面按钮布局 -->
+	<bean id="toftpanelActionContributors" class="nc.ui.uif2.actions.ActionContributors">
+		<property name="contributors">
+			<list>
+				<ref bean="actionsOfQueryUI" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="queryTemplateContainer" class="nc.ui.uif2.editor.QueryTemplateContainer">
+		<property name="context" ref="context" />
+	</bean>
+
+
+	<bean id="remoteCallCombinatorCaller" class="nc.ui.uif2.editor.UIF2RemoteCallCombinatorCaller">
+		<property name="remoteCallers">
+			<list>
+				<ref bean="queryTemplateContainer" />
+				<ref bean="templateContainer" />
+			</list>
+		</property>
+	</bean>
+</beans>

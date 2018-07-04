@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext" />
+
+	<!-- 模型部分配置########################################################### -->
+
+	<!-- 应用服务类，负责进行模型操作的处理 -->
+	<bean id="manageModelService" class="nc.ui.so.m38.billui.model.PreOrderModelService">
+	</bean>
+
+
+	<!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+	<bean id="boadatorfactory"
+		class="nc.ui.pubapp.uif2app.view.value.AggVOMetaBDObjectAdapterFactory" />
+
+	<!-- 管理应用模型 -->
+	<bean id="manageAppModel" class="nc.ui.pubapp.uif2app.model.BillManageModel">
+		<property name="service" ref="manageModelService"></property>
+		<property name="businessObjectAdapterFactory" ref="boadatorfactory"></property>
+		<property name="context" ref="context"></property>
+	</bean>
+
+	<!-- 数据模型管理器，主要负责各种方式的模型初始化 -->
+	<bean id="modelDataManager" class="nc.ui.pubapp.uif2app.query2.model.ModelDataManager">
+		<property name="model" ref="manageAppModel"></property>
+		<property name="service" ref="manageModelService"></property>
+	</bean>
+
+	<!-- 交易类型发布节点开始 -->
+	<bean id="trantypeTempMender"
+		class="nc.ui.pubapp.uif2app.funcnode.trantype.TrantypeBillTemplateMender">
+		<constructor-arg ref="context" />
+	</bean>
+	<!-- 模板容器，负责对模板的统一装载 -->
+	<bean id="templateContainer" class="nc.ui.pubapp.uif2app.view.TemplateContainer"
+		init-method="load">
+		<property name="context" ref="context" />
+		<property name="billTemplateMender" ref="trantypeTempMender"></property>
+	</bean>
+
+	<!-- 界面元素 ########################################################### -->
+	<!-- 列表视图 -->
+	<bean id="listView" class="nc.ui.so.m38.billui.view.PreOrderListView"
+		init-method="initUI">
+		<property name="model" ref="manageAppModel"></property>
+		<property name="multiSelectionMode" value="0" />
+		<property name="templateContainer" ref="templateContainer"></property>
+		<!-- 列表自定义项处理 -->
+		<property name="userdefitemListPreparator" ref="userdefAndMarAsstListPreparator" />
+	</bean>
+	<!--卡控件 -->
+	<bean id="billFormEditor" class="nc.ui.so.m38.billui.view.PreOrderEditor"
+		init-method="initUI">
+		<property name="model" ref="manageAppModel"></property>
+		<property name="templateContainer" ref="templateContainer" />
+		<!-- 是否进行模板非空校验 -->
+		<property name="templateNotNullValidate" value="true" />
+		<!-- 卡片需要清除的超链接注册 -->
+		<property name="clearHyperlink">
+			<list>
+				<value>vbillcode</value>
+			</list>
+		</property>
+		<!-- 是否自动增行 -->
+		<property name="autoAddLine" value="true" />
+		<!-- 空行过滤器，卡片界面根据此过滤器删除表体空行 -->
+		<property name="blankChildrenFilter">
+			<!-- 简单的根据一个字段是否为空的空行过滤器，因为多数情况下都是判断存货是否为空来过滤空行 -->
+			<bean
+				class="nc.ui.pubapp.uif2app.view.value.SingleFieldBlankChildrenFilter">
+				<!-- 指定用来判断空行的字段名称，可能多数情况下是存货字段 -->
+				<property name="fieldName" value="cmaterialid" />
+			</bean>
+		</property>
+		<!-- 卡片自定义项处理 -->
+		<property name="userdefitemPreparator" ref="userdefAndMarAsstCardPreparator" />
+		<!-- 表体行操作按钮注册，与表体右键菜单保持一致 -->
+		<property name="bodyLineActions">
+			<list>
+				<!-- 提供了一组默认实现 -->
+				<bean class="nc.ui.pubapp.uif2app.actions.BodyAddLineAction" />
+				<bean class="nc.ui.pubapp.uif2app.actions.BodyInsertLineAction" />
+				<bean class="nc.ui.pubapp.uif2app.actions.BodyDelLineAction" />
+				<bean class="nc.ui.pubapp.uif2app.actions.BodyCopyLineAction" />
+				<bean class="nc.ui.pubapp.uif2app.actions.BodyPasteLineAction">
+					<property name="clearItems">
+						<list>
+							<value>cpreorderbid</value>
+							<value>ts</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="nc.ui.pubapp.uif2app.actions.BodyPasteToTailAction">
+					<property name="clearItems">
+						<list>
+							<value>cpreorderbid</value>
+							<value>ts</value>
+						</list>
+					</property>
+				</bean>
+				<!-- UE表体分隔符 -->
+				<bean class="nc.ui.pub.beans.ActionsBar$ActionsBarSeparator"/>
+				<!-- 重排行号 -->
+				<bean class="nc.ui.pubapp.uif2app.actions.RearrangeRowNoBodyLineAction" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 界面单据号控制类 -->
+	<!-- 单据号规则如果是“支持断号补号”，则不管模板上设置的可编辑性，单据号都不允许修改 -->
+	<bean id="billCodeMediator" class="nc.ui.scmpub.listener.BillCodeEditMediator" init-method="initUI">
+		<!-- 模板上的单据号字段ItemKey -->
+		<property name="billCodeKey" value="vbillcode" />
+		<!-- 单据类型 -->
+		<property name="billType" value="38" />
+		<property name="billForm" ref="billFormEditor" />
+	</bean>
+	<!-- 关闭节点的提示 -->
+	<bean id="ClosingListener" class="nc.ui.uif2.FunNodeClosingHandler">
+		<property name="model" ref="manageAppModel" />
+		<property name="saveaction" ref="saveAction" />
+		<property name="cancelaction" ref="cancelAction" />
+	</bean>
+	<!-- 双击列表行后显示卡片 -->
+	<bean id="mouseClickShowPanelMediator" class="nc.ui.pubapp.uif2app.view.MouseClickShowPanelMediator">
+		<property name="listView" ref="listView" />
+		<property name="showUpComponent" ref="billFormEditor" />
+		<property name="hyperLinkColumn" value="vbillcode" />
+	</bean>
+	<!-- 切换到卡片界面的拦截器 -->
+	<bean id="formInterceptor"
+		class="nc.ui.pubapp.uif2app.actions.interceptor.ShowUpComponentInterceptor">
+		<property name="showUpComponent" ref="billFormEditor" />
+	</bean>
+	<!-- 切换到列表界面的拦截器 -->
+	<bean id="listInterceptor"
+		class="nc.ui.pubapp.uif2app.actions.interceptor.ShowUpComponentInterceptor">
+		<property name="showUpComponent" ref="listView" />
+	</bean>
+	<!-- 更改组织后同步设置界面上所有参照的组织值 -->
+	<bean id="cardPanelOrgSetterForAllRefMediator"
+		class="nc.ui.pubapp.uif2app.view.CardPanelOrgSetterForAllRefMediator">
+		<constructor-arg ref="billFormEditor" />
+		<property name="model" ref="manageAppModel" />
+	</bean>
+	<!-- 行号自动处理 -->
+	<bean id="rowNoMediator" class="nc.ui.pubapp.uif2app.view.RowNoMediator">
+		<property name="model" ref="manageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!-- 自动修正卡片界面的分数显示控件(换算率) -->
+	<bean id="fractionFixMediator" class="nc.ui.pubapp.uif2app.view.FractionFixMediator" init-method="initUI">
+		<constructor-arg ref="billFormEditor" />
+	</bean>
+	<!-- model与界面的表体排序同步组件(先支持页签关联元数据对象、非关联的不支持)我们也可以改PUB_BILLTEMPLET_T表 -->
+	<bean id="billBodySortMediator" class="nc.ui.pubapp.uif2app.model.BillBodySortMediator">
+		<constructor-arg ref="manageAppModel" />
+		<constructor-arg ref="billFormEditor" />
+		<constructor-arg ref="listView" />
+	</bean>
+	<!-- 编辑事件 -->
+	<bean id="appEventHandlerMediator" class="nc.ui.pubapp.uif2app.model.AppEventHandlerMediator">
+		<property name="model" ref="manageAppModel" />
+		<property name="handlerMap">
+			<map>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailBeforeEditEvent">
+					<list>
+						<bean class="nc.ui.so.m38.billui.editor.headevent.HeadBeforeEditHandler"></bean>
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailAfterEditEvent">
+					<list>
+						<bean class="nc.ui.so.m38.billui.editor.headevent.HeadAfterEditHandler"></bean>
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyBeforeEditEvent">
+					<list>
+						<bean class="nc.ui.so.m38.billui.editor.bodyevent.BodyBeforeEditHandler">
+							<property name="editor" ref="billFormEditor" />
+						</bean>
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyAfterEditEvent">
+					<list>
+						<bean class="nc.ui.so.m38.billui.editor.bodyevent.BodyAfterEditHandler">
+							<property name="editor" ref="billFormEditor" />
+						</bean>
+					</list>
+				</entry>
+				<!-- 表体行操作（增行、插入行、删行等） -->
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyAfterRowEditEvent">
+					<list>
+						<bean class="nc.ui.so.m38.billui.editor.bodyevent.CardBodyAfterRowEditHandler" />
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.OrgChangedEvent">
+					<list>
+						<bean class="nc.ui.so.m38.billui.editor.orgevent.OrgEditHandler">
+							<constructor-arg ref="billFormEditor" />
+							<constructor-arg ref="context" />
+						</bean>
+					</list>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+	
+</beans>

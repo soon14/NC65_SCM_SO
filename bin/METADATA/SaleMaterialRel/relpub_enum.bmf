@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createTime="2010-09-19 09:37:48" creator="" description="" displayName="销售物料关系常量" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="4519d571-8b91-4988-9b62-6ee087f47e86" isbizmodel="false" mainEntity="" modifier="" modifyTime="2011-08-08 10:04:38" name="relpub_enum" namespace="so" ownModule="so" preLoad="false" resModuleName="4006007_2" resid="2400600703-0000" version="5" versionType="0">
+    <celllist>
+        <Enumerate componentID="4519d571-8b91-4988-9b62-6ee087f47e86" createTime="2010-09-19 09:40:00" creator="" dataType="BS000010000100001004" dbtype="int" description="" displayName="允许销售" fullClassName="nc.vo.so.base.entity.AllowSale" height="100" help="" id="546a0179-b8bb-43fb-b2b0-930c47e6984e" modInfoClassName="" modifier="" modifyTime="2011-08-08 10:04:38" name="allowsale" resid="2400600703-0002" typeDisplayName="Integer" typeName="Integer" versionType="0" visibility="public" width="80" x="140" y="83">
+            <enumitemlist>
+                <enumitem description="" enumDisplay="允许销售" enumID="546a0179-b8bb-43fb-b2b0-930c47e6984e" enumValue="1" hidden="false" id="dafa3588-dacb-4f66-8550-97b467abb3f7" resid="2400600703-0002" sequence="0" versionType="0"/>
+                <enumitem description="" enumDisplay="禁止销售" enumID="546a0179-b8bb-43fb-b2b0-930c47e6984e" enumValue="2" hidden="false" id="a6089d7a-93d9-4e14-9f46-9ab0d44c4959" resid="2400600703-0001" sequence="1" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

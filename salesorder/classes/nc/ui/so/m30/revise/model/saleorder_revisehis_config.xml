@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- 引入销售订单与退货订单公共部分 -->
+	<import resource="saleorder_revise_config.xml" />
+	<!-- 界面布局总装########################################################### -->
+	<bean id="container" class="nc.ui.uif2.TangramContainer"
+		init-method="initUI">
+		<property name="tangramLayoutRoot">
+			<bean class="nc.ui.uif2.tangramlayout.node.TBNode">
+				<property name="showMode" value="CardLayout"></property>
+				<property name="tabs">
+					<list>
+						<bean class="nc.ui.uif2.tangramlayout.node.VSNode">
+							<property name="up">
+								<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+									<property name="component" ref="listToolbarPnl" />
+								</bean>
+							</property>
+							<property name="down">
+								<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+									<!-- <property name="name" value="列表" /> -->
+                      <property name="name">
+                        <bean class="nc.ui.uif2.I18nFB">
+                          <property name="resDir" value="common" />
+                          <property name="resId" value="UC001-0000107" />
+                          <property name="defaultValue" value="列表" />
+                        </bean>
+                      </property>
+									<property name="component" ref="listView" />
+								</bean>
+							</property>
+							<property name="dividerLocation" value="25f" />
+						</bean>
+						<bean class="nc.ui.uif2.tangramlayout.node.VSNode">
+							<property name="up">
+								<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+									<property name="component" ref="cardToolbarPnl" />
+								</bean>
+							</property>
+							<property name="down">
+								<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+									<property name="component" ref="billFormEditor" />
+									 <!-- <property name="name" value="卡片" /> -->
+                  <property name="name">
+                    <bean class="nc.ui.uif2.I18nFB">
+                      <property name="resDir" value="common" />
+                      <property name="resId" value="UC001-0000106" />
+                      <property name="defaultValue" value="卡片" />
+                    </bean>
+                  </property>
+								</bean>
+							</property>
+							<property name="dividerLocation" value="25f" />
+						</bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- 构造方法中传入的界面显示时，配置的Action才可见 -->
+	<bean id="actionsOfList" class="nc.ui.uif2.actions.StandAloneToftPanelActionContainer">
+		<constructor-arg ref="listView" />
+		<!-- 可以配置非编辑状态下和编辑状态下分别可见的Action，没有此需求时可以配置得一样 -->
+		<property name="actions">
+			<list>
+				<ref bean="returnAction" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 构造方法中传入的界面显示时，配置的Action才可见 -->
+	<bean id="actionsOfCard" class="nc.ui.uif2.actions.StandAloneToftPanelActionContainer">
+		<constructor-arg ref="billFormEditor" />
+		<!-- 可以配置非编辑状态下和编辑状态下分别可见的Action，没有此需求时可以配置得一样 -->
+		<property name="actions">
+			<list>
+				<ref bean="returnAction" />
+			</list>
+		</property>
+		<!-- 需要把model注入，状态从model中获得 -->
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+	<!-- 打开节点监听  -->
+	<bean id="InitDataListener"
+		class="nc.ui.pubapp.uif2app.model.DefaultFuncNodeInitDataListener">
+		<property name="model" ref="ManageAppModel" />
+		<property name="voClassName" value="nc.vo.so.m30.entity.SaleOrderVO" />
+		<property name="autoShowUpComponent" ref="listView" />
+		<property name="processorMap">
+			<map>
+				<entry>
+					<key>
+						<value>19</value>
+					</key>
+					<bean class="nc.ui.so.m30.revise.model.M30ReviseInitDataProcessor">
+						<property name="model" ref="ManageAppModel" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<!-- 界面元素 ########################################################### -->
+	<!-- 列表视图 -->
+	<bean id="listView" class="nc.ui.so.m30.billui.view.SaleOrderBillListView"
+		init-method="initUI">
+		<property name="model" ref="ManageAppModel"></property>
+		<property name="multiSelectionMode" value="0" />
+		<property name="templateContainer" ref="templateContainer"></property>
+		<!-- 列表自定义项处理 -->
+		<property name="userdefitemListPreparator">
+			<bean name="userdefAndMarAsstListPreparator"
+				class="nc.ui.pubapp.uif2app.view.CompositeBillListDataPrepare">
+				<property name="billListDataPrepares">
+					<list>
+						<ref bean="userdefitemlistPreparator" />
+						<ref bean="marAsstPreparator" />
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="pageMediator" class="nc.ui.so.m30.revise.model.SaleOrderRevisePageMediator"
+		init-method="init">
+		<property name="needPage" value="false" />
+	</bean>
+
+	<bean id="returnAction" class="nc.ui.so.m30.revise.action.M30ReviseReturnAction">
+	</bean>
+</beans>

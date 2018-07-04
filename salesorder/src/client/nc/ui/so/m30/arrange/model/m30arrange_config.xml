@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext" />
+	<bean id="srcBeanList" class="nc.ui.pubapp.billref.push.TabBeanList">
+		<property name="beanList">
+			<list>
+				<bean class="nc.ui.pubapp.billref.push.TabBeanInfo">
+					<property name="moduleCode" value="4006" />
+					<property name="tabName">
+						<bean class="nc.ui.uif2.I18nFB">
+							<property name="resDir" value="4006011_0" />
+							<property name="resId" value="04006011-0402" />
+							<property name="defaultValue" value="销售订单" />
+						</bean>
+					</property>
+					<property name="beanId" value="saleOrder" />
+				</bean>
+				<bean class="nc.ui.pubapp.billref.push.TabBeanInfo">
+					<property name="moduleCode" value="4009" />
+					<property name="tabName">
+						<bean class="nc.ui.uif2.I18nFB">
+							<property name="resDir" value="4006011_0" />
+							<property name="resId" value="04006011-0403" />
+							<property name="defaultValue" value="调拨订单" />
+						</bean>
+					</property>
+					<property name="beanId" value="transferOrder" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 补货/直运安排 -->
+	<!-- 销售订单 -->
+	<bean id="saleOrder" class="nc.ui.pubapp.billref.push.TabBillInfo">
+		<property name="marAsstPreparator" ref="ordermarAsstPreparator" />
+		<property name="defDataPreparator" ref="saleuserdefitemlistPreparator" />
+		<property name="billType" value="30" />
+		<property name="billNodeKey" value="30BZSource" />
+		<property name="billViewNodeKey" value="30BZSource" />
+		<property name="nodeCode" value="40060301" />
+		<property name="viewShow" value="false" />
+		<!-- 前台回写数量方法接口注册 -->
+		<property name="rewriteService">
+			<bean class="nc.ui.so.m30.arrange.model.SaleOrderArrangeService" />
+		</property>
+		<!-- 销售订单推发货安排初始数据监听 -->
+		<property name="initDataListener">
+			<bean class="nc.ui.so.m30.arrange.listener.M30InitDataListener" />
+		</property>
+		<!-- 精度设置 -->
+		<property name="billListDigitSetter">
+			<bean class="nc.ui.so.m30.arrange.scale.M30DigitSetter" />
+		</property>
+		<property name="moduleCode" value="4006" />
+		<property name="headVOClass" value="nc.vo.so.m30.entity.SaleOrderHVO" />
+		<property name="bodyVOClass" value="nc.vo.so.m30.entity.SaleOrderBVO" />
+		<property name="billVOClass" value="nc.vo.so.m30.entity.SaleOrderVO" />
+		<property name="viewVOClass" value="nc.vo.so.m30.entity.SaleOrderViewVO" />
+		<!--超链接监听 -->
+		<property name="linkListener">
+			<ref bean="m30linkListener" />
+		</property>
+		<property name="listeners">
+			<list>
+				<bean class="nc.ui.so.m30.arrange.editor.EditorEventHandler">
+				</bean>
+			</list>
+		</property>
+		<property name="actions">
+			<list>
+				<bean class="nc.ui.so.m30.arrange.action.M30ArrangeQueryAction">
+					<property name="nodeKey" value="30toBZ" />
+					<property name="dataManager">
+						<bean class="nc.ui.pubapp.billref.push.PushBillModelDataManager">
+							<property name="service">
+								<bean class="nc.ui.so.m30.arrange.model.SaleOrderArrangeService">
+								</bean>
+							</property>
+						</bean>
+					</property>
+					<property name="qryCondDLGInitializer" ref="m30qryCondDLGInitializer"></property>
+				</bean>
+				<bean class="nc.funcnode.ui.action.SeparatorAction" />
+				<bean class="nc.funcnode.ui.action.MenuAction">
+					<property name="code" value="BHArrange" />
+					<!-- <property name="name" value="补货安排" /> -->
+					<property name="name">
+						<bean class="nc.ui.uif2.I18nFB">
+							<property name="resDir" value="4006011_0" />
+							<property name="resId" value="04006011-0390" />
+							<property name="defaultValue" value="补货安排" />
+						</bean>
+					</property>
+
+					<property name="actions">
+						<list>
+							<ref bean="m30arrange20Action" />
+							<ref bean="m30arrange21Action" />
+							<ref bean="m30arrange5AAction" />
+							<ref bean="m30arrange5XAction" />
+							<ref bean="m30arrange61Action" />
+							<ref bean="m30arrangeA2Action" />
+
+						</list>
+					</property>
+				</bean>
+				<bean class="nc.funcnode.ui.action.MenuAction">
+					<property name="code" value="m30ZYArrange" />
+					<!-- <property name="name" value="直运安排" /> -->
+					<property name="name">
+						<bean class="nc.ui.uif2.I18nFB">
+							<property name="resDir" value="4006011_0" />
+							<property name="resId" value="04006011-0391" />
+							<property name="defaultValue" value="直运安排" />
+						</bean>
+					</property>
+					<property name="actions">
+						<list>
+							<ref bean="m30zyarrange20Action" />
+							<ref bean="m30zyarrange21Action" />
+							<ref bean="m30zyarrange5AAction" />
+							<ref bean="m30zyarrange5XAction" />
+						</list>
+					</property>
+				</bean>
+				<bean class="nc.funcnode.ui.action.SeparatorAction" />
+				<bean class="nc.funcnode.ui.action.MenuAction">
+					<property name="code" value="linkQueryGroup" />
+					<!-- <property name="name" value="联查" /> -->
+					<property name="name">
+						<bean class="nc.ui.uif2.I18nFB">
+							<property name="resDir" value="4006011_0" />
+							<property name="resId" value="04006011-0392" />
+							<property name="defaultValue" value="联查" />
+						</bean>
+					</property>
+					<property name="actions">
+						<list>
+							<ref bean="OrderlinkQueryAction" />
+							<ref bean="spShowHiddenAction" />
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 调拨订单 -->
+	<bean id="transferOrder" class="nc.ui.pubapp.billref.push.TabBillInfo">
+		<property name="marAsstPreparator" ref="transordermarAsstPreparator" />
+		<property name="defDataPreparator" ref="tranuserdefitemlistPreparator" />
+		<property name="billType" value="5X" />
+		<property name="billNodeKey" value="5Xto3Z" />
+		<property name="billViewNodeKey" value="5Xto3Z" />
+		<property name="nodeCode" value="40093010" />
+		<property name="viewShow" value="false" />
+		<!-- 前台回写数量方法接口注册 -->
+		<property name="rewriteService">
+			<bean class="nc.ui.to.m5x.billref.m3z.RewriteArrangedNumTo5X" />
+		</property>
+		<!-- 精度设置 -->
+		<property name="billListDigitSetter">
+			<bean class="nc.ui.to.m5x.billref.m3z.M5xPrecisionUtilFor3Z" />
+		</property>
+		<property name="moduleCode" value="4009" />
+		<property name="headVOClass" value="nc.vo.to.m5x.entity.BillHeaderVO" />
+		<property name="bodyVOClass" value="nc.vo.to.m5x.entity.BillItemVO" />
+		<property name="billVOClass" value="nc.vo.to.m5x.entity.BillVO" />
+		<property name="viewVOClass" value="nc.vo.to.m5x.entity.BillViewVO" />
+		<!--超链接监听 -->
+		<property name="linkListener">
+			<ref bean="m5XlinkListener" />
+		</property>
+		<property name="actions">
+			<list>
+				<bean class="nc.ui.so.m30.arrange.action.M5Xto3ZQueryAction">
+					<property name="nodeKey" value="5Xto3ZQuery" />
+					<property name="dataManager">
+						<bean class="nc.ui.pubapp.billref.push.PushBillModelDataManager">
+							<property name="service">
+								<bean class="nc.ui.to.m5x.billref.m3z.TransOrderQueryFor3ZService">
+								</bean>
+							</property>
+						</bean>
+					</property>
+					<property name="qryCondDLGInitializer" ref="m5XqryCondDLGInitializer"></property>
+				</bean>
+				<bean class="nc.funcnode.ui.action.SeparatorAction" />
+				<bean class="nc.funcnode.ui.action.MenuAction">
+					<property name="code" value="BHArrange" />
+					<!-- <property name="name" value="补货安排" /> -->
+					<property name="name">
+						<bean class="nc.ui.uif2.I18nFB">
+							<property name="resDir" value="4006011_0" />
+							<property name="resId" value="04006011-0390" />
+							<property name="defaultValue" value="补货安排" />
+						</bean>
+					</property>
+					<property name="actions">
+						<list>
+							<ref bean="m5Xarrange20Action" />
+							<ref bean="m5Xarrange21Action" />
+							<ref bean="m5Xarrange5AAction" />
+							<ref bean="m5Xarrange5XAction" />
+							<ref bean="m5Xarrange61Action" />
+							<ref bean="m5XarrangeA2Action"/>
+						</list>
+					</property>
+				</bean>
+				<bean class="nc.funcnode.ui.action.SeparatorAction" />
+				<bean class="nc.funcnode.ui.action.MenuAction">
+					<property name="code" value="linkQueryGroup" />
+					<!-- <property name="name" value="联查" /> -->
+					<property name="name">
+						<bean class="nc.ui.uif2.I18nFB">
+							<property name="resDir" value="4006011_0" />
+							<property name="resId" value="04006011-0392" />
+							<property name="defaultValue" value="联查" />
+						</bean>
+					</property>
+					<property name="actions">
+						<list>
+							<ref bean="X5linkQueryAction" />
+							<ref bean="X5spShowHiddenAction" />
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- </entry> -->
+	<!-- </map> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+	<bean id="m30qryCondDLGInitializer" class="nc.ui.so.m30.arrange.listener.QueryDLGInitializer">
+	</bean>
+	<bean id="m5XqryCondDLGInitializer" class="nc.ui.to.m5x.billref.m3z.QueryDLGInitializerFor3Z">
+	</bean>
+	<!-- ======================补货按钮====================== -->
+	<!-- 30安排请购单 -->
+	<bean id="m30arrange20Action" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4004" />
+		<property name="actionName" value="nc.ui.pubapp.billref.push.OpenNodePushAction" />
+		<property name="actionCode" value="30BH20" />
+		<property name="destBillType" value="20" />
+		<property name="destNodeCode" value='40040200' />
+		<property name="openNodePushBeforeVOChange" ref='m30beforeVOChange' />
+		<property name="showOrgPanel" value='false' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+	<!-- 5X安排请购单 -->
+	<bean id="m5Xarrange20Action" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4004" />
+		<property name="actionName" value="nc.ui.pubapp.billref.push.OpenNodePushAction" />
+		<property name="actionCode" value="5XBH20" />
+		<property name="destBillType" value="20" />
+		<property name="destNodeCode" value='40040200' />
+		<property name="openNodePushBeforeVOChange" ref='m5XbeforeVOChange' />
+		<property name="showOrgPanel" value='false' />
+		<property name="sourceVOUpdate" ref='m5XPushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m5XSourceVOStrategy' />
+	</bean>
+	<!-- 30安排采购订单 -->
+	<bean id="m30arrange21Action" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4004" />
+		<property name="actionName" value="nc.ui.so.m30.arrange.push.DefaultOpenNodePushAction" />
+		<property name="actionCode" value="30BH21" />
+		<property name="destBillType" value="21" />
+		<property name="destNodeCode" value='40040400' />
+		<property name="openNodePushBeforeVOChange" ref='m30beforeVOChange' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+	<!-- 5X安排采购订单 -->
+	<bean id="m5Xarrange21Action" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4004" />
+		<property name="actionName" value="nc.ui.so.m30.arrange.push.DefaultOpenNodePushAction" />
+		<property name="actionCode" value="5XBH21" />
+		<property name="destBillType" value="21" />
+		<property name="destNodeCode" value='40040400' />
+		<property name="openNodePushBeforeVOChange" ref='m5XbeforeVOChange' />
+		<property name="sourceVOUpdate" ref='m5XPushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m5XSourceVOStrategy' />
+	</bean>
+	<!-- 30安排调入申请 -->
+	<bean id="m30arrange5AAction" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4009" />
+		<property name="actionName" value="nc.ui.to.m5a.billref.m30.OpenNodePushActionM5A"/>
+		<property name="actionCode" value="30BH5A" />
+		<property name="destBillType" value="5A" />
+		<property name="destNodeCode" value='40092010' />
+		<property name="openNodePushBeforeVOChange" ref='m30beforeVOChange' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+	<!-- 5X安排调入申请 -->
+	<bean id="m5Xarrange5AAction" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4009" />
+		<property name="actionName" value="nc.ui.to.m5a.billref.m30.OpenNodePushActionM5A" />
+		<property name="actionCode" value="5XBH5A" />
+		<property name="destBillType" value="5A" />
+		<property name="destNodeCode" value='40092010' />
+		<property name="openNodePushBeforeVOChange" ref='m5XbeforeVOChange' />
+		<property name="sourceVOUpdate" ref='m5XPushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m5XSourceVOStrategy' />
+	</bean>
+	<!-- 30安排调拨订单 -->
+	<bean id="m30arrange5XAction" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4009" />
+		<property name="actionName" value="nc.ui.to.m5x.billref.m30.OpenNodePushActionForM30" />
+		<property name="actionCode" value="30BH5X" />
+		<property name="destBillType" value="5X" />
+		<property name="destNodeCode" value='40093010' />
+		<property name="openNodePushBeforeVOChange" ref='m30beforeVOChange' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+	<!-- 5X安排调拨订单 -->
+	<bean id="m5Xarrange5XAction" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4009" />
+		<property name="actionName" value="nc.ui.so.m30.arrange.push.DefaultOpenNodePushAction" />
+		<property name="actionCode" value="5XBH5X" />
+		<property name="destBillType" value="5X" />
+		<property name="destNodeCode" value='40093010' />
+		<property name="openNodePushBeforeVOChange" ref='m5XbeforeVOChange' />
+		<property name="sourceVOUpdate" ref='m5XPushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m5XSourceVOStrategy' />
+	</bean>
+	<!-- 30安排委外订单 -->
+	<bean id="m30arrange61Action" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+	    <property name="moduleCode" value="4004" />
+	    <property name="actionName" value="nc.ui.so.m30.arrange.push.DefaultOpenNodePushAction" />
+		<property name="actionCode" value="30BH61" />
+		<property name="destBillType" value="61" />
+		<property name="destNodeCode" value='40120101' />
+		<property name="openNodePushBeforeVOChange" ref='m30beforeVOChange' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+	<!-- 5X安排委外订单 -->
+	<bean id="m5Xarrange61Action" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4004" />
+		<property name="actionName" value="nc.ui.so.m30.arrange.push.DefaultOpenNodePushAction" />
+		<property name="actionCode" value="5XBH61" />
+		<property name="destBillType" value="61" />
+		<property name="destNodeCode" value='40120101' />
+		<property name="openNodePushBeforeVOChange" ref='m5XbeforeVOChange' />
+		<property name="sourceVOUpdate" ref='m5XPushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m5XSourceVOStrategy' />
+	</bean>
+	<!-- 30安排生产订单 -->
+	<bean id="m30arrangeA2Action" class="nc.ui.so.m30.arrange.action.OpenNodePushMMActionAdapter"
+		singleton="false">
+		<property name="actionName" value="nc.ui.mmpac.mo.ref.push.OpenNodePushActionForMO" />
+	    <property name="actionCode" value="30BH55A2" />
+		<property name="destBillType" value="55A2" />
+		<property name="destNodeCode" value='50080002' />
+		<property name="openNodePushBeforeVOChange" ref='m30beforeVOChange' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+
+	<!-- 5X安排生产订单 -->
+	<bean id="m5XarrangeA2Action" class="nc.ui.so.m30.arrange.action.OpenNodePushMMActionAdapter" 
+	      singleton="false"> 
+	    <property name="actionName" value="nc.ui.mmpac.mo.ref.push.OpenNodePushActionForMO" />
+		<property name="actionCode" value="5XBH55A2" /> 
+		<property name="destBillType" value="55A2" /> 
+		<property name="destNodeCode" value='50080002' /> 
+		<property name="openNodePushBeforeVOChange" ref='m5XbeforeVOChange' />
+		 <property name="sourceVOUpdate" ref='m5XPushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m5XSourceVOStrategy' />
+	</bean>
+    
+	<!-- ======================直运按钮====================== -->
+	<!-- 30直运安排请购单 -->
+	<bean id="m30zyarrange20Action" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4004" />
+		<property name="actionName" value="nc.ui.pubapp.billref.push.OpenNodePushAction" />
+		<property name="actionCode" value="30ZY20" />
+		<property name="destBillType" value="20" />
+		<property name="destNodeCode" value='40040200' />
+		<property name="userObj" value='Y' />
+		<property name="openNodePushBeforeVOChange" ref='m30zyPObeforeVOChange' />
+		<property name="showOrgPanel" value='false' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+	<!-- 30直运安排采购订单 -->
+	<bean id="m30zyarrange21Action" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4004" />
+		<property name="actionName" value="nc.ui.so.m30.arrange.push.DefaultOpenNodePushAction" />
+		<property name="actionCode" value="30ZY21" />
+		<property name="destBillType" value="21" />
+		<property name="destNodeCode" value='40040400' />
+		<property name="openNodePushBeforeVOChange" ref='m30zyPObeforeVOChange' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+	<!-- 直运安排调入申请 -->
+	<bean id="m30zyarrange5AAction" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4009" />
+		<property name="actionName" value="nc.ui.to.m5a.billref.m30.OpenNodePushActionM5A" />
+		<property name="actionCode" value="30ZY5A" />
+		<property name="destBillType" value="5A" />
+		<property name="destNodeCode" value='40092010' />
+		<property name="openNodePushBeforeVOChange" ref='m30zyTObeforeVOChange' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+	<!-- 直运安排调拨订单 -->
+	<bean id="m30zyarrange5XAction" class="nc.ui.pubapp.billref.push.OpenNodePushActionAdapter"
+		singleton="false">
+		<property name="moduleCode" value="4009" />
+		<property name="actionName" value="nc.ui.so.m30.arrange.push.DefaultOpenNodePushAction" />
+		<property name="actionCode" value="30ZY5X" />
+		<property name="destBillType" value="5X" />
+		<property name="destNodeCode" value='40093010' />
+		<property name="openNodePushBeforeVOChange" ref='m30zyTObeforeVOChange' />
+		<property name="sourceVOUpdate" ref='m30PushSourceVOUpdate' />
+		<property name="sourceVOStrategy" ref='m30SourceVOStrategy' />
+	</bean>
+	<!-- 推单VO交换前处理类 -->
+	<bean id="m30beforeVOChange" class="nc.ui.so.m30.arrange.push.OpenNodePushBeforeVOChange"
+		singleton="false">
+		<property name="zyarrange" value="N" />
+	</bean>
+	<bean id="m30zyPObeforeVOChange" class="nc.ui.so.m30.arrange.push.OpenNodePushBeforeVOChange"
+		singleton="false">
+		<property name="zyarrange" value="ZYPO" />
+	</bean>
+	<bean id="m30zyTObeforeVOChange" class="nc.ui.so.m30.arrange.push.OpenNodePushBeforeVOChange"
+		singleton="false">
+		<property name="zyarrange" value="ZYTO" />
+	</bean>
+	<bean id="m5XbeforeVOChange" class="nc.ui.to.m5x.pub.OpenNodePushBeforeVOChangeImpl"
+		singleton="false" />
+	<!-- 界面VO刷新 -->
+	<bean id="m30PushSourceVOUpdate" class="nc.ui.so.m30.arrange.push.PushSourceVOUpdate"
+		singleton="false">
+	</bean>
+	<bean id="m30SourceVOStrategy" class="nc.ui.so.m30.arrange.push.SourceVOStrategy"
+		singleton="false">
+	</bean>
+	<!-- 推单后刷新来源调拨订单处理类 -->
+	<bean id="m5XPushSourceVOUpdate" class="nc.ui.to.m5x.arrange.m3z.M5XRefreshService">
+	</bean>
+	<bean id="m5XSourceVOStrategy" class="nc.ui.to.m5x.arrange.m3z.TransOrderVOStrategy"
+		singleton="false">
+	</bean>
+
+
+	<!-- 未实现的按钮请确认是公共的还是补货的 -->
+	<!-- 联查 -->
+	<bean id="OrderlinkQueryAction" class="nc.ui.so.pub.actions.ArrangeLinkQueryAction"
+		singleton="false">
+		<property name="billType" value="30" />
+	</bean>
+	<bean id="X5linkQueryAction" class="nc.ui.so.pub.actions.ArrangeLinkQueryAction"
+		singleton="false">
+		<property name="billType" value="5X" />
+	</bean>
+	<!-- 存量显示/隐藏 -->
+	<bean id="spShowHiddenAction"
+		class="nc.ui.so.pub.actions.SOQueryOnhandAction">
+		<property name="tabBillInfo" ref="saleOrder"></property>
+	</bean>
+	<!-- 存量显示/隐藏 -->
+	<bean id="X5spShowHiddenAction"
+		class="nc.ui.so.pub.actions.SOQueryOnhandAction">
+		<property name="tabBillInfo" ref="transferOrder"></property>
+		<property name="fillhead" ref="fillOnhandDlgHeadVOFor4X"></property>
+	</bean>
+	<bean id="fillOnhandDlgHeadVOFor4X" class="nc.ui.so.pub.actions.FillOnhandDlgHeadVOFor4X"></bean>
+	<!-- 销售订单超连接监听 -->
+	<bean id="m30linkListener" class="nc.ui.pubapp.billref.push.BillPushLinkedListner">
+		<property name="srcBillIDField" value="csaleorderid" />
+		<!-- 超链字段名 -->
+		<property name="srcBillNOField" value="vbillcode" />
+		<!-- 保存源单据类型的字段所在位置，0：表头；1：表体 -->
+		<property name="srcBillType" value="30" />
+		<property name="baseDocFileds">
+			<list>
+				<value>ccustomerid</value>
+				<value>cinvoicecustid</value>
+				<value>cmaterialvid</value>
+				<value>creceivecustid</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 调拨订单超连接监听 -->
+	<bean id="m5XlinkListener" class="nc.ui.pubapp.billref.push.BillPushLinkedListner">
+		<property name="srcBillIDField" value="cbillid" />
+		<!-- 超链字段名 -->
+		<property name="srcBillNOField" value="vbillcode" />
+		<!-- 保存源单据类型的字段所在位置，0：表头；1：表体 -->
+		<property name="srcBillType" value="5X" />
+		<property name="baseDocFileds">
+			<list>
+				<value>cmaterialvid</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 销售订单 -->
+	<!-- 物料辅助属性组件配置 -->
+	<bean id="ordermarAsstPreparator" class="nc.ui.pubapp.billref.push.MarAsstBillRefPushPreparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="prefix" value="vfree" />
+		<property name="materialField" value="cmaterialid" />
+		<!-- 以下四个为物料固定辅助属性，可以选择配置 -->
+		<!-- <property name="storeStateField" value="cstateid" /> -->
+		<property name="projectField" value="cprojectid" />
+		<property name="supplierField" value="cvendorid" />
+		<property name="productorField" value="cproductorid" />
+	</bean>
+	<!-- 销售订单自定义项 -->
+	<bean id="saleuserdefitemlistPreparator" class="nc.ui.pubapp.billref.push.PushDefDataPraparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.so_saleorder" />
+					<property name="tabcode" value="head" />
+					<property name="pos" value="0" />
+					<property name="prefix" value="vdef" />
+				</bean>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.so_saleorder_b" />
+					<property name="tabcode" value="bodytable1" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vbdef" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!--调拨订单自定义项 -->
+	<bean id="tranuserdefitemlistPreparator" class="nc.ui.pubapp.billref.push.PushDefDataPraparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="to.to_bill" />
+					<property name="tabcode" value="head" />
+					<property name="pos" value="0" />
+					<property name="prefix" value="vdef" />
+				</bean>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="to.to_bill_b" />
+					<property name="tabcode" value="base" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vbdef" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 调拨订单 -->
+	<!-- 物料辅助属性组件配置 -->
+	<bean id="transordermarAsstPreparator" class="nc.ui.pubapp.billref.push.MarAsstBillRefPushPreparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="prefix" value="vfree" />
+		<property name="materialField" value="cmaterialid" />
+		<!-- 以下四个为物料固定辅助属性，可以选择配置 -->
+		<!-- <property name="storeStateField" value="cstateid" /> -->
+		<property name="projectField" value="cprojectid" />
+		<property name="supplierField" value="cvendorid" />
+		<property name="productorField" value="cproductorid" />
+	</bean>
+
+	<!-- 自定义项、自由辅助属性容器 -->
+	<bean id="userdefitemContainer" class="nc.ui.uif2.userdefitem.UserDefItemContainer"
+		singleton="true">
+		<property name="params">
+			<list>
+				<!-- 预定单自定义项 -->
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.preorder" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.preorder_b" />
+				</bean>
+				<!-- 销售订单自定义项 -->
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.so_saleorder" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.so_saleorder_b" />
+				</bean>
+				<!-- 自由辅助属性 -->
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="rulecode" value="materialassistant" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>
+

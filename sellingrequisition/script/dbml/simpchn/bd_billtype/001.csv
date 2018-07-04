@@ -1,0 +1,4 @@
+bd_billtype
+pk_billtypeid,billtypename
+38,预订单
+1002Z83800000000ER61,普通

@@ -1,0 +1,8 @@
+<module priority="1025">
+    <aops>
+           <aspect class="nc.bs.aop.log.BusilogAspect"  component="nc.itf.so.m30.self.ISaleOrderScriptMaintain"/> 
+           <aspect class="nc.bs.aop.log.BusilogAspect"  component="nc.itf.so.m30.closemanage.ISaleOrderCloseManageMaintain"/> 
+           <aspect class="nc.bs.aop.log.BusilogAspect"  component="nc.itf.so.m30.revise.IM30ReviseMaintain"/>
+    </aops>
+
+ </module>

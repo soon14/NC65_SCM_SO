@@ -1,0 +1,351 @@
+<nc.vo.ses.ncobject.NCSource>
+  <name>销售订单</name>
+  <nodecode>40060301</nodecode>
+  <billtype>30</billtype>
+  <modules>
+    <string>SCM</string>
+  </modules>
+  <parentElement>
+    <beanID>e2bc1226-81bc-45c7-b387-99d21433335b</beanID>
+    <tableName>so_sale</tableName>
+    <fields>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>TITLE</code>
+        <name>标题</name>
+        <type>STRING</type>
+        <expression>&apos;销售订单 单据号 &apos; + #vreceiptcode# + &apos; 客商编码 &apos; + #ccustomerid.pk_cubasdoc.custcode# + &apos; 客商名称 &apos; + #ccustomerid.pk_cubasdoc.custname#</expression>
+        <isACL>false</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>vreceiptcode</attrpath>
+              <displayname>单据号</displayname>
+              <columnName>vreceiptcode</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>ccustomerid.pk_cubasdoc.custcode</attrpath>
+              <displayname>客商编号</displayname>
+              <columnName>custcode</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>ccustomerid.pk_cubasdoc.custname</attrpath>
+              <displayname>客商名称</displayname>
+              <columnName>custname</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+          </selectedAttrObjs>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>CONTENT</code>
+        <name>内容</name>
+        <type reference="../../nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+        <expression>&apos;所属公司 &apos; + #pk_corp.unitname# + &apos; 单据号 &apos; + #vreceiptcode# + &apos; 客商名称 &apos; + #ccustomerid.pk_cubasdoc.custname# + &apos; 客商编码 &apos; + #ccustomerid.pk_cubasdoc.custcode# + &apos; 单据日期 &apos; + #dbilldate# + &apos; 销售组织 &apos; + #csalecorpid.vsalestruname# + &apos; 部门 &apos; + #cdeptid.deptname# + &apos; 业务员 &apos; + #cemployeeid.psnname# + &apos; 制单人 &apos; + #coperatorid.user_name#</expression>
+        <isACL>false</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>cdeptid.deptname</attrpath>
+              <displayname>部门名称</displayname>
+              <columnName>deptname</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>pk_corp.unitname</attrpath>
+              <displayname>公司名称</displayname>
+              <columnName>unitname</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>vreceiptcode</attrpath>
+              <displayname>单据号</displayname>
+              <columnName>vreceiptcode</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>cemployeeid.psnname</attrpath>
+              <displayname>姓名</displayname>
+              <columnName>psnname</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>ccustomerid.pk_cubasdoc.custcode</attrpath>
+              <displayname>客商编号</displayname>
+              <columnName>custcode</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>dbilldate</attrpath>
+              <displayname>单据日期</displayname>
+              <columnName>dbilldate</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>csalecorpid.vsalestruname</attrpath>
+              <displayname>销售组织名称</displayname>
+              <columnName>vsalestruname</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>coperatorid.user_name</attrpath>
+              <displayname>用户名称</displayname>
+              <columnName>user_name</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>ccustomerid.pk_cubasdoc.custname</attrpath>
+              <displayname>客商名称</displayname>
+              <columnName>custname</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+          </selectedAttrObjs>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>CORPID</code>
+        <name>公司主键</name>
+        <type reference="../../nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+        <expression>#pk_corp#</expression>
+        <isACL>true</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>pk_corp</attrpath>
+              <displayname>公司ID</displayname>
+              <columnName>pk_corp</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+          </selectedAttrObjs>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>CORP</code>
+        <name>公司名称</name>
+        <type reference="../../nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+        <expression>#pk_corp.unitname#</expression>
+        <isACL>false</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>pk_corp.unitname</attrpath>
+              <displayname>公司名称</displayname>
+              <columnName>unitname</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+          </selectedAttrObjs>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>DEPT</code>
+        <name>部门名称</name>
+        <type reference="../../nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+        <expression>#cdeptid.deptname#</expression>
+        <isACL>false</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>cdeptid.deptname</attrpath>
+              <displayname>部门名称</displayname>
+              <columnName>deptname</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+          </selectedAttrObjs>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>CUST</code>
+        <name>客商名称</name>
+        <type reference="../../nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+        <expression>#ccustomerid.pk_cubasdoc.custname#</expression>
+        <isACL>false</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>ccustomerid.pk_cubasdoc.custname</attrpath>
+              <displayname>客商名称</displayname>
+              <columnName>custname</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+          </selectedAttrObjs>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>BUSITYPE</code>
+        <name>交易类型</name>
+        <type reference="../../nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+        <expression></expression>
+        <isACL>false</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs/>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>BILLCODE</code>
+        <name>单据号</name>
+        <type reference="../../nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+        <expression>#vreceiptcode#</expression>
+        <isACL>false</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>vreceiptcode</attrpath>
+              <displayname>单据号</displayname>
+              <columnName>vreceiptcode</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+          </selectedAttrObjs>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>BILLMAKER</code>
+        <name>制单人</name>
+        <type reference="../../nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+        <expression>#coperatorid.user_name#</expression>
+        <isACL>false</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>coperatorid.user_name</attrpath>
+              <displayname>用户名称</displayname>
+              <columnName>user_name</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+          </selectedAttrObjs>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+      <nc.vo.ses.ncobject.field.RequiredNCField>
+        <code>MAKEDATE</code>
+        <name>单据日期</name>
+        <type reference="../../nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+        <expression>#dbilldate#</expression>
+        <isACL>false</isACL>
+        <attrSelectionInfo>
+          <selectedAttrObjs>
+            <nc.ui.ses.designer.data.AttributeObject>
+              <attrpath>dbilldate</attrpath>
+              <displayname>单据日期</displayname>
+              <columnName>dbilldate</columnName>
+              <isNumeric>false</isNumeric>
+            </nc.ui.ses.designer.data.AttributeObject>
+          </selectedAttrObjs>
+        </attrSelectionInfo>
+      </nc.vo.ses.ncobject.field.RequiredNCField>
+    </fields>
+    <aliasInfo>
+      <attrpath__alias__map>
+        <entry>
+          <string>pk_corp</string>
+          <string>T1</string>
+        </entry>
+        <entry>
+          <string>cdeptid</string>
+          <string>T2</string>
+        </entry>
+        <entry>
+          <string>ccustomerid</string>
+          <string>T3</string>
+        </entry>
+        <entry>
+          <string>coperatorid</string>
+          <string>T7</string>
+        </entry>
+        <entry>
+          <string>csalecorpid</string>
+          <string>T6</string>
+        </entry>
+        <entry>
+          <string>cemployeeid</string>
+          <string>T5</string>
+        </entry>
+        <entry>
+          <string>ccustomerid.pk_cubasdoc</string>
+          <string>T4</string>
+        </entry>
+        <entry>
+          <string></string>
+          <string>T0</string>
+        </entry>
+      </attrpath__alias__map>
+    </aliasInfo>
+    <selectSql>select 
+&apos;销售订单 单据号 &apos; + T0.vreceiptcode + &apos; 客商编码 &apos; + T4.custcode + &apos; 客商名称 &apos; + T4.custname as &quot;TITLE&quot;,
+&apos;所属公司 &apos; + T1.unitname + &apos; 单据号 &apos; + T0.vreceiptcode + &apos; 客商名称 &apos; + T4.custname + &apos; 客商编码 &apos; + T4.custcode + &apos; 单据日期 &apos; + T0.dbilldate + &apos; 销售组织 &apos; + T6.vsalestruname + &apos; 部门 &apos; + T2.deptname + &apos; 业务员 &apos; + T5.psnname + &apos; 制单人 &apos; + T7.user_name as &quot;CONTENT&quot;,
+T0.pk_corp as &quot;CORPID&quot;,
+T1.unitname as &quot;CORP&quot;,
+T2.deptname as &quot;DEPT&quot;,
+T4.custname as &quot;CUST&quot;,
+T0.vreceiptcode as &quot;BILLCODE&quot;,
+T7.user_name as &quot;BILLMAKER&quot;,
+T0.dbilldate as &quot;MAKEDATE&quot;</selectSql>
+    <fromSql> from 
+so_sale T0 left outer join bd_corp T1 on T0.pk_corp = T1.pk_corp and T0.dr=0  
+  left outer join bd_deptdoc T2 on T0.cdeptid = T2.pk_deptdoc 
+  left outer join bd_cumandoc T3 on T0.ccustomerid = T3.pk_cumandoc 
+  left outer join bd_cubasdoc T4 on T3.pk_cubasdoc = T4.pk_cubasdoc 
+  left outer join bd_psndoc T5 on T0.cemployeeid = T5.pk_psndoc 
+  left outer join bd_salestru T6 on T0.csalecorpid = T6.csalestruid 
+  left outer join sm_user T7 on T0.coperatorid = T7.cuserid 
+ </fromSql>
+  </parentElement>
+  <childrenElements>
+    <nc.vo.ses.ncobject.NCElement>
+      <beanID>4fda785e-ff37-4778-a98e-1d0b8622017c</beanID>
+      <tableName>so_saleorder_b</tableName>
+      <fields>
+        <nc.vo.ses.ncobject.field.RequiredNCField>
+          <code>TITLE</code>
+          <name>标题</name>
+          <type reference="../../../../../parentElement/fields/nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+          <expression>&apos;销售订单明细&apos;</expression>
+          <isACL>false</isACL>
+          <attrSelectionInfo>
+            <selectedAttrObjs/>
+          </attrSelectionInfo>
+        </nc.vo.ses.ncobject.field.RequiredNCField>
+        <nc.vo.ses.ncobject.field.RequiredNCField>
+          <code>CONTENT</code>
+          <name>内容</name>
+          <type reference="../../../../../parentElement/fields/nc.vo.ses.ncobject.field.RequiredNCField/type"/>
+          <expression>&apos;存货编码 &apos; + #cinvbasdocid.invcode# + &apos; 存货名称 &apos; + #cinvbasdocid.invname#</expression>
+          <isACL>false</isACL>
+          <attrSelectionInfo>
+            <selectedAttrObjs>
+              <nc.ui.ses.designer.data.AttributeObject>
+                <attrpath>cinvbasdocid.invname</attrpath>
+                <displayname>存货名称</displayname>
+                <columnName>invname</columnName>
+                <isNumeric>false</isNumeric>
+              </nc.ui.ses.designer.data.AttributeObject>
+              <nc.ui.ses.designer.data.AttributeObject>
+                <attrpath>cinvbasdocid.invcode</attrpath>
+                <displayname>存货编码</displayname>
+                <columnName>invcode</columnName>
+                <isNumeric>false</isNumeric>
+              </nc.ui.ses.designer.data.AttributeObject>
+            </selectedAttrObjs>
+          </attrSelectionInfo>
+        </nc.vo.ses.ncobject.field.RequiredNCField>
+      </fields>
+      <aliasInfo>
+        <attrpath__alias__map>
+          <entry>
+            <string>cinvbasdocid</string>
+            <string>T1</string>
+          </entry>
+          <entry>
+            <string></string>
+            <string>T0</string>
+          </entry>
+        </attrpath__alias__map>
+      </aliasInfo>
+      <selectSql>select 
+&apos;销售订单明细&apos; as &quot;TITLE&quot;,
+&apos;存货编码 &apos; + T1.invcode + &apos; 存货名称 &apos; + T1.invname as &quot;CONTENT&quot;</selectSql>
+      <fromSql> from 
+so_saleorder_b T0 left outer join bd_invbasdoc T1 on T0.cinvbasdocid = T1.pk_invbasdoc and T0.dr=0  
+ </fromSql>
+    </nc.vo.ses.ncobject.NCElement>
+  </childrenElements>
+</nc.vo.ses.ncobject.NCSource>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding='gb2312'?>
+<module>
+	<rest>
+		<resource classname="nc.pubitf.so.m30.api.rest.SaleOrderResource"  exinfo=""/>
+	</rest>
+</module>

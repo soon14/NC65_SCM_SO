@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createIndustry="0" createTime="2012-09-11 08:39:03" creator="" description="" displayName="invoicesummary_enum" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="fbc46949-e20b-4eba-b06e-2422d08600d9" industry="0" industryChanged="false" industryIncrease="false" industryName="基础行业" isSource="false" isbizmodel="false" mainEntity="" modifier="" modifyIndustry="0" modifyTime="2013-01-24 09:25:42" name="invoicesummary_enum" namespace="so" ownModule="so" preLoad="false" programcode="" resModuleName="4006005_2" resid="2400600502-0019" version="11" versionType="0">
+    <celllist>
+        <Enumerate componentID="fbc46949-e20b-4eba-b06e-2422d08600d9" createIndustry="0" createTime="2012-09-11 08:39:15" creator="" dataType="BS000010000100001001" dbtype="varchar" description="" displayName="销售发票执行汇总" fullClassName="nc.voso.invoicesummary_enum.enum" height="350" help="" id="bb864174-14a5-4147-b55c-14b88645e0d7" industryChanged="false" isSource="false" modInfoClassName="" modifier="" modifyIndustry="0" modifyTime="2013-01-24 09:25:42" name="enum" resid="2400600502-0000" typeDisplayName="String" typeName="String" versionType="0" visibility="public" width="158" x="39" y="68">
+            <enumitemlist>
+                <enumitem createIndustry="0" description="" enumDisplay="开票组织" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="pk_org" hidden="false" id="246d3247-e2c6-44da-b03e-67aac29b6e7e" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0003" sequence="0" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="销售组织" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="csaleorgid" hidden="false" id="fe189484-4544-4174-8a0c-177d921a41bd" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0009" sequence="1" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="库存组织" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="csendstockorgid" hidden="false" id="fffa0a63-dd5d-4253-ac00-f4f963ae2b98" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0004" sequence="2" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="部门" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="cdeptid" hidden="false" id="7288af7b-4775-4563-bb12-9ff7d63d964b" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0012" sequence="3" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="业务员" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="cemployeeid" hidden="false" id="e6b42d84-597c-4851-a806-e57efc4d831d" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0007" sequence="4" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="销售渠道类型" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="cchanneltypeid" hidden="false" id="b7bcb827-e871-4f7c-a97c-b40c67e71c9f" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0015" sequence="5" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="客户基本分类" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="pk_custclass" hidden="false" id="4cbd96bb-82c9-49c9-b3ff-1a8bedf502a5" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0005" sequence="6" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="客户销售分类" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="pk_custsaleclass" hidden="false" id="deb3a74f-4d9b-44fc-a26c-5582ca5fac4e" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0016" sequence="7" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="地区分类" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="pk_areacl" hidden="false" id="66c8562e-0940-4375-8b84-563f876f9d4c" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0001" sequence="8" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="订单客户" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="cordercustid" hidden="false" id="dc0e95ae-9f18-4b8b-96df-76648b94c1a3" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0011" sequence="9" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="开票客户" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="cinvoicecustid" hidden="false" id="198a7a9f-97cb-43b1-8413-d44127bbd7a8" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0002" sequence="10" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="物料基本分类" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="pk_marbasclass" hidden="false" id="897c44ac-3657-4e4e-a23f-e7a878449a46" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0014" sequence="11" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="物料销售分类" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="pk_marsaleclass" hidden="false" id="e37f3a48-4a99-42fe-9724-44157edb5fb6" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0008" sequence="12" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="物料" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="cmaterialid" hidden="false" id="ebb1f190-d223-4c52-8c14-1cafb62810da" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0017" sequence="13" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="批次号" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="vbatchcode" hidden="false" id="5b47083f-3bf1-4201-98f4-b00e42b0b1b8" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0018" sequence="14" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="发票类型" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="ctrantypeid" hidden="false" id="b203e3b6-9585-4b35-8395-a38fa6289925" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0006" sequence="15" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="订单类型" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="vfirsttrantype" hidden="false" id="ca09b916-2e8e-4d1d-a385-fb83290ff605" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0013" sequence="16" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="赠品" enumID="bb864174-14a5-4147-b55c-14b88645e0d7" enumValue="blargessflag" hidden="false" id="8768e7f5-af11-43e7-bc8e-ebb8d2b45aa3" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600502-0010" sequence="17" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

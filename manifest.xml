@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <BusinessComponet name="saleinvoice" dispname="销售发票">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="salesettle" dispname="销售结算">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="pub" dispname="销售管理公共">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="ardeduction" dispname="冲应收单">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="salebusirule" dispname="销售业务规则">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="gwprule" dispname="买赠设置">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="returnpolicy" dispname="退货基础设置">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="sellingrequisition" dispname="预订单">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="delivery" dispname="发货单">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="report" dispname="销售报表">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="salesorder" dispname="销售订单">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="salequotation" dispname="salequotation">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+  <BusinessComponet name="api" dispname="api">
+    <public>
+      <src name="src/public"/>
+    </public>
+    <client>
+      <src name="src/client"/>
+    </client>
+    <private>
+      <src name="src/private"/>
+    </private>
+    <test>
+      <src name="src/test"/>
+    </test>
+    <resource>
+      <src name="src/resources"/>
+    </resource>
+  </BusinessComponet>
+</Manifest>

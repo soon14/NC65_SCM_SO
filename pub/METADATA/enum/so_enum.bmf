@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><component conRouterType="手动" createIndustry="0" createTime="2009-06-25 10:02:06" creator="" description="" displayName="销售枚举类型" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="beb95563-feeb-43a3-a7e4-71684034f4d3" industry="0" industryChanged="false" industryIncrease="false" industryName="基础行业" isSource="false" isbizmodel="false" mainEntity="" metaType=".bmf" modifier="" modifyIndustry="0" modifyTime="2015-05-27 08:48:26" name="so_enum" namespace="so" ownModule="so" preLoad="false" programcode="0" resModuleName="4006004_2" resid="2400600401-0007" version="66" versionType="0">
+    <celllist>
+        <Enumerate componentID="beb95563-feeb-43a3-a7e4-71684034f4d3" createIndustry="0" createTime="2009-06-25 10:02:17" creator="" dataType="BS000010000100001004" dbtype="int" description="" displayName="单据状态" fullClassName="nc.vo.so.pub.enumeration.BillStatus" height="180" help="" id="380e1847-6624-48b9-b525-2bcba39b6d7d" industryChanged="false" isSource="false" modInfoClassName="" modifier="" modifyIndustry="0" modifyTime="2015-05-27 08:48:26" name="billstatus" resid="2UC000-000192" typeDisplayName="Integer" typeName="Integer" versionType="0" visibility="public" width="132" x="62" y="17">
+            <enumitemlist>
+                <enumitem createIndustry="0" description="" enumDisplay="自由" enumID="380e1847-6624-48b9-b525-2bcba39b6d7d" enumValue="1" hidden="false" id="6329cf11-796b-414a-869a-e83bb0f58116" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0017" sequence="0" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="审批通过" enumID="380e1847-6624-48b9-b525-2bcba39b6d7d" enumValue="2" hidden="false" id="f4e91788-655c-4a60-9666-c40c386d9eff" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0018" sequence="1" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="冻结" enumID="380e1847-6624-48b9-b525-2bcba39b6d7d" enumValue="3" hidden="false" id="160c3e88-a74b-44ea-bbe9-9c973c602738" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0014" sequence="2" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="关闭" enumID="380e1847-6624-48b9-b525-2bcba39b6d7d" enumValue="4" hidden="false" id="dddad062-147a-4f99-ba7a-cd2a978889e2" industryChanged="false" isSource="false" modifyIndustry="0" resid="2UC000-000127" sequence="3" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="审批中" enumID="380e1847-6624-48b9-b525-2bcba39b6d7d" enumValue="7" hidden="false" id="5f189aed-3f85-4390-b011-59a564039d08" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0006" sequence="4" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="审批不通过" enumID="380e1847-6624-48b9-b525-2bcba39b6d7d" enumValue="8" hidden="false" id="125071fe-8aef-43f1-928b-e3e6c9531ea9" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0000" sequence="5" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="失效" enumID="380e1847-6624-48b9-b525-2bcba39b6d7d" enumValue="5" hidden="false" id="a79845e8-d246-45dc-92b8-fec9d739c2b5" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0004" sequence="6" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+        <Enumerate componentID="beb95563-feeb-43a3-a7e4-71684034f4d3" createIndustry="0" createTime="2010-03-29 14:56:03" creator="" dataType="BS000010000100001004" dbtype="int" description="" displayName="询价规则" fullClassName="nc.vo.so.pub.enumeration.AskPriceRule" height="124" help="" id="56115847-18a8-49a3-a785-744613fad928" industryChanged="false" isSource="false" modInfoClassName="" modifier="" modifyIndustry="0" modifyTime="2015-05-27 08:48:26" name="AskqtRule" resid="2400600401-0008" typeDisplayName="Integer" typeName="Integer" versionType="0" visibility="public" width="106" x="222" y="19">
+            <enumitemlist>
+                <enumitem createIndustry="0" description="" enumDisplay="不询价" enumID="56115847-18a8-49a3-a785-744613fad928" enumValue="1" hidden="false" id="8de9420b-18ed-455a-afd0-ee6789480d3a" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0015" sequence="0" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="正常询价" enumID="56115847-18a8-49a3-a785-744613fad928" enumValue="2" hidden="false" id="74eb5431-447d-4677-b509-21367d68dca5" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0010" sequence="1" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="询非促销价" enumID="56115847-18a8-49a3-a785-744613fad928" enumValue="3" hidden="false" id="f30ebb54-8db7-450d-a494-84524b925bd7" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0016" sequence="2" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+        <Enumerate componentID="beb95563-feeb-43a3-a7e4-71684034f4d3" createIndustry="0" createTime="2010-03-29 15:00:42" creator="" dataType="BS000010000100001004" dbtype="int" description="" displayName="赠品取价规则" fullClassName="nc.vo.so.pub.enumeration.LargessGetqtRule" height="166" help="" id="5b999f6b-3810-466c-9d78-27fa9cc75053" industryChanged="false" isSource="false" modInfoClassName="" modifier="" modifyIndustry="0" modifyTime="2015-05-27 08:48:26" name="LargessGetqtRule" resid="2400600401-0013" typeDisplayName="Integer" typeName="Integer" versionType="0" visibility="public" width="107" x="353" y="30">
+            <enumitemlist>
+                <enumitem createIndustry="0" description="" enumDisplay="价格0" enumID="5b999f6b-3810-466c-9d78-27fa9cc75053" enumValue="1" hidden="false" id="4a9e3cc6-7df6-460c-b415-6b065abb55d7" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0003" sequence="0" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="询销售价" enumID="5b999f6b-3810-466c-9d78-27fa9cc75053" enumValue="2" hidden="false" id="28043fe6-06ec-44d6-8d5b-5e685b859d1b" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0001" sequence="1" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="参考售价" enumID="5b999f6b-3810-466c-9d78-27fa9cc75053" enumValue="3" hidden="false" id="dfbe23d7-e649-44b9-8bbb-9054c9c37d35" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0002" sequence="2" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="最低售价" enumID="5b999f6b-3810-466c-9d78-27fa9cc75053" enumValue="4" hidden="false" id="87d168c7-7f06-4593-9e75-f70a34411578" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0009" sequence="3" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="参考成本" enumID="5b999f6b-3810-466c-9d78-27fa9cc75053" enumValue="5" hidden="false" id="3f2c494b-aac8-449c-a633-bcb8e12186bf" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0012" sequence="4" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+        <Enumerate componentID="beb95563-feeb-43a3-a7e4-71684034f4d3" createIndustry="0" createTime="2010-06-08 15:55:30" creator="" dataType="BS000010000100001004" dbtype="int" description="" displayName="调整折扣调整单价" fullClassName="nc.vo.so.pub.enumeration.PriceDiscountType" height="131" help="" id="a3dfaab5-d8a1-42e7-9a06-157989b89ac2" industryChanged="false" isSource="false" modInfoClassName="" modifier="" modifyIndustry="0" modifyTime="2015-05-27 08:48:26" name="PriceDiscountType" resid="2400600401-0019" typeDisplayName="Integer" typeName="Integer" versionType="0" visibility="public" width="101" x="492" y="17">
+            <enumitemlist>
+                <enumitem createIndustry="0" description="" enumDisplay="调整折扣" enumID="a3dfaab5-d8a1-42e7-9a06-157989b89ac2" enumValue="1" hidden="false" id="a487c474-9a57-4b96-b9b3-4a8d5552db50" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0011" sequence="0" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="调整单价" enumID="a3dfaab5-d8a1-42e7-9a06-157989b89ac2" enumValue="2" hidden="false" id="0c43816a-c2b6-43c1-ad2a-0631b2dc4ee3" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0005" sequence="1" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+        <Enumerate componentID="beb95563-feeb-43a3-a7e4-71684034f4d3" createIndustry="0" createTime="2014-11-18 10:57:26" creator="YONYOU NC" dataType="BS000010000100001004" dbtype="int" description="" displayName="主记账单价取价规则" fullClassName="nc.vo.so.pub.enumeration.AccPriceGetqtRule" height="157" help="" id="bb6d3693-8baa-4254-9828-4d017028337c" industryChanged="false" isSource="true" modInfoClassName="" modifier="" modifyIndustry="0" modifyTime="2015-05-27 08:56:59" name="AccPriceGetqtRule" resid="2400600401-0027" typeDisplayName="Integer" typeName="Integer" versionType="0" visibility="public" width="127" x="631" y="26">
+            <enumitemlist>
+                <enumitem createIndustry="0" description="" enumDisplay="价格0" enumID="bb6d3693-8baa-4254-9828-4d017028337c" enumValue="1" hidden="false" id="8222986d-83a0-439c-926d-31c9217cd11f" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0003" sequence="0" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="询销售价" enumID="bb6d3693-8baa-4254-9828-4d017028337c" enumValue="2" hidden="false" id="2bc27d20-e9d0-4b55-8956-0617b1a00117" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0001" sequence="1" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="参考售价" enumID="bb6d3693-8baa-4254-9828-4d017028337c" enumValue="3" hidden="false" id="c26c3dd2-4ea2-45b3-b174-cb7df9ed660d" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0002" sequence="2" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="最低售价" enumID="bb6d3693-8baa-4254-9828-4d017028337c" enumValue="4" hidden="false" id="68838648-e6ff-4d33-b592-89700c92d540" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0009" sequence="3" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="参考成本" enumID="bb6d3693-8baa-4254-9828-4d017028337c" enumValue="5" hidden="false" id="2bfc2280-86c4-42ce-9da3-db601ceb8763" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600401-0012" sequence="4" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

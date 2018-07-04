@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+  <public>
+    <!--买赠设置-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.mbuylagress.IBuyLargessMaintain</interface>
+      <implementation>nc.impl.so.mbuylargess.service.BuyLargessMaintainImpl</implementation>
+    </component>
+   <!--买赠设置提供公共匹配服务-->
+   <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.mbuylargess.pub.IBuyLargessMatch</interface>
+      <implementation>nc.pubimpl.so.mbuylargess.pub.BuyLargessMatchImpl</implementation>
+    </component>
+    <!--电子销售根据集团、销售组织查询买赠设置的接口-->
+   <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.mbuylagress.opc.mecc.IBuylargessForMecc</interface>
+      <implementation>nc.pubimpl.so.mbuylargess.opc.mecc.BuylargessForMeccImpl</implementation>
+    </component>
+    <!--买赠设置为CRM提供的接口-->
+   	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.mbuylargess.pub.IBuylargessOperate</interface>
+      <implementation>nc.pubimpl.so.mbuylargess.pub.BuylargessOperateImpl</implementation>
+    </component>
+    
+  </public>
+</module>
+

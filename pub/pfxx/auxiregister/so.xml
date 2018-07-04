@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding='gb2312'?>
+<auxiregister>
+    <billtype editable="Yes" id="30">
+    </billtype>
+    <billtype editable="Yes" id="32">
+    </billtype>
+    <billtype editable="Yes" id="38">
+    </billtype>
+     <billtype editable="Yes" id="4331">
+    </billtype>
+    <billtype editable="Yes" id="4310">
+    </billtype>
+</auxiregister>

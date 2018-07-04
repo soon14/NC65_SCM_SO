@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding='gb2312'?>
+<items docType="SDP_SCRIPT_ITEM">
+	<item>
+		<itemKey>0001</itemKey>
+		<itemName>功能节点</itemName>
+		<itemRule>sm_funcregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>funcode like '400609%' or funcode in('A03006','A04002')</fixedWhere>
+	</item>	
+	
+	<item>
+		<itemKey>0002</itemKey>
+		<itemName>单据模板</itemName>
+		<itemRule>pub_billtemplet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>nodecode</grpField>
+		<fixedWhere>bill_templetname='SYSTEM' and (nodecode in('400609A0','400609B0','A04002') )</fixedWhere>
+	</item>
+	
+	<item>
+		<itemKey>0003</itemKey>
+		<itemName>查询模版</itemName>
+		<itemRule>pub_query_templet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>node_code</grpField>
+		<fixedWhere>node_code  like '400609%' and pk_corp = '@@@@'</fixedWhere>
+	</item>
+	
+	<item>
+		<itemKey>0004</itemKey>
+		<itemName>默认模版</itemName>
+		<itemRule>pub_systemplate_base</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>funnode</grpField>
+		<fixedWhere>funnode like '400609%'</fixedWhere>
+	</item>
+	
+    <item>
+        <itemKey>0005</itemKey>
+        <itemName>自定义菜单</itemName>
+        <itemRule>sm_menuitemreg</itemRule>
+        <sysField></sysField>
+        <corpField></corpField>
+        <grpField></grpField>
+        <fixedWhere>menuitemcode like '400950%' or menuitemcode in('A03006','A05002')</fixedWhere>
+    </item>
+	
+	<item>
+		<itemKey>0006</itemKey>
+		<itemName>报表发布节点</itemName>
+		<itemRule>iufo_reppublish</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>parentid in (select cfunid from sm_funcregister where funcode like '4006%')</fixedWhere>
+	</item>
+	
+	<item>
+		<itemKey>0007</itemKey>
+		<itemName>语义模型</itemName>
+		<itemRule>bi_smart_dir</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>moduleid ='SO'</fixedWhere>
+	</item>
+ 
+	<item>
+		<itemKey>0008</itemKey>
+		<itemName>自由报表</itemName>
+		<itemRule>iufo_freerep_dir</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>modulecode ='SO'</fixedWhere>
+	</item>
+ 
+	<item>
+		<itemKey>0009</itemKey>
+		<itemName>联查按钮</itemName>
+		<itemRule>iufo_tracedataregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>modulename='SO'</fixedWhere>
+	</item>
+	
+	<item>
+		<itemKey>0010</itemKey>
+		<itemName>IUFO函数</itemName>
+		<itemRule>nc_iufo_module</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>module_id='so'</fixedWhere>
+	</item>
+	
+</items>

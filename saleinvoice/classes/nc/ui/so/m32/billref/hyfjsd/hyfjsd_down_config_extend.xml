@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<!-- <bean id="remoteCallCombinatorCaller" class="nc.ui.uif2.editor.UIF2RemoteCallCombinatorCaller">
+		<property name="remoteCallers">
+			<list>
+				<ref bean="pfAddInfoLoader" />
+			</list>
+		</property>
+	</bean> -->
+	
+	<!-- 按钮组 -->
+	<!-- <bean id="addMenuGroup" class="nc.ui.pubapp.uif2app.actions.AddMenuAction" init-method="initUI">
+		当前单据的单据类型
+		<property name="billType" value="32" />
+		当前单据的所有上游单据的一个全集
+		<property name="actions">
+			<list>
+			    <ref bean="addAction" />
+				<ref bean="separatorAction" />
+				<ref bean="addTR14Action" />
+				<ref bean="separatorAction" />
+				
+			</list>
+		</property>
+		<property name="model" ref="bmModel" />
+		<property name="pfAddInfoLoader" ref="pfAddInfoLoader"></property>
+	</bean> -->
+	
+	<!-- 参照TR14 -->
+	<bean id="addHyfjsdAction" class="nc.ui.so.m32.billref.hyfjsd.AddUpActionHyfjsd">
+		<!-- 来源单据类型编码 -->
+		<property name="sourceBillType" value="HY01" />
+		<!-- 来源单据类型名称 -->
+		<property name="sourceBillName" value="海运费结算单" />
+
+		<!-- 是否流程单据，如果是流程单据，可以删除 -->
+		<property name="flowBillType" value="false" />
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferProcessorforhyfjsd" />
+	</bean>
+	
+	<bean name="transferProcessorforhyfjsd" class="nc.ui.pubapp.billref.dest.TransferViewProcessor">
+		<property name="list" ref="listView" />
+		<property name="actionContainer" ref="actionsOfList" />
+		<property name="cardActionContainer" ref="actionsOfCard" />
+		<property name="transferLogic" ref="transferLogicforhyfjsd" />
+		<property name="billForm" ref="billFormEditor" />
+		<property name="cancelAction" ref="cancelAction" />
+		<property name="saveAction" ref="saveAction" />
+	</bean>
+	
+	<bean name="transferLogicforhyfjsd" class="nc.ui.so.m32.billref.hyfjsd.UpRefDownTRansferBillDataLogicHyfjsd">
+		<property name="billForm" ref="billFormEditor" />
+	</bean>
+	
+	<!-- 新增按钮处理 -->
+	<!-- <bean id="pfAddInfoLoader" class="nc.ui.pubapp.uif2app.actions.PfAddInfoLoader">
+		<property name="billType" value="32" />
+		<property name="model" ref="bmModel" />
+	</bean> -->
+	
+</beans>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding='gb2312'?>
+<items docType="SDP_SCRIPT_ITEM">
+
+    <item>
+		<itemKey>0001</itemKey>
+		<itemName>单据模版</itemName>
+		<itemRule>pub_billtemplet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>nodecode</grpField>
+		<fixedWhere>bill_templetname='SYSTEM' and nodecode in ('40060101','40060103','40060104')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0002</itemKey>
+		<itemName>查询模版</itemName>
+		<itemRule>pub_query_templet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>node_code</grpField>
+		<fixedWhere>node_code in ('40060101','40060103','40060104')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0003</itemKey>
+		<itemName>打印模版</itemName>
+		<itemRule>pub_print_template</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>vnodecode</grpField>
+		<fixedWhere>vnodecode in ('40060101','40060103','40060104')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0004</itemKey>
+		<itemName>默认模版</itemName>
+		<itemRule>pub_systemplate_base</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>funnode</grpField>
+		<fixedWhere>funnode in ('40060101','40060103','40060104')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0005</itemKey>
+		<itemName>功能节点</itemName>
+		<itemRule>sm_funcregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>funcode in ('400601','40060101','40060103','40060104')</fixedWhere>
+	</item>
+
+    <item>
+        <itemKey>0006</itemKey>
+        <itemName>自定义菜单</itemName>
+        <itemRule>sm_menuitemreg</itemRule>
+        <sysField></sysField>
+        <corpField></corpField>
+        <grpField></grpField>
+        <fixedWhere>menuitemcode in ('400901','40090101','40090102','40090103')</fixedWhere>
+    </item>	
+</items>

@@ -1,0 +1,3 @@
+insert into fip_billregister(pk_billregister,billdrawclass,billreflectclass,billsumclass,class_entity_id,ctrlorgfindclass,defdoc1,defdoc2,defdoc3,defqueryclass,desbillservclass,desbillsumclass,desctrlruleclass,dessumruleclass,dessumruleentity,dessumruleref,displayclass,dr,drawqueryclass,editclass,linkqueryclass,modulecode,org_ctrl_entity1,org_ctrl_entity2,org_entity_id,pk_billtype,pk_group,pk_org,ts) values('0000Z800000000000032',null,'nc.pubimpl.so.m32.so.voucher.BillReflectorServiceImpl',null,null,null,'b0fa41cd-a649-4309-b685-d341a5d1b0ed',null,null,null,null,null,null,null,null,null,null,0,null,null,null,'so',null,null,null,'32',null,null,'2012-04-26 16:05:53')
+go
+

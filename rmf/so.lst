@@ -1,0 +1,3 @@
+#remove module files from middleware
+SCM_SO_EJB50.module
+SCM_SO_EJB50_proxy.module

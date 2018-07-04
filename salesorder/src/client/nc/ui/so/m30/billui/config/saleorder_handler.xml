@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 单据项目事件处理器配置 -->
+	<bean id="handlerconfig" class="nc.ui.so.m30.config.DefaultElementEventHandlerConfig">
+		<property name="handlermap">
+			<map>
+				<entry key="vtrantypecode">
+					<bean class="nc.ui.so.m30.elementhandler.HeadItemTranTypeHandler">
+					</bean>
+				</entry>
+				<entry key="cbiztypeid">
+					<bean class="nc.ui.so.m30.elementhandler.HeadItemBiztypeHandler">
+					</bean>
+				</entry>
+				<entry key="cdeptid">
+					<bean class="nc.ui.so.m30.elementhandler.HeadItemDeptHandler">
+					</bean>
+				</entry>
+				<entry key="csendstockorgid">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemSendStockOrgHandler">
+					</bean>
+				</entry>
+				<entry key="numpricemoney">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemNumPriceMnyHandler">
+					</bean>
+				</entry>
+				<entry key="nheadsummny">
+					<bean class="nc.ui.so.m30.elementhandler.HeadItemHeadSummnyHandler">
+					</bean>
+				</entry>
+				<entry key="pieceweightvolume">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemPieceWeightVolumeHandler">
+					</bean>
+				</entry>
+				<entry key="vbatchcode">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemBatchCodeHandler">
+					</bean>
+				</entry>
+				<entry key="corigcurrencyid">
+					<bean class="nc.ui.so.m30.elementhandler.HeadItemOrigCurrencyHandler">
+					</bean>
+				</entry>
+				<entry key="ccurrencyorgid">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemCurrencyOrgHandler">
+					</bean>
+				</entry>
+				<entry key="nexchangerate">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemExchangerateHandler">
+					</bean>
+				</entry>
+				<entry key="ngroupexchgrate">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemGroupExchgrateHandler">
+					</bean>
+				</entry>
+				<entry key="nglobalexchgrate">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemGlobalExchgrateHandler">
+					</bean>
+				</entry>
+				<entry key="nbdiscountrate">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemBDiscountrateHandler">
+					</bean>
+				</entry>
+				<entry key="vchangerate">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemChangeRateHandler">
+					</bean>
+				</entry>
+				<entry key="vqtunitrate">
+					<bean class="nc.ui.so.m30.elementhandler.BodyItemQtunitRateHandler">
+					</bean>
+				</entry>
+				
+			</map>
+		</property>
+	</bean>
+
+</beans>

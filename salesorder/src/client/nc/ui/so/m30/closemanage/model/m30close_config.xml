@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="true">
+
+  <!-- 环境变量 -->
+  <bean id="context" class="nc.vo.uif2.LoginContext" />
+
+  <!--
+    模型部分配置###########################################################
+  -->
+
+  <!-- 应用服务类，负责进行模型操作的处理 -->
+  <bean id="ManageModelService" class="nc.ui.so.m30.closemanage.model.SaleOrderCloseManageService">
+  </bean>
+
+  <!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+  <!-- 对于有元数据的VO，可以使用下面的配置 -->
+  <bean id="boadatorfactory" class="nc.ui.pubapp.uif2app.view.value.CAVO2BDObjectAdapterFactory" />
+
+  <!-- 批量操作前台校验 -->
+  <bean id="batchValidateSerice" class="nc.ui.uif2.model.DefaultBatchValidationService">
+    <property name="editor" ref="list" />
+  </bean>
+
+  <!-- 批量操作应用模型 -->
+  <bean id="batchBillTableModel" class="nc.ui.pubapp.uif2app.model.BatchBillTableModel">
+    <property name="context" ref="context"></property>
+    <property name="businessObjectAdapterFactory" ref="boadatorfactory"></property>
+    <property name="validationService" ref="batchValidateSerice"></property>
+  </bean>
+
+  <!-- 数据模型管理器，主要负责各种方式的模型初始化 -->
+  <bean id="modelDataManager" class="nc.ui.so.m30.closemanage.model.CloseManageModelDataManager">
+    <property name="model" ref="batchBillTableModel"></property>
+    <property name="service" ref="ManageModelService"></property>
+  </bean>
+
+  <!-- 界面元素 ########################################################### -->
+  <!-- 列表控件的取值策略 -->
+  <bean id="componentValueManager"
+    class="nc.ui.so.m30.closemanage.model.M30CloseBillCardPanelValueAdapter">
+    <property name="bodyVOName" value="nc.vo.so.msaleorder.entity.SaleOrderViewVO" />
+  </bean>
+  <!-- 列表控件 -->
+  <bean id="list" class="nc.ui.so.m30.closemanage.view.SaleOrderCloseManageListView"
+    init-method="initUI">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="componentValueManager" ref="componentValueManager" />
+    <property name="voClassName" value="nc.vo.so.msaleorder.entity.SaleOrderViewVO" />
+    <property name="isBodyAutoAddLine" value="false" />
+    <property name="bodyMultiSelectEnable" value="true" />
+  </bean>
+
+  <!--
+    界面布局总装###########################################################
+  -->
+  <bean id="container" class="nc.ui.uif2.TangramContainer" init-method="initUI">
+    <property name="tangramLayoutRoot">
+      <bean class="nc.ui.uif2.tangramlayout.node.CNode">
+        <property name="component" ref="list"></property>
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="queryAction" />
+        <ref bean="refreshAction" />
+        <ref bean="separatorAction" />
+
+        <ref bean="billCloseActionGroup" />
+        <ref bean="rowCloseActionGroup" />
+        <ref bean="sendCloseActionGroup" />
+        <ref bean="outCloseActionGroup" />
+        <ref bean="invoiceCloseActionGroup" />
+        <ref bean="settleCloseActionGroup" />
+        <ref bean="separatorAction" />
+
+        <ref bean="linkQueryAction" />
+        <ref bean="separatorAction" />
+
+        <ref bean="printActionGroup" />
+      </list>
+    </property>
+  </bean>
+
+  <!--
+    Actions ###########################################################
+  -->
+  <bean id="separatorAction" class="nc.funcnode.ui.action.SeparatorAction" />
+  <!-- 查询 -->
+  <bean id="queryDLGInitializer" class="nc.ui.so.m30.closemanage.view.M30CloseQueryDLGInitializer" />
+  <bean id="queryAction" class="nc.ui.pubapp.uif2app.query2.action.DefaultQueryAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="dataManager" ref="modelDataManager" />
+    <property name="qryCondDLGInitializer" ref="queryDLGInitializer" />
+    <property name="hasQueryArea" value="false" />
+  </bean>
+  <!-- 刷新 -->
+  <bean id="refreshAction" class="nc.ui.pubapp.uif2app.query2.action.DefaultRefreshAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="dataManager" ref="modelDataManager" />
+  </bean>
+  <!-- 整单关闭按钮组 -->
+  <bean id="billCloseActionGroup" class="nc.funcnode.ui.action.MenuAction">
+    <property name="code" value="billCloseGroup" />
+    <!-- <property name="name" value="整单关闭" /> -->
+    <property name="name">
+      <bean class="nc.ui.uif2.I18nFB">
+        <property name="resDir" value="4006011_0" />
+        <property name="resId" value="04006011-0404" />
+        <property name="defaultValue" value="整单关闭" />
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="billCloseAction" />
+        <ref bean="billOpenAction" />
+      </list>
+    </property>
+  </bean>
+  <!-- 整单关闭 -->
+  <bean id="billCloseAction" class="nc.ui.so.m30.closemanage.action.M30CloseBillCloseAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseBillCloseService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 整单打开 -->
+  <bean id="billOpenAction" class="nc.ui.so.m30.closemanage.action.M30CloseBillOpenAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseBillOpenService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+
+  <!-- 行关闭按钮组 -->
+  <bean id="rowCloseActionGroup" class="nc.funcnode.ui.action.MenuAction">
+    <property name="code" value="rowCloseGroup" />
+    <!-- <property name="name" value="行关闭" /> -->
+    <property name="name">
+      <bean class="nc.ui.uif2.I18nFB">
+        <property name="resDir" value="4006011_0" />
+        <property name="resId" value="04006011-0405" />
+        <property name="defaultValue" value="行关闭" />
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="rowCloseAction" />
+        <ref bean="rowOpenAction" />
+      </list>
+    </property>
+  </bean>
+  <!-- 行关闭 -->
+  <bean id="rowCloseAction" class="nc.ui.so.m30.closemanage.action.M30CloseRowCloseAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseRowCloseService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 行打开 -->
+  <bean id="rowOpenAction" class="nc.ui.so.m30.closemanage.action.M30CloseRowOpenAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseRowOpenService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 发货关闭按钮组 -->
+  <bean id="sendCloseActionGroup" class="nc.funcnode.ui.action.MenuAction">
+    <property name="code" value="sendCloseGroup" />
+    <!-- <property name="name" value="发货关闭" /> -->
+    <property name="name">
+      <bean class="nc.ui.uif2.I18nFB">
+        <property name="resDir" value="4006011_0" />
+        <property name="resId" value="04006011-0406" />
+        <property name="defaultValue" value="发货关闭" />
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="sendCloseAction" />
+        <ref bean="sendOpenAction" />
+      </list>
+    </property>
+  </bean>
+  <!-- 发货关闭 -->
+  <bean id="sendCloseAction" class="nc.ui.so.m30.closemanage.action.M30CloseSendCloseAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseSendCloseService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 发货打开 -->
+  <bean id="sendOpenAction" class="nc.ui.so.m30.closemanage.action.M30CloseSendOpenAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseSendOpenService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 出库关闭按钮组 -->
+  <bean id="outCloseActionGroup" class="nc.funcnode.ui.action.MenuAction">
+    <property name="code" value="outCloseGroup" />
+    <!-- <property name="name" value="出库关闭" /> -->
+    <property name="name">
+      <bean class="nc.ui.uif2.I18nFB">
+        <property name="resDir" value="4006011_0" />
+        <property name="resId" value="04006011-0407" />
+        <property name="defaultValue" value="出库关闭" />
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="outCloseAction" />
+        <ref bean="outOpenAction" />
+      </list>
+    </property>
+  </bean>
+  <!-- 出库关闭 -->
+  <bean id="outCloseAction" class="nc.ui.so.m30.closemanage.action.M30CloseOutCloseAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseOutCloseService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 出库打开 -->
+  <bean id="outOpenAction" class="nc.ui.so.m30.closemanage.action.M30CloseOutOpenAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseOutOpenService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 开票关闭按钮组 -->
+  <bean id="invoiceCloseActionGroup" class="nc.funcnode.ui.action.MenuAction">
+    <property name="code" value="invoiceCloseGroup" />
+    <!-- <property name="name" value="开票关闭" /> -->
+    <property name="name">
+      <bean class="nc.ui.uif2.I18nFB">
+        <property name="resDir" value="4006011_0" />
+        <property name="resId" value="04006011-0408" />
+        <property name="defaultValue" value="开票关闭" />
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="invoiceCloseAction" />
+        <ref bean="invoiceOpenAction" />
+      </list>
+    </property>
+  </bean>
+  <!-- 开票关闭 -->
+  <bean id="invoiceCloseAction" class="nc.ui.so.m30.closemanage.action.M30CloseInvoiceCloseAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseInvoiceCloseService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 开票打开 -->
+  <bean id="invoiceOpenAction" class="nc.ui.so.m30.closemanage.action.M30CloseInvoiceOpenAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseInvoiceOpenService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 结算关闭按钮组 -->
+  <bean id="settleCloseActionGroup" class="nc.funcnode.ui.action.MenuAction">
+    <property name="code" value="settleCloseGroup" />
+    <!-- <property name="name" value="结算关闭" /> -->
+    <property name="name">
+      <bean class="nc.ui.uif2.I18nFB">
+        <property name="resDir" value="4006011_0" />
+        <property name="resId" value="04006011-0409" />
+        <property name="defaultValue" value="结算关闭" />
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="settleCloseAction" />
+        <ref bean="settleOpenAction" />
+      </list>
+    </property>
+  </bean>
+  <!-- 结算关闭 -->
+  <bean id="settleCloseAction" class="nc.ui.so.m30.closemanage.action.M30CloseSettleCloseAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseSettleCloseService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 结算打开 -->
+  <bean id="settleOpenAction" class="nc.ui.so.m30.closemanage.action.M30CloseSettleOpenAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billTable" ref="list" />
+    <property name="singleBillService">
+      <bean class="nc.ui.so.m30.closemanage.model.M30CloseSettleOpenService" />
+    </property>
+    <property name="refreshAction" ref="refreshAction" />
+  </bean>
+  <!-- 联查 -->
+  <bean id="linkQueryAction" class="nc.ui.so.m30.closemanage.action.M30CloseLinkQueryAction">
+    <property name="model" ref="batchBillTableModel" />
+    <property name="billType" value="30" />
+    <property name="openMode" value="1" />
+  </bean>
+  <!-- 打印按钮组 -->
+  <bean id="printActionGroup" class="nc.funcnode.ui.action.GroupAction">
+    <property name="code" value="printGroup" />
+    <!-- <property name="name" value="打印" /> -->
+    <property name="name">
+      <bean class="nc.ui.uif2.I18nFB">
+        <property name="resDir" value="common" />
+        <property name="resId" value="UC001-0000007" />
+        <property name="defaultValue" value="打印" />
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="printAction" />
+        <ref bean="previewAction" />
+      </list>
+    </property>
+  </bean>
+  <!-- 预览 -->
+  <!-- <bean id="previewAction" class="nc.ui.so.m30.closemanage.action.M30ClosePreViewAction"> -->
+  <!-- <property name="model" ref="batchBillTableModel" /> -->
+  <!-- <property name="billTable" ref="list" /> -->
+  <!-- </bean> -->
+
+  <bean id="previewAction" class="nc.ui.so.m30.closemanage.action.M30ClosePreViewAction">
+    <property name="preview" value="true" />
+    <property name="model" ref="batchBillTableModel" />
+    <property name="beforePrintDataProcess" ref="printProcessor" />
+  </bean>
+  <!-- <bean id="previewAction" class="nc.ui.pubapp.uif2app.actions.PrintDirectAction"> -->
+  <!-- <property name="DirectPrint" value="false" /> -->
+  <!-- <property name="model" ref="batchBillTableModel" /> -->
+  <!-- <property name="editor" ref="list" /> -->
+  <!-- </bean> -->
+  <!-- 打印 -->
+  <bean id="printAction" class="nc.ui.so.m30.closemanage.action.M30ClosePreViewAction">
+    <property name="preview" value="false" />
+    <property name="model" ref="batchBillTableModel" />
+    <property name="beforePrintDataProcess" ref="printProcessor" />
+  </bean>
+  <!-- 打印调用类 -->
+  <bean id="printProcessor" class="nc.ui.so.m30.billui.action.printaction.SaleOrderPrintProcessor">
+    <property name="batchmodel" ref="batchBillTableModel" />
+  </bean>
+  <!-- <bean id="printAction" class="nc.ui.pubapp.uif2app.actions.PrintDirectAction"> -->
+  <!-- <property name="DirectPrint" value="true" /> -->
+  <!-- <property name="model" ref="batchBillTableModel" /> -->
+  <!-- <property name="editor" ref="list" /> -->
+  <!-- </bean> -->
+  <bean id="InitDataListener" class="nc.ui.pubapp.uif2app.model.DefaultFuncNodeInitDataListener">
+    <property name="context" ref="context" />
+    <property name="model" ref="batchBillTableModel" />
+    <property name="voClassName" value="nc.vo.so.m30.entity.SaleOrderViewVO" />
+    <property name="queryAction" ref="queryAction" />
+  </bean>
+</beans>

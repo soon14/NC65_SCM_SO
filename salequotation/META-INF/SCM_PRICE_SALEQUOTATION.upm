@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name = "SCM_SO_EJB">
+  	<private>
+    </private>
+    <public>
+      <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.itf.so.salequotation.ISalequotationService</interface>
+      <implementation>nc.impl.so.salequotation.action.SalequotationImpl</implementation>
+    </component>
+    
+    <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.itf.so.salequotation.ISalequotationQry</interface>
+      <implementation>nc.impl.so.salequotation.action.SalequotationImpl</implementation>
+    </component>
+    
+      <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.pubitf.so.salequotation.so.ISaleOrderCallBack</interface>
+      <implementation>nc.impl.so.salequotation.service.so.SaleOrderCallBackService</implementation>
+    </component>
+    
+    <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.pubitf.so.salequotation.ct.ISaleContractCallBack</interface>
+      <implementation>nc.impl.so.salequotation.service.ct.SaleContractCallBackService</implementation>
+    </component>
+    
+    <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.itf.so.m4310trantype.IM4310TranTypeService</interface>
+      <implementation>nc.impl.so.m4310trantype.M4310TranTypeImpl</implementation>
+    </component>
+    
+     <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.itf.so.salequotation.IHistoryPriceQryService</interface>
+      <implementation>nc.impl.so.salequotation.action.HistoryPriceQryService</implementation>
+    </component>
+    
+    <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.itf.so.m4310.profit.ISaleQuotationProfitCal</interface>
+      <implementation>nc.impl.so.m4310.profit.SaleQuotationProfitCalImpl</implementation>
+    </component>
+    <!--销售报价单为CRM提供的查询接口-->
+    <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.pubitf.so.m4310.crm.ISaleQuotationQueryForCRM</interface>
+      <implementation>nc.pubimpl.so.m4310.crm.SaleQuotationQueryForCRMImpl</implementation>
+    </component>
+     <!--报价单针对外模块生成报价单时提供的补全数据接口-->
+     <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.pubitf.so.salequotation.pub.ISalequotaionFillDataForPub</interface>
+      <implementation>nc.pubimpl.so.m4310.pub.SalequotaionFillDataForPubImpl</implementation>
+    </component>
+    <!--报价单分页查询接口-->
+     <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+      <interface>nc.itf.so.salequotation.ISalequotationMaintainApp</interface>
+      <implementation>nc.impl.so.salequotation.action.SalequotationMaintainAppImpl</implementation>
+    </component>
+  
+    </public>
+ </module>

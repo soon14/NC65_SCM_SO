@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createIndustry="0" createTime="2011-04-14 09:47:42" creator="" description="" displayName="预订单业务操作" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="d852317a-91c1-4099-8de9-9c72bb6d3a2f" industry="0" industryChanged="false" industryIncrease="false" industryName="基础行业" isSource="false" isbizmodel="true" mainEntity="" modifier="" modifyIndustry="0" modifyTime="2013-01-28 10:39:09" name="m38business" namespace="so" ownModule="so" preLoad="false" programcode="" resModuleName="4006012_2" resid="2400601203-0003" version="10" versionType="0">
+    <celllist>
+        <busioperation componentID="d852317a-91c1-4099-8de9-9c72bb6d3a2f" createIndustry="0" createTime="2011-04-14 09:53:36" creator="" dataType="575c639d-8dcb-4692-b151-c91f38525c70" dbtype="" description="" displayName="修改操作" fullClassName="nc.voso.m38business.edit" height="100" help="" id="654da824-c7be-4d6b-b97d-134698adb58e" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="" modifyIndustry="0" modifyTime="2013-01-28 10:39:09" name="edit" needlog="false" resid="2400601203-0001" typeDisplayName="预订单主表" typeName="preorder" version="" versionType="0" visibility="public" width="80" x="240" y="35">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="d852317a-91c1-4099-8de9-9c72bb6d3a2f" createIndustry="0" createTime="2011-04-14 10:00:01" creator="" dataType="575c639d-8dcb-4692-b151-c91f38525c70" dbtype="" description="" displayName="删除操作" fullClassName="nc.voso.m38business.delete" height="100" help="" id="bd98067e-a10a-4795-b8ae-815a273391dd" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="" modifyIndustry="0" modifyTime="2013-01-28 10:39:09" name="delete" needlog="false" resid="2400601203-0005" typeDisplayName="预订单主表" typeName="preorder" version="" versionType="0" visibility="public" width="80" x="371" y="33">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="d852317a-91c1-4099-8de9-9c72bb6d3a2f" createIndustry="0" createTime="2011-04-14 10:00:24" creator="" dataType="575c639d-8dcb-4692-b151-c91f38525c70" dbtype="" description="" displayName="审批操作" fullClassName="nc.voso.m38business.approve" height="100" help="" id="d2ee10a7-4196-4073-ac73-8e8b7979dffb" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="" modifyIndustry="0" modifyTime="2013-01-28 10:39:09" name="approve" needlog="false" resid="2400601203-0002" typeDisplayName="预订单主表" typeName="preorder" version="" versionType="0" visibility="public" width="80" x="170" y="197">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="d852317a-91c1-4099-8de9-9c72bb6d3a2f" createIndustry="0" createTime="2011-04-14 10:00:50" creator="" dataType="575c639d-8dcb-4692-b151-c91f38525c70" dbtype="" description="" displayName="取消审批操作" fullClassName="nc.voso.m38business.unapprove" height="100" help="" id="66abb260-9d03-4789-bbb6-20e18302b7ef" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="" modifyIndustry="0" modifyTime="2013-01-28 10:39:09" name="unapprove" needlog="false" resid="2400601203-0004" typeDisplayName="预订单主表" typeName="preorder" version="" versionType="0" visibility="public" width="80" x="317" y="193">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="d852317a-91c1-4099-8de9-9c72bb6d3a2f" createIndustry="0" createTime="2012-01-04 15:13:34" creator="" dataType="575c639d-8dcb-4692-b151-c91f38525c70" dbtype="" description="" displayName="打印操作" fullClassName="nc.voso.m38business.print" height="100" help="" id="7035e88b-b503-480b-b1f3-62c63509d7f4" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="" modifyIndustry="0" modifyTime="2013-01-28 10:39:09" name="print" needlog="false" resid="2400601203-0000" typeDisplayName="预订单主表" typeName="preorder" version="" versionType="0" visibility="public" width="80" x="532" y="71">
+            <refoperationlist/>
+        </busioperation>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+  <!-- 引入公共部分 -->
+  <import resource="settlepub_config.xml" />
+
+  <!-- 环境变量 -->
+  <bean id="context" class="nc.vo.uif2.LoginContext" />
+
+  <!-- 模型部分配置########################################################### -->
+
+  <!-- 应用服务类，负责进行模型操作的处理 -->
+  <bean id="qryService" class="nc.ui.so.m33.mansquare.model.SaleOutSettleQueryService" />
+
+  <!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+  <bean id="boadatorfactory"
+    class="nc.ui.pubapp.uif2app.view.value.AggVOMetaBDObjectAdapterFactory" />
+
+  <!-- 管理应用模型 -->
+  <bean id="ManageAppModel" class="nc.ui.so.m33.pub.SquareOutManageModel">
+    <property name="businessObjectAdapterFactory" ref="boadatorfactory"></property>
+    <property name="context" ref="context"></property>
+  </bean>
+
+  <!-- 数据模型管理器，主要负责各种方式的模型初始化 -->
+  <bean id="modelDataManager" class="nc.ui.pubapp.uif2app.query2.model.ModelDataManager">
+    <property name="model" ref="ManageAppModel"></property>
+    <property name="service" ref="qryService"></property>
+  </bean>
+
+  <!-- 查询对话框初始化 -->
+  <bean id="QryCondDLGInit" class="nc.ui.so.m33.pub.view.SettleQryCondDLGInitializer" />
+
+  <bean id="UIInterceptor"
+    class="nc.ui.pubapp.uif2app.actions.interceptor.ShowUpComponentInterceptor">
+    <property name="showUpComponent" ref="listView" />
+  </bean>
+
+  <!-- 模板容器，负责对模板的统一装载 -->
+  <bean id="templateContainer" class="nc.ui.uif2.editor.TemplateContainer"
+    init-method="load">
+    <property name="context" ref="context" />
+  </bean>
+
+  <!-- 模板的展示值设置器（将VO放到列表模板上） -->
+  <bean id="valuesetter" class="nc.ui.so.m33.pub.SquareVOListPanelValueSetter">
+  </bean>
+
+  <!-- 界面元素 ########################################################### -->
+  <!-- 列表视图 -->
+  <bean id="listView" class="nc.ui.so.m33.mansquare.view.M33BillListView"
+    init-method="initUI">
+    <property name="model" ref="ManageAppModel"></property>
+    <property name="billListPanelValueSetter" ref="valuesetter" />
+    <property name="multiSelectionEnable" value="true" />
+    <property name="multiSelectionMode" value="1" />
+    <property name="templateContainer" ref="templateContainer"></property>
+    <!-- 列表自定义项处理 -->
+    <property name="userdefitemListPreparator" ref="userdefAndMarAsstListPreparator" />
+  </bean>
+
+  <!-- 自动修正卡片界面的分数显示控件(换算率) -->
+  <bean id="fractionFixMediator" class="nc.ui.pubapp.uif2app.view.FractionFixMediator"
+    init-method="initUI">
+    <constructor-arg ref="listView" />
+  </bean>
+
+  <!-- 自由项、自定义项组件的列表配置 -->
+  <bean id="userdefAndMarAsstListPreparator" class="nc.ui.pubapp.uif2app.view.CompositeBillListDataPrepare">
+    <property name="billListDataPrepares">
+      <list>
+        <ref bean="userdefitemlistPreparator" />
+        <ref bean="marAsstPreparator" />
+      </list>
+    </property>
+  </bean>
+  <bean name="userdefitemlistPreparator" class="nc.ui.uif2.editor.UserdefitemBillListDataPreparator">
+    <constructor-arg ref="context" />
+  </bean>
+  <!-- 自由项组件的配置 -->
+  <bean id="marAsstPreparator" class="nc.ui.pubapp.uif2app.view.material.assistant.MarAsstPreparator">
+    <property name="model" ref="ManageAppModel" />
+    <property name="container" ref="userdefitemContainer" />
+    <property name="prefix" value="vfree" />
+    <property name="materialField" value="cmaterialoid" />
+    <!-- 以下四个为物料固定辅助属性，可以选择配置 -->
+    <property name="storeStateField" value="cstateid" />
+    <property name="projectField" value="cprojectid" />
+    <property name="supplierField" value="cvendorid" />
+    <property name="productorField" value="cproductorid" />
+  </bean>
+   <bean id="userdefitemContainer" class="nc.ui.uif2.userdefitem.UserDefItemContainer">
+		<property name="context" ref="context" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.SquareOutHVO" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.SquareOutBVO" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="rulecode" value="materialassistant" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+  <!-- 界面布局总装########################################################### -->
+  <bean id="container" class="nc.ui.uif2.TangramContainer" init-method="initUI">
+    <property name="tangramLayoutRoot">
+      <bean class="nc.ui.uif2.tangramlayout.node.CNode">
+        <property name="component" ref="listView"></property>
+      </bean>
+    </property>
+    <!-- 此处配置的Action始终可见 <property name="actions"> <list> </list> </property> -->
+    <property name="actions">
+      <list>
+        <ref bean="queryAction" />
+        <ref bean="refreshAction" />
+        <ref bean="separatorAction" />
+        <ref bean="squareAction" />
+        <ref bean="unSquareAction" />
+        <!-- <ref bean="outRushAction" /> -->
+        <ref bean="unOutRushAction" />
+        <ref bean="separatorAction" />
+        <ref bean="printActionGroup" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- 构造方法中传入的界面显示时，配置的Action才可见 -->
+  <bean id="actionsOfList" class="nc.ui.uif2.actions.StandAloneToftPanelActionContainer">
+    <constructor-arg ref="listView" />
+    <!-- 可以配置非编辑状态下和编辑状态下分别可见的Action，没有此需求时可以配置得一样 -->
+    <property name="actions">
+      <list>
+      </list>
+    </property>
+  </bean>
+
+  <!-- 列表表头行钩选事件处理器 -->
+  <bean id="list_head_row_selecthandler"
+    class="nc.ui.so.m33.pub.editor.headevent.after.SquareRowSelectStateChangeHandler">
+  </bean>
+
+  <!-- 编辑事件 -->
+  <bean id="appEventHandlerMediator" class="nc.ui.pubapp.uif2app.model.AppEventHandlerMediator">
+    <property name="model" ref="ManageAppModel" />
+    <property name="handlerMap">
+      <map>
+        <!-- 列表表体编辑前处理事件 -->
+        <entry key="nc.ui.pubapp.uif2app.event.list.ListBodyBeforeEditEvent">
+          <list>
+            <bean class="nc.ui.so.m33.pub.editor.BodyBeforeEditEventDispatcher" />
+          </list>
+        </entry>
+        <!-- 列表表体编辑后处理事件 -->
+        <entry key="nc.ui.pubapp.uif2app.event.list.ListBodyAfterEditEvent">
+          <list>
+            <bean class="nc.ui.so.m33.pub.editor.BodyAfterEditEventDispatcher" />
+          </list>
+        </entry>
+
+
+        <!-- 列表表头行选择状态改变事件， v6.0结算不再控制同一批结算，则同一批反结算
+          <entry key="nc.ui.pubapp.uif2app.event.list.ListHeadRowStateChangeEvent">
+          <list>
+          <ref bean="list_head_row_selecthandler" />
+          </list>
+          </entry>
+        -->
+
+      </map>
+    </property>
+  </bean>
+
+  <!-- Actions ########################################################### -->
+  <!-- 自制新增 -->
+  <bean id="squareAction" class="nc.ui.so.m33.mansquare.action.SquareAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="listView" ref="listView" />
+  </bean>
+  <bean id="unSquareAction" class="nc.ui.so.m33.mansquare.action.UnSquareAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="listView" ref="listView" />
+  </bean>
+  <!-- <bean id="outRushAction" class="nc.ui.so.m33.mansquare.action.OutRushAction">
+    <property name="model" ref="ManageAppModel" /> <property name="listView"
+    ref="listView" /> </bean> -->
+  <bean id="unOutRushAction" class="nc.ui.so.m33.mansquare.action.UnOutRushAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="listView" ref="listView" />
+  </bean>
+  
+  <bean id="queryTemplateContainer" class="nc.ui.uif2.editor.QueryTemplateContainer">
+		<property name="context" ref="context"></property>
+  </bean>
+  <bean name="queryAction" class="nc.ui.so.m33.mansquare.action.ManualSquareQueryAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="dataManager" ref="modelDataManager" />
+    <property name="qryCondDLGInitializer" ref="QryCondDLGInit" />
+    <property name="templateContainer" ref="queryTemplateContainer"></property>
+    <property name="interceptor" ref="UIInterceptor" />
+    <property name="listView" ref="listView" />
+    <property name="service" ref="qryService" />
+    <property name="hasQueryArea" value="false" />
+  </bean>
+  <bean id="refreshAction" class="nc.ui.so.m33.pub.action.SquareOutSettleRefreshAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="dataManager" ref="modelDataManager" />
+    <property name="listView" ref="listView" />
+    <property name="service" ref="qryService" />
+  </bean>
+  <!-- 打印组 -->
+  <bean id="printActionGroup" class="nc.funcnode.ui.action.GroupAction">
+    <property name="code" value="printgroup" />
+    <!-- <property name="name" value="打印" /> -->
+    <property name="name">
+      <bean class="nc.ui.uif2.I18nFB">
+        <property name="resDir" value="common" />
+        <property name="resId" value="UC001-0000007" />
+        <property name="defaultValue" value="打印" />
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="printAction" />
+        <ref bean="previewAction" />
+        <ref bean="outputAction" />
+      </list>
+    </property>
+  </bean>
+  <!-- 输出... -->
+  <bean id="outputAction" class="nc.ui.so.m33.pub.SquareOutPutAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="parent" ref="listView" />
+    <property name="listView" ref="listView" />
+    <property name="digitProcessor" ref="printProcessor" />
+    <property name="valueProcessor" ref="SquarePrintItemValueProcessor" />
+  </bean>
+  <!-- 预览 -->
+  <bean id="previewAction" class="nc.ui.so.m33.pub.SquareMasterPrintAction">
+    <property name="preview" value="true" />
+    <property name="model" ref="ManageAppModel" />
+    <property name="listView" ref="listView" />
+    <property name="digitProcessor" ref="printProcessor" />
+    <property name="valueProcessor" ref="SquarePrintItemValueProcessor" />
+  </bean>
+  <bean id="SquarePrintItemValueProcessor" class="nc.ui.so.m33.pub.SquarePrintItemValueProcessor"/>
+  <!-- 打印 -->
+  <bean id="printAction" class="nc.ui.so.m33.pub.SquareMasterPrintAction">
+    <property name="preview" value="false" />
+    <property name="model" ref="ManageAppModel" />
+    <property name="listView" ref="listView" />
+    <property name="digitProcessor" ref="printProcessor" />
+    <property name="valueProcessor" ref="SquarePrintItemValueProcessor" />
+  </bean>
+  <bean id="printProcessor" class="nc.ui.so.m33.pub.SaleOutPrintProcesser">
+    <property name="model" ref="ManageAppModel" />
+  </bean>
+
+  <bean id="InitDataListener" class="nc.ui.pubapp.uif2app.model.DefaultFuncNodeInitDataListener">
+    <property name="context" ref="context" />
+    <property name="model" ref="ManageAppModel" />
+    <property name="voClassName" value="nc.vo.so.m33.m4c.entity.SquareOutVO" />
+    <property name="autoShowUpComponent" ref="listView" />
+    <property name="queryAction" ref="queryAction" />
+  </bean>
+  
+  <bean id="remoteCallCombinatorCaller" class="nc.ui.uif2.editor.UIF2RemoteCallCombinatorCaller">
+		<property name="remoteCallers">
+			<list>
+				<ref bean="queryTemplateContainer" />
+				<ref bean="templateContainer" />
+			</list>
+		</property>
+	</bean>
+</beans>

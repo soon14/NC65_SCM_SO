@@ -1,0 +1,6 @@
+insert into pub_alertregistry(pk_alertregistry,accountpk,alertname,creator,curlang,description,dr,enabled,filename,groupid,ismessagetemplate,istiming,maxlogs,message,messagefile,msgtitle,msgtitle2,msgtitle3,pk_alerttype,pk_messagetemplate,pk_org,pushable,registrytype,reportlikework,scheduletaskid,simplemessage,simplemessage2,simplemessage3,ts,withtranscation) values('1002Z810000000016NHZ',null,'~','~','~',null,0,'Y',null,'0001Z8100000000011TT',null,'N',10,null,null,null,null,null,'1002Z810000000016NHV',null,'0001Z8100000000011TT',null,1,null,null,null,null,null,'2013-12-04 16:36:12','Y')
+go
+
+insert into pub_alertregistry(pk_alertregistry,accountpk,alertname,creator,curlang,description,dr,enabled,filename,groupid,ismessagetemplate,istiming,maxlogs,message,messagefile,msgtitle,msgtitle2,msgtitle3,pk_alerttype,pk_messagetemplate,pk_org,pushable,registrytype,reportlikework,scheduletaskid,simplemessage,simplemessage2,simplemessage3,ts,withtranscation) values('1002Z810000000016NI3',null,'~','1002Z810000000003WG4','~',null,0,'Y',null,'0001Z8100000000011TT',null,'N',10,null,null,null,null,null,'1002Z810000000016NHX',null,'GLOBLE00000000000000',null,1,null,null,null,null,null,'2013-12-04 16:36:12','Y')
+go
+

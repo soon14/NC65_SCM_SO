@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding='gb2312'?>
+<items docType="SDP_SCRIPT_ITEM">
+
+    <item>
+		<itemKey>0001</itemKey>
+		<itemName>单据模版</itemName>
+		<itemRule>pub_billtemplet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>nodecode</grpField>
+		<fixedWhere>bill_templetname='SYSTEM' and nodecode like '400608%' and nodecode != '4006080201'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0002</itemKey>
+		<itemName>查询模版</itemName>
+		<itemRule>pub_query_templet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>node_code</grpField>
+		<fixedWhere>node_code like '400608%' and node_code != '4006080201'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0003</itemKey>
+		<itemName>打印模版</itemName>
+		<itemRule>pub_print_template</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>vnodecode</grpField>
+		<fixedWhere>vnodecode like '400608%' and vnodecode != '4006080201'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0004</itemKey>
+		<itemName>默认模版</itemName>
+		<itemRule>pub_systemplate_base</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>funnode</grpField>
+		<fixedWhere>funnode like '400608%' and funnode != '4006080201'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0005</itemKey>
+		<itemName>功能节点</itemName>
+		<itemRule>sm_funcregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>funcode like '400608%' and funcode != '4006080201'</fixedWhere>
+	</item>
+
+    <item>
+        <itemKey>0006</itemKey>
+        <itemName>自定义菜单</itemName>
+        <itemRule>sm_menuitemreg</itemRule>
+        <sysField></sysField>
+        <corpField></corpField>
+        <grpField></grpField>
+        <fixedWhere>menuitemcode like '400945%'</fixedWhere>
+    </item>
+	 <item>
+        <itemKey>0007</itemKey>
+        <itemName>参照注册</itemName>
+        <itemRule>bd_refinfo</itemRule>
+        <sysField></sysField>
+        <corpField></corpField>
+        <grpField></grpField>
+        <fixedWhere>MODULENAME = 'SO' </fixedWhere>
+    </item>
+		<item>
+		<itemKey>bd_mode_all</itemKey>
+		<itemName>管控模式</itemName>
+		<itemRule>bd_mode_all</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>mdclassid in ('1bd179d2-d168-4a9d-aa48-a469e70bfe79','1c04da91-971e-4f33-bd1b-47a1d6322d0d','53b41cad-e90d-4dd3-9f49-8a78d4a08bdb','20e7c7cf-7d14-435a-9c3f-f3b9f7abc337')
+              </fixedWhere>
+	</item>	
+	<item>
+		<itemKey>bd_mode_selected</itemKey>
+		<itemName>默认管控模式</itemName>
+		<itemRule>bd_mode_selected</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>mdclassid in ('1bd179d2-d168-4a9d-aa48-a469e70bfe79','1c04da91-971e-4f33-bd1b-47a1d6322d0d','53b41cad-e90d-4dd3-9f49-8a78d4a08bdb','20e7c7cf-7d14-435a-9c3f-f3b9f7abc337')
+              </fixedWhere>
+	</item>
+	<item>
+		<itemKey>bd_uniquerule</itemKey>
+		<itemName>唯一性</itemName>
+		<itemRule>bd_uniquerule</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>mdclassid in ('1bd179d2-d168-4a9d-aa48-a469e70bfe79','1c04da91-971e-4f33-bd1b-47a1d6322d0d','53b41cad-e90d-4dd3-9f49-8a78d4a08bdb','
+20e7c7cf-7d14-435a-9c3f-f3b9f7abc337')</fixedWhere>
+	</item>	
+</items>

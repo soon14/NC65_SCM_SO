@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createTime="2010-06-04 14:11:32" creator="" description="" displayName="发货单交易类型" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="d71d8cfc-7583-4525-9315-5e0797eb0ed2" isbizmodel="false" mainEntity="f4d0bd37-6514-4640-907d-0803f3ed3636" modifier="" modifyTime="2011-08-08 09:34:14" name="m4331trantype" namespace="so" ownModule="so" preLoad="false" resModuleName="4006002_2" resid="2400600201-0001" version="25" versionType="0">
+    <celllist>
+        <entity accessorClassName="nc.md.model.access.javamap.NCBeanStyle" bizItfImpClassName="" componentID="d71d8cfc-7583-4525-9315-5e0797eb0ed2" createTime="2010-06-04 14:11:40" creator="" czlist="" description="" displayName="发货单交易类型" fullClassName="nc.vo.so.m4331trantype.entity.M4331trantypeVO" height="161" help="" id="f4d0bd37-6514-4640-907d-0803f3ed3636" isAuthen="true" isCreateSQL="true" isExtendBean="false" isPrimary="true" keyAttributeId="12f74967-156b-480f-b6c8-4f2ffee73001" modInfoClassName="" modifier="" modifyTime="2011-08-08 09:37:52" name="m4331trantype" resid="2400600201-0001" stereoType="" tableName="so_m4331trantype" userDefClassName="" versionType="0" visibility="public" width="204" x="170" y="141">
+            <attributelist>
+                <attribute accessStrategy="" accesspower="false" accesspowergroup="" calculation="false" classID="f4d0bd37-6514-4640-907d-0803f3ed3636" dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" defaultValue="" description="" displayName="发货单交易类型" dynamic="true" dynamicTable="" fieldName="pk_trantype" fieldType="char" fixedLength="false" forLocale="false" help="" id="12f74967-156b-480f-b6c8-4f2ffee73001" isActive="true" isAuthorization="true" isDefaultDimensionAttribute="false" isDefaultMeasureAttribute="false" isFeature="false" isGlobalization="false" isHide="false" isKey="true" isNullable="false" isReadOnly="false" isShare="false" length="20" maxValue="" minValue="" name="pk_trantype" notSerialize="false" precise="" refModelName="" resid="2400600201-0001" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0" visibility="public"/>
+                <attribute accessStrategy="" accesspower="false" accesspowergroup="" calculation="false" classID="f4d0bd37-6514-4640-907d-0803f3ed3636" dataType="3b6dd171-2900-47f3-bfbe-41e4483a2a65" dataTypeStyle="REF" dbtype="" defaultValue="~" description="" displayName="集团" dynamic="true" dynamicTable="" fieldName="pk_group" fieldType="varchar" fixedLength="false" forLocale="false" help="" id="813102f2-5267-423e-a8ce-fc19df0d6624" isActive="true" isAuthorization="true" isDefaultDimensionAttribute="false" isDefaultMeasureAttribute="false" isFeature="false" isGlobalization="false" isHide="false" isKey="false" isNullable="true" isReadOnly="false" isShare="false" length="20" maxValue="" minValue="" name="pk_group" notSerialize="false" precise="" refModelName="集团" resid="2UC000-001007" sequence="1" typeDisplayName="集团" typeName="group" versionType="0" visibility="public"/>
+                <attribute accessStrategy="" accesspower="false" accesspowergroup="" calculation="false" classID="f4d0bd37-6514-4640-907d-0803f3ed3636" dataType="BS000010000100001001" dataTypeStyle="SINGLE" dbtype="varchar" defaultValue="~" description="" displayName="交易类型编码" dynamic="true" dynamicTable="" fieldName="vtrantypecode" fieldType="varchar" fixedLength="false" forLocale="false" help="" id="18a550a4-d287-4cd5-8cc0-fcf71e4ad9e4" isActive="true" isAuthorization="true" isDefaultDimensionAttribute="false" isDefaultMeasureAttribute="false" isFeature="false" isGlobalization="false" isHide="false" isKey="false" isNullable="true" isReadOnly="false" isShare="false" length="20" maxValue="" minValue="" name="vtrantypecode" notSerialize="false" precise="" refModelName="" resid="2UC000-000037" sequence="2" typeDisplayName="String" typeName="String" versionType="0" visibility="public"/>
+                <attribute accessStrategy="" accesspower="false" accesspowergroup="" calculation="false" classID="f4d0bd37-6514-4640-907d-0803f3ed3636" dataType="BS000010000100001032" dataTypeStyle="SINGLE" dbtype="char" defaultValue="" description="" displayName="只一次出库" dynamic="true" dynamicTable="" fieldName="bonceoutflag" fieldType="char" fixedLength="false" forLocale="false" help="" id="c4150ae1-62e4-400f-830a-fa77b314c57b" isActive="true" isAuthorization="true" isDefaultDimensionAttribute="false" isDefaultMeasureAttribute="false" isFeature="false" isGlobalization="false" isHide="false" isKey="false" isNullable="true" isReadOnly="false" isShare="false" length="1" maxValue="" minValue="" name="bonceoutflag" notSerialize="false" precise="" refModelName="" resid="2400600201-0000" sequence="3" typeDisplayName="UFBoolean" typeName="UFBoolean" versionType="0" visibility="public"/>
+                <attribute accessStrategy="" accesspower="false" accesspowergroup="" calculation="false" classID="f4d0bd37-6514-4640-907d-0803f3ed3636" dataType="b0fa41cd-a649-4309-b685-d341a5d1b0ed" dataTypeStyle="REF" dbtype="" defaultValue="~" description="" displayName="交易类型" dynamic="true" dynamicTable="" fieldName="ctrantypeid" fieldType="varchar" fixedLength="false" forLocale="false" help="IgnoreRefCheck" id="f1e975bf-da64-4c6f-b482-a82cb3ba660e" isActive="true" isAuthorization="true" isDefaultDimensionAttribute="false" isDefaultMeasureAttribute="false" isFeature="false" isGlobalization="false" isHide="false" isKey="false" isNullable="true" isReadOnly="false" isShare="false" length="20" maxValue="" minValue="" name="ctrantypeid" notSerialize="false" precise="" refModelName="影响因素交 易类型" resid="2UC000-000035" sequence="4" typeDisplayName="单据类型  " typeName="BilltypeVO" versionType="0" visibility="public"/>
+            </attributelist>
+            <operationlist/>
+            <busiitfs>
+                <itfid>6c8722b9-911a-489b-8d0d-18bd3734fcf6</itfid>
+                <itfid>7b196e14-b4b2-4b9d-8b67-b28b80f30a48</itfid>
+            </busiitfs>
+            <busimaps>
+                <busimap attrid="12f74967-156b-480f-b6c8-4f2ffee73001" attrpath="" attrpathid="" busiitfattrid="5dd3c721-22ad-42b1-9c10-4351c236bc77" busiitfid="6c8722b9-911a-489b-8d0d-18bd3734fcf6" cellid="f4d0bd37-6514-4640-907d-0803f3ed3636"/>
+                <busimap attrid="" attrpath="" attrpathid="" busiitfattrid="c8334364-7ab9-4266-8d4b-e74537935e46" busiitfid="6c8722b9-911a-489b-8d0d-18bd3734fcf6" cellid="f4d0bd37-6514-4640-907d-0803f3ed3636"/>
+                <busimap attrid="" attrpath="" attrpathid="" busiitfattrid="ecf1b76a-6e44-42e2-a55e-87596504775b" busiitfid="6c8722b9-911a-489b-8d0d-18bd3734fcf6" cellid="f4d0bd37-6514-4640-907d-0803f3ed3636"/>
+                <busimap attrid="" attrpath="" attrpathid="" busiitfattrid="d32cc17b-f415-415a-923f-0764443eb102" busiitfid="6c8722b9-911a-489b-8d0d-18bd3734fcf6" cellid="f4d0bd37-6514-4640-907d-0803f3ed3636"/>
+                <busimap attrid="18a550a4-d287-4cd5-8cc0-fcf71e4ad9e4" attrpath="" attrpathid="" busiitfattrid="89578a97-42fe-439b-827c-8eabd9e3604c" busiitfid="6c8722b9-911a-489b-8d0d-18bd3734fcf6" cellid="f4d0bd37-6514-4640-907d-0803f3ed3636"/>
+                <busimap attrid="813102f2-5267-423e-a8ce-fc19df0d6624" attrpath="" attrpathid="" busiitfattrid="a47e6cda-09e4-480b-923f-ec6f41e3e06c" busiitfid="6c8722b9-911a-489b-8d0d-18bd3734fcf6" cellid="f4d0bd37-6514-4640-907d-0803f3ed3636"/>
+                <busimap attrid="f1e975bf-da64-4c6f-b482-a82cb3ba660e" attrpath="" attrpathid="" busiitfattrid="da092859-9205-4de9-a30d-a18f359fe68d" busiitfid="7b196e14-b4b2-4b9d-8b67-b28b80f30a48" cellid="f4d0bd37-6514-4640-907d-0803f3ed3636"/>
+                <busimap attrid="813102f2-5267-423e-a8ce-fc19df0d6624" attrpath="" attrpathid="" busiitfattrid="4c4126bf-bdd1-41d1-a0e6-c487c518e20e" busiitfid="7b196e14-b4b2-4b9d-8b67-b28b80f30a48" cellid="f4d0bd37-6514-4640-907d-0803f3ed3636"/>
+            </busimaps>
+            <canzhaolist/>
+            <accessor classFullname="nc.md.model.access.javamap.NCBeanStyle" displayName="NCVO" name="NCVO">
+                <properties/>
+            </accessor>
+        </entity>
+        <Reference componentID="d71d8cfc-7583-4525-9315-5e0797eb0ed2" createTime="2010-06-04 14:25:36" creator="" description="" displayName="displayname" fullClassName="nc.voso.m4331trantype.reference" height="100" help="" id="903d631b-85ca-4ecb-95e1-38dfbe86d096" mdFilePath="\meta\general_interface.bmf" modifier="" modifyTime="2011-08-08 09:34:15" moduleName="uap" name="reference" refId="6c8722b9-911a-489b-8d0d-18bd3734fcf6" resid="" versionType="0" visibility="public" width="100" x="439" y="177"/>
+        <Reference componentID="d71d8cfc-7583-4525-9315-5e0797eb0ed2" createTime="2011-04-12 09:37:20" creator="" description="" displayName="displayname" fullClassName="nc.voso.m4331trantype.reference" height="100" help="" id="c85173cc-01aa-4b5a-9816-6d577637e8b8" mdFilePath="\pf\pfbizitf.bmf" modifier="" modifyTime="2011-08-08 09:34:15" moduleName="uap" name="reference" refId="7b196e14-b4b2-4b9d-8b67-b28b80f30a48" resid="" versionType="0" visibility="public" width="100" x="66" y="382"/>
+    </celllist>
+    <connectlist>
+        <busiitfconnection bizItfImpClassName="" componentID="d71d8cfc-7583-4525-9315-5e0797eb0ed2" createTime="2010-06-04 14:25:49" creator="" description="" displayName="" help="" id="55542912-aacb-4b89-a420-1d8142f726d4" modifier="" modifyTime="2010-06-04 14:25:49" name="busiItf connection" realsource="f4d0bd37-6514-4640-907d-0803f3ed3636" realtarget="6c8722b9-911a-489b-8d0d-18bd3734fcf6" source="f4d0bd37-6514-4640-907d-0803f3ed3636" target="903d631b-85ca-4ecb-95e1-38dfbe86d096" versionType="0">
+            <points/>
+        </busiitfconnection>
+        <busiitfconnection bizItfImpClassName="" componentID="d71d8cfc-7583-4525-9315-5e0797eb0ed2" createTime="2011-04-12 09:37:27" creator="" description="" displayName="" help="" id="b2687f56-1ceb-4e99-9068-1b5a423cd1a6" modifier="" modifyTime="2011-04-12 09:37:27" name="busiItf connection" realsource="f4d0bd37-6514-4640-907d-0803f3ed3636" realtarget="7b196e14-b4b2-4b9d-8b67-b28b80f30a48" source="f4d0bd37-6514-4640-907d-0803f3ed3636" target="c85173cc-01aa-4b5a-9816-6d577637e8b8" versionType="0">
+            <points/>
+        </busiitfconnection>
+    </connectlist>
+    <refdepends>
+        <dependfile entityid="6c8722b9-911a-489b-8d0d-18bd3734fcf6"/>
+        <dependfile entityid="b0fa41cd-a649-4309-b685-d341a5d1b0ed"/>
+        <dependfile entityid="7b196e14-b4b2-4b9d-8b67-b28b80f30a48"/>
+        <dependfile entityid="3b6dd171-2900-47f3-bfbe-41e4483a2a65"/>
+    </refdepends>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

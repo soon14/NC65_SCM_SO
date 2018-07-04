@@ -1,0 +1,5 @@
+bd_billtype
+pk_billtypeid,billtypename
+4332,销售发票待结算单
+434C,销售出库单待结算单
+4353,销售途损待结算单

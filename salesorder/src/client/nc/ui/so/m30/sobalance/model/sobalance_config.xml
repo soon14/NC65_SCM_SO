@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+  <!-- 环境变量 -->
+  <bean id="context" class="nc.vo.uif2.LoginContext" />
+
+  <!-- 应用服务类，负责进行模型操作的处理 -->
+  <bean id="ManageModelService" class="nc.ui.so.m30.sobalance.model.SobalanceModelService">
+  </bean>
+
+  <!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+  <bean id="boadatorfactory"
+    class="nc.ui.pubapp.uif2app.view.value.AggVOMetaBDObjectAdapterFactory" />
+
+  <!-- 管理应用模型 -->
+  <bean id="ManageAppModel" class="nc.ui.so.m30.sobalance.model.SobalanceBillManageModel">
+    <property name="service" ref="ManageModelService"></property>
+    <property name="businessObjectAdapterFactory" ref="boadatorfactory"></property>
+    <property name="context" ref="context"></property>
+  </bean>
+
+
+  <!-- 数据模型管理器，主要负责各种方式的模型初始化 -->
+  <bean id="modelDataManager" class="nc.ui.pubapp.uif2app.query2.model.ModelDataManager">
+    <property name="model" ref="ManageAppModel"></property>
+    <property name="service" ref="ManageModelService"></property>
+  </bean>
+
+  <!-- 模板容器，负责对模板的统一装载 -->
+  <bean id="templateContainer" class="nc.ui.uif2.editor.TemplateContainer"
+    init-method="load">
+    <property name="context" ref="context" />
+  </bean>
+
+  <!-- 界面元素 ########################################################### -->
+  <!-- 列表视图 -->
+  <bean id="listView" class="nc.ui.so.m30.sobalance.view.SobalanceBillListView"
+    init-method="initUI">
+    <property name="model" ref="ManageAppModel"></property>
+    <property name="multiSelectionMode" value="0" />
+    <property name="templateContainer" ref="templateContainer"></property>
+  </bean>
+
+  <!-- 提供了一组默认实现 -->
+  <bean id="AddLineAction" class="nc.ui.so.m30.sobalance.action.SobalanceAddLineAction" />
+  <bean id="DelLineAction" class="nc.ui.so.m30.sobalance.action.SobalanceDelLineAction" />
+
+  <!--卡控件 -->
+  <bean id="billFormEditor" class="nc.ui.so.m30.sobalance.view.SobalanceBillForm"
+    init-method="initUI">
+    <property name="model" ref="ManageAppModel"></property>
+    <property name="templateContainer" ref="templateContainer" />
+    <!-- 是否进行模板非空校验 -->
+    <property name="templateNotNullValidate" value="true" />
+    <!-- 是否自动增行 -->
+    <property name="autoAddLine" value="true" />
+    <!-- 空行过滤器，卡片界面根据此过滤器删除表体空行 -->
+    <property name="blankChildrenFilter">
+      <!-- 简单的根据一个字段是否为空的空行过滤器，因为多数情况下都是判断存货是否为空来过滤空行 -->
+      <bean class="nc.ui.pubapp.uif2app.view.value.MultiFieldsBlankChildrenFilter">
+        <!-- 指定用来判断空行的字段名称，可能多数情况下是存货字段 -->
+        <property name="filterMap">
+          <map>
+            <entry>
+              <key>
+                <value>so_balance_b</value>
+              </key><!--页签code -->
+              <list>
+                <value>cpaybillrowid</value>
+              </list><!--检验是否空行字段code -->
+            </entry>
+          </map>
+        </property>
+      </bean>
+    </property>
+
+    <!-- 表体行操作按钮注册，与表体右键菜单保持一致 -->
+    <property name="bodyLineActions">
+      <list>
+        <ref bean="AddLineAction" />
+        <ref bean="DelLineAction" />
+      </list>
+    </property>
+  </bean>
+
+
+  <!-- 源头单据号固定超链接 -->
+  <bean id="linkQueryHyperlinkFixMediator" class="nc.ui.pubapp.uif2app.linkquery.LinkQueryHyperlinkMediator">
+    <property name="model" ref="ManageAppModel" />
+    <property name="srcBillIdField" value="csaleorderid" />
+    <!-- 超链字段名 -->
+    <property name="srcBillNOField" value="vbillcode" />
+    <!-- 保存源单据类型的字段名 -->
+    <property name="srcBillType" value="30" />
+  </bean>
+  <!-- 双击列表行后显示卡片 -->
+  <bean id="mouseClickShowPanelMediator" class="nc.ui.pubapp.uif2app.view.MouseClickShowPanelMediator">
+    <property name="listView" ref="listView" />
+    <property name="showUpComponent" ref="billFormEditor" />
+    <property name="hyperLinkColumn" value="vbillcode" />
+  </bean>
+
+  <!-- 切换到卡片界面的拦截器 -->
+  <bean id="formInterceptor"
+    class="nc.ui.pubapp.uif2app.actions.interceptor.ShowUpComponentInterceptor">
+    <property name="showUpComponent" ref="billFormEditor" />
+  </bean>
+
+  <!-- 切换到列表界面的拦截器 -->
+  <bean id="listInterceptor"
+    class="nc.ui.pubapp.uif2app.actions.interceptor.ShowUpComponentInterceptor">
+    <property name="showUpComponent" ref="listView" />
+  </bean>
+
+  <!-- 关闭节点的提示 -->
+  <bean id="ClosingListener" class="nc.ui.uif2.FunNodeClosingHandler">
+    <property name="model" ref="ManageAppModel" />
+    <property name="saveaction" ref="saveAction" />
+    <property name="cancelaction" ref="cancelAction" />
+  </bean>
+
+  <!-- 自动修正卡片界面的分数显示控件(换算率) -->
+	<bean id="fractionFixMediator" class="nc.ui.pubapp.uif2app.view.FractionFixMediator"
+		init-method="initUI">
+		<constructor-arg>
+			<list>
+				<ref bean="billFormEditor" />
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="listView" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+  <!-- 编辑事件 -->
+  <bean id="appEventHandlerMediator" class="nc.ui.pubapp.uif2app.model.AppEventHandlerMediator">
+    <property name="model" ref="ManageAppModel" />
+    <property name="handlerMap">
+      <map>
+        <!-- <entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailBeforeEditEvent"> -->
+        <!-- <list> -->
+        <!-- <bean class="nc.ui.pubapp.uif2app.event.card.CardHeadTailBeforeEditEvent"> -->
+        <!-- </bean> -->
+        <!-- </list> -->
+        <!-- </entry> -->
+        <!-- <entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailAfterEditEvent"> -->
+        <!-- <list> -->
+        <!-- <bean class="nc.ui.pubapp.uif2app.event.card.CardHeadTailAfterEditEvent"> -->
+        <!-- </bean> -->
+        <!-- </list> -->
+        <!-- </entry> -->
+        <entry key="nc.ui.pubapp.uif2app.event.card.CardBodyBeforeEditEvent">
+          <list>
+            <bean
+              class="nc.ui.so.m30.sobalance.editor.bodyevent.BodyBeforeEditHandler">
+            </bean>
+          </list>
+        </entry>
+        <entry key="nc.ui.pubapp.uif2app.event.card.CardBodyAfterEditEvent">
+          <list>
+            <bean class="nc.ui.so.m30.sobalance.editor.bodyevent.BodyAfterEditHandler">
+            </bean>
+          </list>
+        </entry>
+        <!-- <entry key="nc.ui.pubapp.uif2app.event.OrgChangedEvent"> -->
+        <!-- <list> -->
+        <!-- <bean class="nc.ui.pubapp.uif2app.event.OrgChangedEvent" > -->
+        <!-- <constructor-arg ref="billFormEditor"/> -->
+        <!-- <constructor-arg ref="ManageAppModel"/> -->
+        <!-- <constructor-arg ref="context"/> -->
+        <!-- </bean> -->
+        <!-- </list> -->
+        <!-- </entry> -->
+      </map>
+    </property>
+  </bean>
+
+
+
+  <!-- 界面布局总装########################################################### -->
+  <!-- 列表顶端工具栏面板 -->
+  <bean id="listToolbarPnl" class="nc.ui.uif2.tangramlayout.CardLayoutToolbarPanel">
+    <property name="model" ref="ManageAppModel" />
+  </bean>
+  <!-- 卡片顶端工具栏面板 -->
+  <bean id="cardToolbarPnl" class="nc.ui.pubapp.uif2app.tangramlayout.UECardLayoutToolbarPanel">
+    <property name="titleAction">
+      <bean id="returnaction" class="nc.ui.pubapp.uif2app.actions.UEReturnAction">
+        <property name="goComponent" ref="listView" />
+        <property name="saveAction" ref="saveAction" />
+        <property name="model" ref="ManageAppModel" />
+      </bean>
+    </property>
+    <property name="model" ref="ManageAppModel" />
+  </bean>
+  <!-- 页面装载 -->
+  <bean id="container" class="nc.ui.uif2.TangramContainer" init-method="initUI">
+    <property name="model" ref="ManageAppModel" />
+    <property name="tangramLayoutRoot">
+      <bean class="nc.ui.uif2.tangramlayout.node.TBNode">
+        <property name="showMode" value="CardLayout"></property>
+        <property name="tabs">
+          <list>
+            <bean class="nc.ui.uif2.tangramlayout.node.VSNode">
+              <property name="up">
+                <bean class="nc.ui.uif2.tangramlayout.node.CNode">
+                  <property name="component" ref="listToolbarPnl" />
+                </bean>
+              </property>
+              <property name="down">
+                <bean class="nc.ui.uif2.tangramlayout.node.CNode">
+                  <!-- <property name="name" value="列表" /> -->
+                  <property name="name">
+                    <bean class="nc.ui.uif2.I18nFB">
+                      <property name="resDir" value="common" />
+                      <property name="resId" value="UC001-0000107" />
+                      <property name="defaultValue" value="列表" />
+                    </bean>
+                  </property>
+                  <property name="component" ref="listView" />
+                </bean>
+              </property>
+              <property name="dividerLocation" value="25f" />
+            </bean>
+            <bean class="nc.ui.uif2.tangramlayout.node.VSNode">
+              <property name="up">
+                <bean class="nc.ui.uif2.tangramlayout.node.CNode">
+                  <property name="component" ref="cardToolbarPnl" />
+                </bean>
+              </property>
+              <property name="down">
+                <bean class="nc.ui.uif2.tangramlayout.node.CNode">
+                  <!-- <property name="name" value="卡片" /> -->
+                  <property name="name">
+                    <bean class="nc.ui.uif2.I18nFB">
+                      <property name="resDir" value="common" />
+                      <property name="resId" value="UC001-0000106" />
+                      <property name="defaultValue" value="卡片" />
+                    </bean>
+                  </property>
+                  <property name="component" ref="billFormEditor" />
+                </bean>
+              </property>
+              <property name="dividerLocation" value="25f" />
+            </bean>
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <!-- 此bean不是必须的，如果没有各个界面按钮的差异，可以将一下三个bean都去掉 -->
+  <bean id="toftpanelActionContributors" class="nc.ui.uif2.actions.ActionContributors">
+    <property name="contributors">
+      <list>
+        <ref bean="actionsOfList" />
+        <ref bean="actionsOfCard" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- 分割按钮 实现UE规范按钮分区 -->
+  <bean id="separatorAction" class="nc.funcnode.ui.action.SeparatorAction" />
+
+  <!-- 构造方法中传入的界面显示时，配置的Action才可见 -->
+  <bean id="actionsOfList" class="nc.ui.uif2.actions.StandAloneToftPanelActionContainer">
+    <constructor-arg ref="listView" />
+    <!-- 可以配置非编辑状态下和编辑状态下分别可见的Action，没有此需求时可以配置得一样 -->
+    <property name="actions">
+      <list>
+        <ref bean="editAction" />
+        <ref bean="separatorAction" />
+        <ref bean="queryAction" />
+        <ref bean="listRefreshAction" />
+        <ref bean="separatorAction" />
+        <ref bean="printActionGroup" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- 构造方法中传入的界面显示时，配置的Action才可见 -->
+  <bean id="actionsOfCard" class="nc.ui.uif2.actions.StandAloneToftPanelActionContainer">
+    <constructor-arg ref="billFormEditor" />
+    <!-- 可以配置非编辑状态下和编辑状态下分别可见的Action，没有此需求时可以配置得一样 -->
+    <property name="actions">
+      <list>
+        <ref bean="editAction" />
+        <ref bean="separatorAction" />
+        <ref bean="queryAction" />
+        <ref bean="cardRefreshAction" />
+        <ref bean="separatorAction" />
+        <ref bean="printActionGroup" />
+      </list>
+    </property>
+    <property name="editActions">
+      <list>
+        <ref bean="saveAction" />
+        <ref bean="separatorAction" />
+        <ref bean="cancelAction" />
+      </list>
+    </property>
+    <!-- 需要把model注入，状态从model中获得 -->
+    <property name="model" ref="ManageAppModel" />
+  </bean>
+
+  <!-- Actions ########################################################### -->
+  <bean id="queryDLGInitializer" class="nc.ui.so.m30.sobalance.view.SobalanceQueryDLGInitializer" />
+  <bean id="queryAction" class="nc.ui.pubapp.uif2app.query2.action.DefaultQueryAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="dataManager" ref="modelDataManager" />
+    <property name="qryCondDLGInitializer" ref="queryDLGInitializer" />
+    <property name="showUpComponent" ref="listView" />
+    <property name="hasQueryArea" value="false" />
+  </bean>
+  <!-- 列表下刷新 -->
+  <bean id="listRefreshAction" class="nc.ui.pubapp.uif2app.query2.action.DefaultRefreshAction">
+    <property name="dataManager" ref="modelDataManager" />
+    <property name="model" ref="ManageAppModel" />
+  </bean>
+  <!-- 卡片下刷新 -->
+  <bean id="cardRefreshAction" class="nc.ui.pubapp.uif2app.actions.RefreshSingleAction">
+    <property name="model" ref="ManageAppModel" />
+  </bean>
+
+  <bean id="editAction" class="nc.ui.so.m30.sobalance.action.SobalanceEditAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="interceptor" ref="formInterceptor" />
+  </bean>
+
+  <bean id="saveAction" class="nc.ui.so.m30.sobalance.action.SobalanceSaveAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="view" ref="billFormEditor" />
+    <property name="editor" ref="billFormEditor" />
+  </bean>
+
+  <bean id="cancelAction" class="nc.ui.so.m30.sobalance.action.SobalanceCancelAction">
+    <property name="model" ref="ManageAppModel" />
+    <property name="view" ref="billFormEditor" />
+    <property name="editor" ref="billFormEditor" />
+  </bean>
+
+  <bean id="previewAction" class="nc.ui.pubapp.uif2app.actions.MetaDataBasedPrintAction">
+    <property name="preview" value="true" />
+    <property name="model" ref="ManageAppModel" />
+    <property name="beforePrintDataProcess" ref="printProcessor" />
+  </bean>
+
+  <bean id="printAction" class="nc.ui.pubapp.uif2app.actions.MetaDataBasedPrintAction">
+    <property name="preview" value="false" />
+    <property name="model" ref="ManageAppModel" />
+    <property name="beforePrintDataProcess" ref="printProcessor" />
+  </bean>
+  <!-- 打印调用类 -->
+  <bean id="printProcessor" class="nc.ui.so.m30.sobalance.action.SobalancePrintProcessor">
+    <property name="model" ref="ManageAppModel" />
+  </bean>
+  <bean id="printActionGroup" class="nc.funcnode.ui.action.GroupAction">
+    <property name="code" value="printMenuAction" />
+    <!-- <property name="name" value="打印" /> -->
+    <property name="name">
+      <bean class="nc.ui.uif2.I18nFB">
+        <property name="resDir" value="common" />
+        <property name="resId" value="UC001-0000007" />
+        <property name="defaultValue" value="打印" />
+      </bean>
+    </property>
+    <property name="actions">
+      <list>
+        <ref bean="printAction" />
+        <ref bean="previewAction" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- 打开节点监听 -->
+  <bean id="InitDataListener" class="nc.ui.so.m30.sobalance.model.SoBalanceFuncNodeInitDataListener">
+    <property name="context" ref="context" />
+    <property name="model" ref="ManageAppModel" />
+    <property name="voClassName" value="nc.vo.so.m30.sobalance.entity.SoBalanceVO" />
+    <property name="autoShowUpComponent" ref="billFormEditor" />
+    <property name="editor" ref="billFormEditor" />
+    <property name="queryAction" ref="queryAction" />
+  </bean>
+</beans>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><component conRouterType="手动" createIndustry="0" createTime="2011-04-13 14:38:08" creator="" description="" displayName="发货单业务操作" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="839bb832-4ec1-4bd4-a14b-276c41d7e8d1" industry="0" industryChanged="false" industryIncrease="false" industryName="基础行业" isSource="false" isbizmodel="true" mainEntity="" metaType=".bpf" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:43:55" name="m4331business" namespace="so" ownModule="so" preLoad="false" programcode="0" resModuleName="4006002_2" resid="2400600203-0000" version="19" versionType="0">
+    <celllist>
+        <busioperation componentID="839bb832-4ec1-4bd4-a14b-276c41d7e8d1" createIndustry="0" createTime="2011-04-13 14:46:09" creator="" dataType="d13a8eb1-f24d-499b-bd78-88d0d77a6581" dbtype="" description="" displayName="修改操作" fullClassName="nc.voso.m4331business.edit" height="132" help="" id="0de71d0c-f6e5-4af0-b5d0-79e3af3d7359" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:43:55" name="edit" needlog="false" resid="2400600203-0001" typeDisplayName="发货单主表" typeName="delivery" version="" versionType="0" visibility="public" width="109" x="295" y="66">
+            <refoperationlist>
+                <refoperation id="956f1bbf-1f3d-4e6b-9bf6-35feb0e6fa90" industry="0" isAuthorization="true" isSource="false" opItfID="892e4bea-0814-4c6a-8362-a0be77aa56e9" ownerElementID="0de71d0c-f6e5-4af0-b5d0-79e3af3d7359" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="839bb832-4ec1-4bd4-a14b-276c41d7e8d1" createIndustry="0" createTime="2011-04-13 14:46:10" creator="" dataType="d13a8eb1-f24d-499b-bd78-88d0d77a6581" dbtype="" description="" displayName="删除操作" fullClassName="nc.voso.m4331business.delete" height="132" help="" id="b279aa12-41a1-47d5-83c9-2c515bf04080" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:43:55" name="delete" needlog="false" resid="2400600203-0002" typeDisplayName="发货单主表" typeName="delivery" version="" versionType="0" visibility="public" width="123" x="465" y="71">
+            <refoperationlist>
+                <refoperation id="5a7b2280-e0ee-445f-81fe-47d3026c589e" industry="0" isAuthorization="true" isSource="false" opItfID="892e4bea-0814-4c6a-8362-a0be77aa56e9" ownerElementID="b279aa12-41a1-47d5-83c9-2c515bf04080" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="839bb832-4ec1-4bd4-a14b-276c41d7e8d1" createIndustry="0" createTime="2011-04-13 14:46:11" creator="" dataType="d13a8eb1-f24d-499b-bd78-88d0d77a6581" dbtype="" description="" displayName="取消审批操作" fullClassName="nc.voso.m4331business.unapprove" height="154" help="" id="66e9b735-e69a-4ae1-b63d-34d119374957" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:43:55" name="unapprove" needlog="false" resid="2400600203-0003" typeDisplayName="发货单主表" typeName="delivery" version="" versionType="0" visibility="public" width="107" x="307" y="237">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="839bb832-4ec1-4bd4-a14b-276c41d7e8d1" createIndustry="0" createTime="2011-04-13 14:46:12" creator="" dataType="d13a8eb1-f24d-499b-bd78-88d0d77a6581" dbtype="" description="" displayName="打印操作" fullClassName="nc.voso.m4331business.print" height="143" help="" id="0f6b4438-df5e-455f-a60b-e2a7b8155c33" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:43:55" name="print" needlog="false" resid="2400600203-0007" typeDisplayName="发货单主表" typeName="delivery" version="" versionType="0" visibility="public" width="118" x="474" y="241">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="839bb832-4ec1-4bd4-a14b-276c41d7e8d1" createIndustry="0" createTime="2011-04-13 14:46:14" creator="" dataType="d13a8eb1-f24d-499b-bd78-88d0d77a6581" dbtype="" description="" displayName="审批" fullClassName="nc.voso.m4331business.approve" height="151" help="" id="8bcd7cb4-ab98-4d80-9e90-26cadde16a58" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:43:55" name="approve" needlog="false" resid="2400600203-0003" typeDisplayName="发货单主表" typeName="delivery" version="" versionType="0" visibility="public" width="116" x="106" y="243">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="839bb832-4ec1-4bd4-a14b-276c41d7e8d1" createIndustry="0" createTime="2011-06-23 12:24:22" creator="" dataType="d13a8eb1-f24d-499b-bd78-88d0d77a6581" dbtype="" description="" displayName="提交操作" fullClassName="nc.voso.m4331business.commit" height="100" help="" id="046ad15c-5196-4dbb-8b81-0916e3e8de4d" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:43:55" name="commit" needlog="false" resid="2400600203-0005" typeDisplayName="发货单主表" typeName="delivery" version="" versionType="0" visibility="public" width="80" x="143" y="69">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="839bb832-4ec1-4bd4-a14b-276c41d7e8d1" createIndustry="0" createTime="2011-06-23 12:24:24" creator="" dataType="d13a8eb1-f24d-499b-bd78-88d0d77a6581" dbtype="" description="" displayName="收回操作" fullClassName="nc.voso.m4331business.uncommit" height="100" help="" id="10f28515-92d7-4ae9-81ae-c035360cc89b" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:43:55" name="uncommit" needlog="false" resid="2400600203-0006" typeDisplayName="发货单主表" typeName="delivery" version="" versionType="0" visibility="public" width="80" x="620" y="100">
+            <refoperationlist/>
+        </busioperation>
+        <opinterface componentID="839bb832-4ec1-4bd4-a14b-276c41d7e8d1" createIndustry="0" createTime="2012-04-25 13:38:32" creator="" description="" displayName="发货单" fullClassName="nc.itf.so.m4331.IDeliveryScriptMaintain" height="100" help="BUSILOG" id="892e4bea-0814-4c6a-8362-a0be77aa56e9" implClsName="nc.impl.so.m4331.DeliveryScriptMaintainImpl" industryChanged="false" isAuthorization="true" isBusiActivity="false" isBusiOperation="false" isSource="false" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:47:35" name="IDeliveryScriptMaintain" remote="true" resid="2400600203-0007" singleton="true" transprop="CMT" version="" versionType="0" visibility="public" width="80" x="36" y="114">
+            <operationlist>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="保存" forBusinessEntity="N" help="" id="956f1bbf-1f3d-4e6b-9bf6-35feb0e6fa90" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="deliveryWrite" opItfID="892e4bea-0814-4c6a-8362-a0be77aa56e9" ownerElementID="892e4bea-0814-4c6a-8362-a0be77aa56e9" resid="ActionRegistry-000000" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="发货单vo" isAggVO="true" name="vos" operationID="956f1bbf-1f3d-4e6b-9bf6-35feb0e6fa90" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="用户对象" isAggVO="false" name="userObj" operationID="956f1bbf-1f3d-4e6b-9bf6-35feb0e6fa90" paramTypeForLog="7" paramdefclassname="" sequence="1" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="删除" forBusinessEntity="N" help="" id="5a7b2280-e0ee-445f-81fe-47d3026c589e" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="deliveryDelete" opItfID="892e4bea-0814-4c6a-8362-a0be77aa56e9" ownerElementID="892e4bea-0814-4c6a-8362-a0be77aa56e9" resid="BatchDelLineAction-000000" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="发货单vo" isAggVO="true" name="vos" operationID="5a7b2280-e0ee-445f-81fe-47d3026c589e" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="用户对象" isAggVO="false" name="userObj" operationID="5a7b2280-e0ee-445f-81fe-47d3026c589e" paramTypeForLog="7" paramdefclassname="" sequence="1" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+            </operationlist>
+            <opImpllist/>
+        </opinterface>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

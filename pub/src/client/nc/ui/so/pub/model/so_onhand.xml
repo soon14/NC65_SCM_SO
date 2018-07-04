@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- 表头模板 4008080801 -->
+	<!--表头自定义模板加载器 -->
+	 <bean id="headtemplateContainer" parent="headtemplateContainerBase">
+		<property name="funcode" value="40060301" />
+		<property name="nodeKeies">
+			<list>
+				<value>30onhand</value>
+			</list>
+		</property>
+	</bean>
+	<!--表头自定义模板加载器 -->
+	<bean id="bodytemplateContainer" parent="bodytemplateContainerBase">
+		<property name="funcode" value="40060301" />
+		<property name="nodeKeies">
+			<list>
+				<value>30onhand_b</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 主界面上半部分界面，支持各领域个性化配置。 -->
+	<!-- 1、必须实现上半部分界面设值接口ITopPanelValueSetter -->
+	<!-- 2、上半部分界面数据发生变化时必须通知下部部分界面更新数据. -->
+	<bean id="topInfoPanelBase" class="nc.ui.ic.onhand.ref.OnhandDialogRefHeadListView"
+		init-method="initUI">
+		<property name="model" ref="headModel"></property>
+		<property name="templateContainer" ref="headtemplateContainer" />
+		<property name="userdefitemListPreparator" ref="headUserdefAndMarAsstListPreparator" />
+		<property name="billListPanelValueSetter">
+			<bean class="nc.ui.ic.onhand.ref.OnhandRefVOBillListPanelValueSetter" />
+		</property>
+		<property name="headValueChangedListener" ref="onHandListViewValueListener"></property>
+		<property name="nodekey" value="30onhand"></property>
+	</bean>
+	<bean id="topInfoPanel" parent="topInfoPanelBase" />
+	
+	<bean id="onhandListView" parent="onhandListViewBase">
+		<property name="nodekey" value="30onhand_b" />
+	</bean>
+	
+	<!-- 设置选中分组字段 -->
+	<bean id="selectGroupFiled" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<value>pk_org</value>
+				<value>cwarehouseid</value>
+				<value>clocationid</value>
+				<value>cmaterialoid</value>
+				<value>cmaterialvid</value>
+				<value>castunitid</value>
+				<value>vchangerate</value>
+				<value>vbatchcode</value>
+				<value>cvendorid</value>
+				<value>cproductorid</value>
+				<value>cprojectid</value>
+				<value>casscustid</value>
+				<value>cstateid</value>
+				<value>cffileid</value>
+				<value>vfree1</value>
+				<value>vfree2</value>
+				<value>vfree3</value>
+				<value>vfree4</value>
+				<value>vfree5</value>
+				<value>vfree6</value>
+				<value>vfree7</value>
+				<value>vfree8</value>
+				<value>vfree9</value>
+				<value>vfree10</value>
+				<value>ctplcustomerid</value>
+				<value>cvmivenderid</value>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 存量查拣参照表头数据初始化 -->
+	<bean id="topPanelValueSetter" class="nc.ui.ic.onhand.ref.OnhandRefTopPanelValueSetter">
+		<property name="headModel" ref="headModel" />
+	</bean>
+	<bean id="InitDataListener" parent="InitDataListenerBase">
+		<property name="topPanelValueSetter" ref="topPanelValueSetter" />
+	</bean>
+
+	<!-- -->
+	<bean id="onhandQueryAreaModel" parent="onhandQueryAreaModelBase">
+		<property name="isBatch" value="false" />
+		<property name="defaultQueryType" value="onhand" />
+		<property name="defaultMatchType" value="bybill" />
+		<property name="defualtZeroOnhandType" value="nonezero" />
+	</bean>
+	
+	<!-- 自由项、自定义项组件的列表配置 -->
+	<bean id="headUserdefAndMarAsstListPreparator" class="nc.ui.pubapp.uif2app.view.CompositeBillListDataPrepare">
+		<property name="billListDataPrepares">
+			<list>
+				<ref bean="headMarAsstPreparator" />
+			</list>
+		</property>
+	</bean>
+	<bean id="headMarAsstPreparator"
+		class="nc.ui.pubapp.uif2app.view.material.assistant.MarAsstPreparator">
+		<property name="model" ref="headModel" />
+		<property name="container" ref="userdefitemContainer" />
+		<property name="prefix" value="vfree" />
+		<property name="materialField" value="cmaterialvid" />
+		<property name="storeStateField" value="cstateid" />
+		<property name="projectField" value="cprojectid" />
+		<property name="supplierField" value="cvendorid" />
+		<property name="productorField" value="cproductorid" />
+		<property name="customerField" value="casscustid" />
+		<property name="signatureField" value="cffileid" />
+	</bean>
+	
+	<!-- 处理表头精度 -->
+	<bean id="onhandHeadScalePrcMediator" class="nc.ui.ic.onhand.OnhandHeadScalePrcMediator" init-method="proScale">
+		<property name="topInfoPanel" ref="topInfoPanel" />
+		<property name="context" ref="context"></property>
+	</bean>
+	
+</beans>

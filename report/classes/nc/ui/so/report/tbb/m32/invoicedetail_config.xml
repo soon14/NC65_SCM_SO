@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext" />
+
+	<!-- 模型部分配置########################################################### -->
+
+	<!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+	<bean id="boadatorfactory"
+		class="nc.ui.pubapp.uif2app.view.value.AggVOMetaBDObjectAdapterFactory" />
+
+	<!-- 管理应用模型 -->
+	<bean id="ManageAppModel" class="nc.ui.pubapp.uif2app.model.BillManageModel">
+		<!-- <property name="service" ref="ManageModelService"></property> -->
+		<property name="businessObjectAdapterFactory" ref="boadatorfactory"></property>
+		<property name="context" ref="context"></property>
+	</bean>
+
+	<!-- 数据模型管理器，主要负责各种方式的模型初始化 -->
+	<bean id="modelDataManager" class="nc.ui.pubapp.uif2app.query2.model.ModelDataManager">
+		<property name="model" ref="ManageAppModel"></property>
+		<!-- <property name="service" ref="ManageModelService"></property> -->
+	</bean>
+
+	<!-- 模板容器，负责对模板的统一装载 -->
+	<bean id="templateContainer" class="nc.ui.pubapp.uif2app.view.TemplateContainer"
+		init-method="load">
+		<property name="context" ref="context" />
+		<property name="nodeKeies">
+			<list>
+				<value>400609B0</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 界面元素 ########################################################### -->
+	<!-- 列表视图 -->
+	<bean id="billFormEditor" class="nc.ui.so.report.tbb.m32.SaleinvoiceDetailEditor"
+		init-method="initUI">
+		<property name="model" ref="ManageAppModel"></property>
+		<property name="templateContainer" ref="templateContainer"></property>
+	</bean>
+	<!-- 界面布局总装########################################################### -->
+	<bean id="container" class="nc.ui.uif2.TangramContainer"
+		init-method="initUI">
+		<property name="model" ref="ManageAppModel" />
+		<property name="tangramLayoutRoot">
+			<bean class="nc.ui.uif2.tangramlayout.node.TBNode">
+				<property name="showMode" value="CardLayout"></property>
+				<property name="tabs">
+					<list>
+						<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+							<property name="name" value="卡片"></property>
+							<property name="component" ref="billFormEditor"></property>
+						</bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- 打开节点监听 -->
+	<bean id="InitDataListener"
+		class="nc.ui.pubapp.uif2app.model.DefaultFuncNodeInitDataListener">
+		<property name="model" ref="ManageAppModel" />
+		<property name="voClassName" value="nc.vo.so.m32.entity.SaleInvoiceViewVO" />
+		<property name="autoShowUpComponent" ref="billFormEditor" />
+		<property name="processorMap">
+			<map>
+				<entry><!-- 自定义的初始化数据类型 -->
+					<key>
+						<value>40</value>
+					</key>
+					<bean class="nc.ui.so.report.tbb.m32.M32InitDataProcessor">
+						<property name="model" ref="ManageAppModel"></property>
+						<property name="billForm" ref="billFormEditor" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

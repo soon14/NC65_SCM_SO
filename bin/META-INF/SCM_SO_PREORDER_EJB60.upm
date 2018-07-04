@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+  <public>
+    <!--预订单交易类型-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m38trantype.IM38TranTypeService</interface>
+      <implementation>nc.itf.so.m38trantype.M38TranTypeServiceImpl</implementation>
+	  <extension class="nc.bs.framework.server.ClientWeaverExtensionProcessor">
+           <wrapWeaver>
+                   <wrapper>nc.itf.so.m38trantype.M38TranTypeServiceImpl</wrapper>
+           </wrapWeaver>
+      </extension>
+    </component>
+    <!--预订单交易类型（自己用）-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m38trantype.IM38TranTypeSelfService</interface>
+      <implementation>nc.impl.so.m38trantype.M38TranTypeSelfServiceImpl</implementation>
+    </component>
+    <!--预订单维护-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m38.IPreOrderMaintain</interface>
+      <implementation>nc.impl.so.m38.PreOrderMaintainImpl</implementation>
+    </component>
+    <!--预订单辅助功能维护-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m38.IPreOrderAssitFunc</interface>
+      <implementation>nc.impl.so.m38.PreOrderAssitFuncImpl</implementation>
+    </component>
+    <!--销售订单回写预订单-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m38.so.m30.IRewrite38For30</interface>
+      <implementation>nc.pubimpl.so.m38.so.m30.Rewrite38For30Impl</implementation>
+    </component>
+	<!--预订单安排服务-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m38.arrange.IPreOrderArrange</interface>
+      <implementation>nc.impl.so.m38.arrange.PreOrderArrangeImpl</implementation>
+    </component>
+	<!--预订单提供销售订单服务-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m38.so.m30.IPreOrderFor30</interface>
+      <implementation>nc.pubimpl.so.m38.so.m30.PreOrderFor30Impl</implementation>
+    </component>
+    <!--预订单毛利预估的接口-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m38.profit.IPreOrderProfitCal</interface>
+      <implementation>nc.impl.so.m38.profit.PreOrderProfitCalImpl</implementation>
+    </component>
+    <!--根据客户、销售组织及物料获取行上的发货库存组织、结算财务组织ID、应收组织ID、利润中心ID、默认物流组织接口-->
+	<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m38.IQueryRelationOrg</interface>
+      <implementation>nc.impl.so.m38.QueryRelationOrgImpl</implementation>
+    </component>
+    <!--预订单提供生产制造MPS运算接口-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m38.mmpps.calc.IPreOrderForMPS</interface>
+      <implementation>nc.pubimpl.so.m38.mmpps.calc.PreOrderForMPSImpl</implementation>
+    </component>
+    <!--预订单提供给生产管理的接口-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m38.mmdp.aid.IPreOrderForAid</interface>
+      <implementation>nc.pubimpl.so.m38.mmdp.aid.PreOrderForAidImpl</implementation>
+    </component>
+     <!--预订单提供给生产制造的接口SA-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m38.mmpps.planbusi.IQuerySalePreOrderMapForSA</interface>
+      <implementation>nc.pubimpl.so.m38.mmpps.planbusi.QuerySalePreOrderMapForSAImpl</implementation>
+    </component>
+    <!--预订单提供给生产制造的接口DT-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m38.mmdp.dt.IQuerySalePreOrderMapForDT</interface>
+      <implementation>nc.pubimpl.so.m38.mmdp.dt.QuerySalePreOrderMapForDTImpl</implementation>
+    </component>
+    <!--销售模块为预订单迁移至EC预订单提供的接口-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m38.IPreOrderMigrate</interface>
+      <implementation>nc.impl.so.m38.PreOrderMigrateImpl</implementation>
+    </component>
+  </public>
+</module>
+

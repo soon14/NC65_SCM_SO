@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 分割按钮 实现UE规范按钮分区 -->
+	<bean id="separatorAction" class="nc.funcnode.ui.action.SeparatorAction" />
+
+	<!-- 源头单据号固定超链接 -->
+	<bean id="linkQueryHyperlinkFixMediator" class="nc.ui.pubapp.uif2app.linkquery.LinkQueryHyperlinkMediator" >
+ 	    <property name="model" ref="ManageAppModel" />
+	    <property name="srcBillIdField" value="csquarebillid" />
+ 	    <!-- 超链字段名 -->
+	    <property name="srcBillNOField" value="vbillcode" />
+ 	    <!-- 保存源单据类型的字段名 -->
+ 	    <property name="srcBillType" value="4C" />
+    </bean>
+
+	<!-- 源头单据号超链接 -->
+	<bean id="linkQueryHyperlinkMediator" class="nc.ui.pubapp.uif2app.linkquery.LinkQueryHyperlinkMediator" >
+ 	    <property name="model" ref="ManageAppModel" />
+	    <property name="srcBillIdField" value="cfirstid" />
+ 	    <!-- 超链字段名 -->
+	    <property name="srcBillNOField" value="vfirstcode" />
+ 	    <!-- 保存源单据类型的字段名 -->
+ 	    <property name="srcBillTypeField" value="vfirsttype" />
+ 	    <!-- 保存源单据类型的字段所在位置，0：表头；1：表体 -->
+ 	    <property name="srcBillTypeFieldPos" value="1" />
+    </bean>
+
+</beans>

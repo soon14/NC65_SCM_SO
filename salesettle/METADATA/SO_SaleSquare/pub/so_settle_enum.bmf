@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createTime="2010-07-14 11:21:35" creator="" description="" displayName="销售结算动作类型" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="051a37b3-e73d-4ed3-b1b6-15ce6ac6aad2" isbizmodel="false" mainEntity="" modifier="" modifyTime="2011-08-08 11:13:48" name="so_settle_enum" namespace="so" ownModule="so" preLoad="false" resModuleName="4006010_2" resid="2400601007-0002" version="5" versionType="0">
+    <celllist>
+        <Enumerate componentID="051a37b3-e73d-4ed3-b1b6-15ce6ac6aad2" createTime="2010-07-14 11:21:57" creator="" dataType="BS000010000100001004" dbtype="int" description="" displayName="结算类型" fullClassName="nc.vo.so.m33.enumeration.SquareType" height="181" help="" id="8ea287e3-a16d-49dc-babf-2a9c46979af8" modInfoClassName="" modifier="" modifyTime="2011-08-08 11:13:48" name="SquareType" resid="2UC000-000714" typeDisplayName="Integer" typeName="Integer" versionType="0" visibility="public" width="99" x="224" y="52">
+            <enumitemlist>
+                <enumitem description="" enumDisplay="无" enumID="8ea287e3-a16d-49dc-babf-2a9c46979af8" enumValue="0" hidden="false" id="16ab89a7-7144-4095-8a91-bd7c403a4234" resid="2400601007-0001" sequence="0" versionType="0"/>
+                <enumitem description="" enumDisplay="确认应收" enumID="8ea287e3-a16d-49dc-babf-2a9c46979af8" enumValue="1" hidden="false" id="f04d120a-31af-40fe-8e67-a5534aba8c19" resid="2400601007-0009" sequence="1" versionType="0"/>
+                <enumitem description="" enumDisplay="暂估应收" enumID="8ea287e3-a16d-49dc-babf-2a9c46979af8" enumValue="2" hidden="false" id="3776b35b-41e1-418e-9730-3f6676ec1348" resid="2400601007-0003" sequence="2" versionType="0"/>
+                <enumitem description="" enumDisplay="回冲应收" enumID="8ea287e3-a16d-49dc-babf-2a9c46979af8" enumValue="3" hidden="false" id="4502383e-483a-403d-b7c4-e2a12bc92b2b" resid="2400601007-0005" sequence="3" versionType="0"/>
+                <enumitem description="" enumDisplay="成本结算" enumID="8ea287e3-a16d-49dc-babf-2a9c46979af8" enumValue="4" hidden="false" id="9e88f557-674e-4ae8-8530-57611cb8012f" resid="2400601007-0008" sequence="4" versionType="0"/>
+                <enumitem description="" enumDisplay="发出商品" enumID="8ea287e3-a16d-49dc-babf-2a9c46979af8" enumValue="5" hidden="false" id="b89e75fb-57c5-4626-9c11-ab3e70fd2f35" resid="2400601007-0000" sequence="5" versionType="0"/>
+                <enumitem description="" enumDisplay="出库对冲" enumID="8ea287e3-a16d-49dc-babf-2a9c46979af8" enumValue="6" hidden="false" id="419fa3af-5cbc-47ec-af22-5d22917213f7" resid="2400601007-0004" sequence="6" versionType="0"/>
+                <enumitem description="" enumDisplay="差额传应收" enumID="8ea287e3-a16d-49dc-babf-2a9c46979af8" enumValue="7" hidden="false" id="31217f23-0286-4b9d-9e95-bdb400f73fdf" resid="2400601007-0007" sequence="7" versionType="0"/>
+                <enumitem description="" enumDisplay="出库对冲传发出商品" enumID="8ea287e3-a16d-49dc-babf-2a9c46979af8" enumValue="8" hidden="false" id="676e08df-0005-41c3-b498-bd126ab25a26" resid="2400601007-0006" sequence="8" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

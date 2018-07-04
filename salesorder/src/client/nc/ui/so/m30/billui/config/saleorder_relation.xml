@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 单据项目相关性配置 -->
+	<bean id="relationconfig" class="nc.ui.so.m30.config.DefaultElementRelationConfig">
+		<property name="relationmap">
+			<map>
+				<entry key="vtrantypecode">
+					<list>
+						<value>cbiztypeid</value>
+					</list>
+				</entry>
+				<entry key="ccustomerid">
+					<list>
+						<value>corigcurrencyid</value>
+						<value>nexchangerate</value>
+						<value>ngroupexchgrate</value>
+						<value>nglobalexchgrate</value>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="corigcurrencyid">
+					<list>
+						<value>nexchangerate</value>
+						<value>ngroupexchgrate</value>
+						<value>nglobalexchgrate</value>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="dbilldate">
+					<list>
+						<value>nexchangerate</value>
+						<value>ngroupexchgrate</value>
+						<value>nglobalexchgrate</value>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="ndiscountrate">
+					<list>
+						<value>nbdiscountrate</value>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="cmaterialvid">
+					<list>
+						<value>csendstockorgid</value>
+						<value>vchangerate</value>
+						<value>vqtunitrate</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="csettleorgid">
+					<list>
+						<value>ccurrencyorgid</value>
+						<value>nexchangerate</value>
+						<value>ngroupexchgrate</value>
+						<value>nglobalexchgrate</value>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="numpricemoney">
+					<list>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+						<value>pieceweightvolume</value>
+					</list>
+				</entry>
+				<entry key="nitemdiscountrate">
+					<list>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="castunitid">
+					<list>
+						<value>vchangerate</value>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+						<value>pieceweightvolume</value>
+					</list>
+				</entry>
+				<entry key="cqtunitid">
+					<list>
+						<value>vqtunitrate</value>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+						<value>pieceweightvolume</value>
+					</list>
+				</entry>
+				<entry key="ntaxrate">
+					<list>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="vchangerate">
+					<list>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+						<value>pieceweightvolume</value>
+					</list>
+				</entry>
+				<entry key="vqtunitrate">
+					<list>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+						<value>pieceweightvolume</value>
+					</list>
+				</entry>
+				<entry key="nexchangerate">
+					<list>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="ngroupexchgrate">
+					<list>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				<entry key="nglobalexchgrate">
+					<list>
+						<value>numpricemoney</value>
+						<value>nheadsummny</value>
+					</list>
+				</entry>
+				
+				
+			</map>
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding='gb2312'?>
+<items docType="SDP_SCRIPT_ITEM">
+
+	<item>
+		<itemKey>0001</itemKey>
+		<itemName>系统类型</itemName>
+		<itemRule>dap_dapsystem</itemRule>
+		<sysField>systypecode</sysField>
+		<corpField></corpField>
+		<grpField>systypecode</grpField>
+		<fixedWhere>systypecode in ('SO','A050') </fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0002</itemKey>
+		<itemName>自定义菜单(包括代垫运费发票)</itemName>
+		<itemRule>sm_menuitemreg</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>menuitemcode in ('4009','400940','A050')</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0003</itemKey>
+		<itemName>元数据</itemName>
+		<itemRule>md_module</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>id='so'</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0004</itemKey>
+		<itemName>参数模板</itemName>
+		<itemRule>pub_sysinittemp</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>domainflag = '4006'</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0005</itemKey>
+		<itemName>预置业务流程</itemName>
+		<itemRule>bd_busitype</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>BUSICODE like ('SO0%') and PK_GROUP='global00000000000000'
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0006</itemKey>
+		<itemName>用户自定义项</itemName>
+		<itemRule>bd_userdefrule</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>code in ('SO')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0007</itemKey>
+		<itemName>预算接口</itemName>
+		<itemRule>ntb_id_sysreg</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>SYSID = 'SO'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0008</itemKey>
+		<itemName>预算档案</itemName>
+		<itemRule>ntb_id_bdcontrast</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>BUSISYS_ID ='SO'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0009</itemKey>
+		<itemName>权限表</itemName>
+		<itemRule>sm_permission_res</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>ownmodule='4006'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>00091</itemKey>
+		<itemName>资源操作</itemName>
+		<itemRule>sm_res_operation</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>ownmodule='4006'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0010</itemKey>
+		<itemName>权限过滤树</itemName>
+		<itemRule>md_attr_power</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>beanid in
+			('575c639d-8dcb-4692-b151-c91f38525c70','b4bde646-3f4d-4b95-919f-8ebe03c5f849','08958fdf-e3fa-4cc9-96d6-1c15cec4645f','d13a8eb1-f24d-499b-bd78-88d0d77a6581','288c9102-654a-4dec-8832-8856edfc5dcd')
+			or ((fullpath like 'saleinvoice%') and powertype='fip' and dr=0)
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0011</itemKey>
+		<itemName>代垫运费发票功能节点</itemName>
+		<itemRule>sm_funcregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>funcode in ('400640')</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0012</itemKey>
+		<itemName>代垫运费发票默认模版</itemName>
+		<itemRule>pub_systemplate_base</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>funnode</grpField>
+		<fixedWhere>funnode in ('400640')</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0013</itemKey>
+		<itemName>插件注册</itemName>
+		<itemRule>pub_eventlistener</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>OWNER='4006'</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0014</itemKey>
+		<itemName>上下游接口定义</itemName>
+		<itemRule>PUB_BILLITFDEF</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>SRC_BILLTYPE in ('30','32','4C','4453') AND DEST_BILLTYPE
+			in ('F0','F2','23E0') and DEST_TRANSTYPE in ('D0','D2','23C0') and
+			PK_GROUP='global00000000000000'</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0015</itemKey>
+		<itemName>业务操作对象</itemName>
+		<itemRule>sm_log_operation</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_metadata in
+			('d13a8eb1-f24d-499b-bd78-88d0d77a6581','b4bde646-3f4d-4b95-919f-8ebe03c5f849','2e3493a9-7b86-4e90-ad9e-6eca61e0544c','53ff415f-e2b0-45be-acc7-5f6d0f4dbdb3','08958fdf-e3fa-4cc9-96d6-1c15cec4645f','503aa6aa-0289-4a13-8c5a-dd2dd079bc45')
+		</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0016</itemKey>
+		<itemName>预警类型注册</itemName>
+		<itemRule>pub_alerttype</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>BELONG_SYSTEM = 'SO' </fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0017</itemKey>
+		<itemName>消息模板类型</itemName>
+		<itemRule>pub_msgtemp_type</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>TEMPCODE in (
+			'nc.bs.so.salequotation.task.SalequoAlertPlugin','nc.bs.so.m38.plugin.task.PreorderAlertPlugin','pa_so'
+			) or (TEMPCODE like 'wf_so%')</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0018</itemKey>
+		<itemName>消息模板</itemName>
+		<itemRule>pub_msgtemp</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>TYPECODE in (
+			'nc.bs.so.salequotation.task.SalequoAlertPlugin','nc.bs.so.m38.plugin.task.PreorderAlertPlugin'
+			) </fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0019</itemKey>
+		<itemName>消息模板高级的引用打印模板</itemName>
+		<itemRule>pub_print_template</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>VNODECODE = 'ncmsgtmp' and MDCLASS in
+			('288c9102-654a-4dec-8832-8856edfc5dcd','575c639d-8dcb-4692-b151-c91f38525c70')
+		</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0020</itemKey>
+		<itemName>会计平台-凭证生成</itemName>
+		<itemRule>fip_billregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>modulecode='so'</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0021</itemKey>
+		<itemName>会计平台-影响因素定义</itemName>
+		<itemRule>fip_factor</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_systypecode = 'SO' and pk_group =
+			'GLOBLE00000000000000'</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0022</itemKey>
+		<itemName>会计平台-分类定义</itemName>
+		<itemRule>fip_classdefine</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>src_system ='SO' and pk_group = 'GLOBLE00000000000000'
+		</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0023</itemKey>
+		<itemName>会计平台-分类定义-影响因素</itemName>
+		<itemRule>fip_classfactor</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere> pk_classfactor in (select pk_classfactor from
+			fip_classdefine where src_system ='SO' and pk_group =
+			'GLOBLE00000000000000')</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0024</itemKey>
+		<itemName>会计平台-分类定义-主属性</itemName>
+		<itemRule>fip_classmainprop</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_classmainprop in (select pk_classmainprop from
+			fip_classdefine where src_system ='SO' and pk_group =
+			'GLOBLE00000000000000')</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0025</itemKey>
+		<itemName>组建扩展点插件注册</itemName>
+		<itemRule>pub_bsexpoint</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_bsexpoint in ('1002Z81000000000MSZO')</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0026</itemKey>
+		<itemName>删除DR=1注册</itemName>
+		<itemRule>sm_trash_del</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>modulecode = 'SO'</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0027</itemKey>
+		<itemName>业务日志按场景预置备选项</itemName>
+		<itemRule>md_attr_busilog</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>beanid in
+			('b4bde646-3f4d-4b95-919f-8ebe03c5f849','53ff415f-e2b0-45be-acc7-5f6d0f4dbdb3','08958fdf-e3fa-4cc9-96d6-1c15cec4645f','503aa6aa-0289-4a13-8c5a-dd2dd079bc45')
+		</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0028</itemKey>
+		<itemName>业务日志场景存储表</itemName>
+		<itemRule>md_attr_table</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>beanid in
+			('b4bde646-3f4d-4b95-919f-8ebe03c5f849','53ff415f-e2b0-45be-acc7-5f6d0f4dbdb3','08958fdf-e3fa-4cc9-96d6-1c15cec4645f','503aa6aa-0289-4a13-8c5a-dd2dd079bc45')
+		</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0029</itemKey>
+		<itemName>业务日志预置记录数据</itemName>
+		<itemRule>sm_log_attribute</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_group='preset' and pk_metadata in
+			('b4bde646-3f4d-4b95-919f-8ebe03c5f849','53ff415f-e2b0-45be-acc7-5f6d0f4dbdb3','08958fdf-e3fa-4cc9-96d6-1c15cec4645f','503aa6aa-0289-4a13-8c5a-dd2dd079bc45')
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0030</itemKey>
+		<itemName>业务日志预置记录操作</itemName>
+		<itemRule>sm_log_busilogrule</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_group='preset' and pk_metadata in
+			('b4bde646-3f4d-4b95-919f-8ebe03c5f849','53ff415f-e2b0-45be-acc7-5f6d0f4dbdb3','08958fdf-e3fa-4cc9-96d6-1c15cec4645f','503aa6aa-0289-4a13-8c5a-dd2dd079bc45')
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0031</itemKey>
+		<itemName>适用对象</itemName>
+		<itemRule>bcbd_referobj</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>PK_BILLTYPE in ('4331','30') and ISPREDATA='Y'
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0032</itemKey>
+		<itemName>适用对象属性映射</itemName>
+		<itemRule>bcbd_attrmap</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>PK_REFEROBJ in (select PK_REFEROBJ from bcbd_referobj
+			where PK_BILLTYPE in ('4331','30') and ISPREDATA='Y')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0033</itemKey>
+		<itemName>交叉校验规则</itemName>
+		<itemRule>bd_cr_resource</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>PK_RESOURCEID = '30'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0034</itemKey>
+		<itemName>开发模块到业务模块的映射</itemName>
+		<itemRule>md_dev_busi_module</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>devmodule in ('so')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0035</itemKey>
+		<itemName>工作任务消息配置默认模板</itemName>
+		<itemRule>pub_workitemconfig</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>pk_billtype in ('30','30R','4331','32','4310')
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0036</itemKey>
+		<itemName>消息模板类型</itemName>
+		<itemRule>PUB_MSGTEMP_TYPE</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>tempcode in('pa_so', 'bs_so', 'wf_so') or PARENTPK in
+			(select PK_TEMPTYPE from PUB_MSGTEMP_TYPE where tempcode in ('pa_so',
+			'bs_so', 'wf_so'))</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0037</itemKey>
+		<itemName>消息模板</itemName>
+		<itemRule>PUB_MSGTEMP</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>TEMPCODE like 'SO_%' or TEMPCODE like 'bs_so%' or TYPECODE in (
+			'nc.bs.so.salequotation.task.SalequoAlertPlugin','nc.bs.so.m38.plugin.task.PreorderAlertPlugin')
+		</fixedWhere>
+	</item>
+</items>

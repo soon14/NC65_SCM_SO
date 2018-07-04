@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext" />
+	<bean id="m30DataManager" class="nc.ui.pubapp.billref.push.PushBillModelDataManager">
+		<property name="service">
+			<bean class="nc.ui.so.m4331.arrange.model.M30QueryService"></bean>
+		</property>
+	</bean>
+	<bean id="m5xDataManager" class="nc.ui.pubapp.billref.push.PushBillModelDataManager">
+		<property name="service">
+			<bean class="nc.ui.so.m4331.arrange.model.M5XQueryService"></bean>
+		</property>
+	</bean>
+	<bean id="linkListener" class="nc.ui.pubapp.billref.push.BillPushLinkedListner">
+
+		<property name="srcBillIDField" value="csaleorderid" />
+		<!-- 超链字段名 -->
+		<property name="srcBillNOField" value="vbillcode" />
+		<!-- 保存源单据类型的字段所在位置，0：表头；1：表体 -->
+		<property name="srcBillType" value="30" />
+		<property name="baseDocFileds">
+			<list>
+				<value>ccustomerid</value>
+				<value>cchanneltypeid</value>
+				<value>cemployeeid</value>
+				<value>cdeptid</value>
+				<value>cinvoicecustid</value>
+				<value>cmaterialvid</value>
+				<value>castunitid</value>
+				<value>cunitid</value>
+				<value>creceivecustid</value>
+				<value>ctrafficorgid</value>
+				<value>csendstockorgid</value>
+				<value>csendstordocid</value>
+			</list>
+		</property>
+
+	</bean>
+	<bean id="tranlinkListener" class="nc.ui.pubapp.billref.push.BillPushLinkedListner">
+
+		<property name="srcBillIDField" value="cbillid" />
+		<!-- 超链字段名 -->
+		<property name="srcBillNOField" value="vbillcode" />
+		<!-- 保存源单据类型的字段所在位置，0：表头；1：表体 -->
+		<property name="srcBillType" value="5X" />
+		<property name="baseDocFileds">
+			<list>
+				<value>cmaterialvid</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 分割按钮 实现UE规范按钮分区 -->
+	<bean id="separatorAction" class="nc.funcnode.ui.action.SeparatorAction" />
+
+	<!-- 转单参照单据信息 -->
+	<bean id="srcMultiBillInfo" class="nc.ui.pubapp.billref.push.MultiTabBillInfo">
+		<property name="billInfoMap">
+			<map>
+				<entry>
+<!--					<key>-->
+<!--						<value>销售订单</value>-->
+				       <key>
+				           <bean class="nc.ui.uif2.I18nFB">
+				              <property name="resDir" value="4006002_0"/>
+				              <property name="resId" value="04006002-0168"/> 
+				              <property name="defaultValue" value="销售订单"/>
+				           </bean>
+				       </key>
+<!--					</key>-->
+					<bean class="nc.ui.pubapp.billref.push.TabBillInfo">
+						<!--自由辅助属性 -->
+						<property name="marAsstPreparator" ref="saleordermarAsstPreparator" />
+						<!-- 自定义项 -->
+				 		<property name="defDataPreparator" ref="saleuserdefitemlistPreparator" />
+						<property name="billType" value="30" />
+						<property name="billNodeKey" value="30TO4331_A" />
+						<property name="nodeCode" value="40060301" />
+						<!-- 前台回写数量方法接口注册 -->
+						<property name="rewriteService">
+							<bean class="nc.ui.so.m4331.arrange.write.RewriteM30Num" />
+						</property>
+						<property name="listViewValueSetter">
+							<bean class="nc.ui.so.m4331.arrange.view.ListPanelValueSetter" />
+						</property>
+						<!-- 销售订单推发货安排初始数据监听 -->
+						<property name="initDataListener">
+							<bean class="nc.ui.so.m4331.arrange.listener.M30InitDataListener" />
+						</property>
+						<property name="moduleCode" value="4006" />
+						<property name="headVOClass" value="nc.vo.so.m30.entity.SaleOrderHVO" />
+						<property name="bodyVOClass" value="nc.vo.so.m30.entity.SaleOrderBVO" />
+                        <property name="billVOClass" value="nc.vo.so.m30.entity.SaleOrderVO" />
+                       <property name="viewVOClass" value="nc.vo.so.m30.entity.SaleOrderViewVO" />
+						<property name="billModelDigitSetter">
+							<bean class="nc.ui.so.m4331.arrange.scale.M30DigitSetter" />
+						</property>
+						<property name="linkListener">
+							<ref bean="linkListener" />
+						</property>
+						<property name="actions">
+							<list>
+								<ref bean="queryAction" />
+								<bean class="nc.ui.so.m4331.arrange.action.DeliveryRefreshAction">
+									<property name="dataManager" ref="m30DataManager" />
+								</bean>
+								<ref bean="separatorAction" />
+								<bean class="nc.ui.so.m4331.arrange.action.ArrangeAction">
+									<property name="destBillType" value="4331" />
+									<property name="destViewVO">
+										<bean class="nc.vo.so.m4331.entity.DeliveryViewVO" />
+									</property>
+								</bean>
+							</list>
+						</property>
+
+					</bean>
+				</entry>
+				<entry>
+<!--					<key>-->
+<!--						<value>调拨订单</value>-->
+				       <key>
+				           <bean class="nc.ui.uif2.I18nFB">
+				              <property name="resDir" value="4006002_0"/>
+				              <property name="resId" value="04006002-0169"/>
+				              <property name="defaultValue" value="调拨订单"/>
+				           </bean>
+				       </key>						
+<!--					</key>-->
+					<bean class="nc.ui.pubapp.billref.push.TabBillInfo">
+						<property name="marAsstPreparator" ref="transordermarAsstPreparator" />
+						<property name="defDataPreparator" ref="tranuserdefitemlistPreparator" />
+						<property name="billType" value="5X" />
+						<property name="billNodeKey" value="5Xtosoarr" />
+						<property name="nodeCode" value="40093010" />
+						<!-- 前台回写数量方法接口注册 -->
+						<property name="rewriteService">
+							<bean class="nc.ui.so.m4331.arrange.write.RewriteM5XNum" />
+						</property>
+						<property name="listViewValueSetter">
+							<bean class="nc.ui.so.m4331.arrange.view.ListPanelValueSetter" />
+						</property>
+						<property name="moduleCode" value="4009" />
+						<property name="headVOClass" value="nc.vo.to.m5x.entity.BillHeaderVO" />
+						<property name="bodyVOClass" value="nc.vo.to.m5x.entity.BillItemVO" />
+
+                        <property name="billVOClass" value="nc.vo.to.m5x.entity.BillVO" />
+
+                       <property name="viewVOClass" value="nc.vo.to.m5x.entity.BillViewVO" />
+
+						<property name="billModelDigitSetter">
+							<bean class="nc.ui.so.m4331.arrange.scale.M5XDigitSetter" />
+						</property>
+						<property name="linkListener">
+							<ref bean="tranlinkListener" />
+						</property>
+						<property name="actions">
+							<list>
+								<bean class="nc.ui.so.m4331.arrange.action.M5XQueryAction">
+									<property name="nodeKey" value="5XTO4331" />
+									<property name="dataManager" ref="m5xDataManager" />
+									<property name="qryCondDLGInitializer" ref="tranorderQryCondDLGInitializer"></property>
+								</bean>
+								<bean class="nc.ui.so.m4331.arrange.action.DeliveryRefreshAction">
+									<property name="dataManager" ref="m5xDataManager" />
+								</bean>
+								<ref bean="separatorAction" />
+								<bean class="nc.ui.so.m4331.arrange.action.ArrangeAction">
+									<property name="destBillType" value="4331" />
+									<property name="destViewVO">
+										<bean class="nc.vo.so.m4331.entity.DeliveryViewVO" />
+									</property>
+								</bean>
+							</list>
+						</property>
+
+					</bean>
+				</entry>
+			</map>
+
+		</property>
+	</bean>
+	<!-- 单据号规则如果是“支持断号补号”，则不管模板上设置的可编辑性，单据号都不允许修改 -->
+	<bean id="billcode" class="nc.ui.pubapp.billref.push.PushBillCodeProcessor">
+		<!-- 模板上的单据号字段ItemKey -->
+		<property name="billCodeKey" value="vbillcode" />
+		<property name="pk_orgKey" value="pk_org" />
+		<!-- 单据类型 -->
+		<property name="billType" value="4331" />
+	</bean>
+	<bean id="destMultiBillInfo" class="nc.ui.pubapp.billref.push.MultiTabBillInfo">
+		<property name="billInfoMap">
+			<map>
+				<entry>
+<!--					<key>-->
+<!--						<value>发货单</value>-->
+				       <key>
+				           <bean class="nc.ui.uif2.I18nFB">
+				              <property name="resDir" value="4006002_0"/>
+				              <property name="resId" value="04006002-0170"/>
+				              <property name="defaultValue" value="发货单"/>
+				           </bean>
+				       </key>						
+<!--					</key>-->
+					<bean class="nc.ui.pubapp.billref.push.TabBillInfo">
+						<property name="defDataPreparator" ref="deliveryuserdefitemlistPreparator" />
+						<property name="marAsstPreparator" ref="deliverymarAsstPreparator" />
+						<property name="codeProcessor" ref="billcode" />
+						<property name="billType" value="4331" />
+						<property name="billNodeKey" value="4331REF30" />
+						<!-- 前台回写数量方法接口注册 -->
+						<property name="rewriteService">
+							<bean class="nc.ui.so.m4331.arrange.write.RewriteM4331Srv" />
+						</property>
+						<property name="moduleCode" value="4006" />
+						<property name="headVOClass" value="nc.vo.so.m4331.entity.DeliveryHVO" />
+						<property name="bodyVOClass" value="nc.vo.so.m4331.entity.DeliveryBVO" />
+
+                        <property name="billVOClass" value="nc.vo.so.m4331.entity.DeliveryVO" />
+
+                       <property name="viewVOClass" value="nc.vo.so.m4331.entity.DeliveryViewVO" />
+
+						<property name="listeners">
+							<list>
+								<bean class="nc.ui.so.m4331.arrange.editor.EditEventHandler">
+								</bean>
+							</list>
+						</property>
+						<property name="actions">
+							<list>
+								<bean class="nc.ui.pubapp.billref.push.DestDelLineAction" />
+								<bean class="nc.ui.so.m4331.arrange.action.DeliverySaveAction">
+									<property name="singleBillService" ref="service" />
+									<property name="pushSourceVOUpdate" ref="rservice" />
+									<property name="exceptionHandler">
+										<bean class="nc.ui.so.pub.exception.SOExceptionHandler">
+											<property name="billPush">
+												<ref bean="ATPShowHiddenAction" />
+											</property>
+											<property name="service">
+												<ref bean="service" />
+											</property>
+										</bean>
+									</property>
+								</bean>
+								<ref bean="ATPShowHiddenAction" />
+
+							</list>
+						</property>
+						<property name="billModelDigitSetter">
+							<bean class="nc.ui.so.m4331.arrange.scale.M4331DigitSetter" />
+						</property>
+						<property name="listViewValueSetter">
+							<bean class="nc.ui.so.m4331.arrange.view.ListPanelValueSetter" />
+						</property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<!--存量显示隐藏 -->
+	<bean id="ATPShowHiddenAction" class="nc.ui.so.pub.actions.SOQueryOnhandAction" >
+	</bean>
+	<!--保存service -->
+	<bean id="rservice" class="nc.ui.so.m4331.arrange.action.RefreshSrcAction"/>
+	<bean id="service" class="nc.ui.so.m4331.arrange.model.M4331PushSaveSrv">
+	</bean>
+	<!--调拨订单自定义项 -->
+	<bean id="tranuserdefitemlistPreparator" class="nc.ui.pubapp.billref.push.PushDefDataPraparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="to.to_bill" />
+					<property name="tabcode" value="main" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vdef" />
+				</bean>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="to.to_bill_b" />
+					<property name="tabcode" value="main" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vbdef" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!--发货单自定义项 -->
+	<bean id="deliveryuserdefitemlistPreparator" class="nc.ui.pubapp.billref.push.PushDefDataPraparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.delivery" />
+					<property name="tabcode" value="delivery" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vdef" />
+				</bean>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.delivery_b" />
+					<property name="tabcode" value="delivery" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vbdef" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 销售订单自定义项 -->
+	<bean id="saleuserdefitemlistPreparator" class="nc.ui.pubapp.billref.push.PushDefDataPraparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.so_saleorder" />
+					<property name="tabcode" value="so_saleorder" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vdef" />
+				</bean>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.so_saleorder_b" />
+					<property name="tabcode" value="so_saleorder" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vbdef" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 自定义项、自由辅助属性容器 -->
+	<bean id="userdefitemContainer" class="nc.ui.uif2.userdefitem.UserDefItemContainer"
+		singleton="true">
+		<property name="params">
+			<list>
+				<!-- 发货单自定义项 -->
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.delivery" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.delivery_b" />
+				</bean>
+				<!-- 销售订单自定义项 -->
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.so_saleorder" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.so_saleorder_b" />
+				</bean>
+				<!-- 调拨订单自定义项 -->
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="to.to_bill" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="to.to_bill_b" />
+				</bean>
+				<!-- 自由辅助属性 -->
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="rulecode" value="materialassistant" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 发货单物料辅助属性组件配置 -->
+	<bean id="deliverymarAsstPreparator" class="nc.ui.pubapp.billref.push.MarAsstBillRefPushPreparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="prefix" value="vfree" />
+		<property name="materialField" value="cmaterialid" />
+		<!-- 以下四个为物料固定辅助属性，可以选择配置 -->
+		<property name="projectField" value="cprojectid" />
+		<property name="supplierField" value="cvendorid" />
+		<property name="productorField" value="cproductorid" />
+	</bean>
+
+	<!-- 销售订单物料辅助属性组件配置 -->
+	<bean id="saleordermarAsstPreparator" class="nc.ui.pubapp.billref.push.MarAsstBillRefPushPreparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="prefix" value="vfree" />
+		<property name="materialField" value="cmaterialid" />
+		<!-- 以下四个为物料固定辅助属性，可以选择配置 -->
+		<!-- <property name="storeStateField" value="cstateid" /> -->
+		<property name="projectField" value="cprojectid" />
+		<property name="supplierField" value="cvendorid" />
+		<property name="productorField" value="cproductorid" />
+	</bean>
+	<!-- 调拨订单物料辅助属性组件配置 -->
+	<bean id="transordermarAsstPreparator" class="nc.ui.pubapp.billref.push.MarAsstBillRefPushPreparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="prefix" value="vfree" />
+		<property name="materialField" value="cmaterialid" />
+		<!-- 以下四个为物料固定辅助属性，可以选择配置 -->
+		<property name="projectField" value="cprojectid" />
+		<property name="supplierField" value="cvendorid" />
+		<property name="productorField" value="cproductorid" />
+	</bean>
+	<bean id="saleorderQryCondDLGInitializer"
+		class="nc.ui.so.m4331.arrange.listener.SaleOrderQueryDLGInitializer">
+	</bean>
+	<bean id="tranorderQryCondDLGInitializer"
+		class="nc.ui.so.m4331.arrange.listener.TransOrderQueryDLGInitializer">
+	</bean>
+  <bean id="queryAction" class="nc.ui.so.m4331.arrange.action.M30QueryAction">
+      <property name="nodeKey" value="30TO4331_Q" />
+      <property name="dataManager" ref="m30DataManager" />
+      <property name="qryCondDLGInitializer" ref="saleorderQryCondDLGInitializer"></property>
+      <property name="hasQueryArea" value="false" />
+  </bean>
+</beans>

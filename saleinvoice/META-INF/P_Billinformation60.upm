@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding='gb2312'?>
+<module name="so">
+  <public>
+	<component remote="true" singleton="true"  tx="CMT">
+	  <interface>nc.itf.so.IBillinformationMaintain</interface>
+	  <implementation>nc.impl.so.BillinformationMaintainImpl</implementation>
+	</component>
+
+  </public> 
+</module> 

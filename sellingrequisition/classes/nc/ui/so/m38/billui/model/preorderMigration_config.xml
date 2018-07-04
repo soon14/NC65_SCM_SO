@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext" />
+	<!--
+		模型部分配置###########################################################
+	-->
+	<bean id="templateContainer" class="nc.ui.uif2.editor.TemplateContainer"
+		init-method="load">
+		<property name="context" ref="context" />
+	</bean>
+
+	<!-- 预订单升迁panel -->
+	<bean id="preOrderMigratePanel" class="nc.ui.so.m38.billui.view.PreOrderMigratePanel"
+		init-method="initUI" />
+	<!--
+		界面布局总装###########################################################
+	-->
+	<bean id="container" class="nc.ui.uif2.TangramContainer"
+		init-method="initUI">
+		<property name="constraints">
+			<list>
+				<bean id="down" class="nc.ui.uif2.tangramlayout.TangramLayoutConstraint">
+					<property name="newComponent" ref="preOrderMigratePanel"></property>
+				</bean>
+			</list>
+		</property>
+		<property name="actions">
+			<list>
+				<ref bean="preOrderMigrateAction" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 预订单升迁 Action-->
+	<bean id="preOrderMigrateAction" class="nc.ui.so.m38.billui.action.PreOrderMigrateAction">
+	</bean>
+</beans>

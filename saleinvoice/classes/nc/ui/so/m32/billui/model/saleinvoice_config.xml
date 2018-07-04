@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext" />
+
+	<!-- 模型部分配置########################################################### -->
+
+	<!-- 应用服务类，负责进行模型操作的处理 -->
+	<bean id="ManageModelService" class="nc.ui.so.m32.billui.model.SaleInvoiceService">
+		<property name="model" ref="ManageAppModel"></property>
+	</bean>
+	<!-- 查询模板加载bean -->
+	<bean id="queryTemplateContainer" class="nc.ui.uif2.editor.QueryTemplateContainer">
+		<property name="context" ref="context"></property>
+	</bean>
+	<!-- "新增"下拉菜单的信息加载bean -->
+	<bean id="pfAddInfoLoader" class="nc.ui.pubapp.uif2app.actions.PfAddInfoLoader">
+		<property name="billType" value="32" />
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+	<!-- 远程调用bean -->
+	<bean id="remoteCallCombinatorCaller" class="nc.ui.uif2.editor.UIF2RemoteCallCombinatorCaller">
+		<property name="remoteCallers">
+			<list>
+				<ref bean="queryTemplateContainer" />
+				<ref bean="templateContainer" />
+				<ref bean="userdefitemContainer" />
+				<ref bean="pfAddInfoLoader" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+	<bean id="boadatorfactory"
+		class="nc.ui.pubapp.uif2app.view.value.AggVOMetaBDObjectAdapterFactory" />
+
+	<!-- 适配分页start -->
+	<bean id="pageBar" class="nc.ui.uif2.components.pagination.PaginationBar" />
+	<bean id="pageDelegator"
+		class="nc.ui.pubapp.uif2app.actions.pagination.BillModelPaginationDelegator">
+		<constructor-arg ref="ManageAppModel" />
+		<property name="paginationQuery" ref="pageQuery" />
+	</bean>
+	<bean id="pageQuery" class="nc.ui.so.m32.billui.model.SaleInvoicePageService">
+		<property name="model" ref="ManageAppModel"></property>
+	</bean>
+	<bean id="pageMediator" class="nc.ui.scmpub.page.model.SCMBillPageMediator"
+		init-method="init">
+		<property name="listView" ref="listView" />
+		<property name="recordInPage" value="10" />
+		<property name="cachePages" value="10" />
+		<property name="pageDelegator" ref="pageDelegator" />
+	</bean>
+	<!-- 适配分页end -->
+
+	<!-- 管理应用模型 -->
+	<bean id="ManageAppModel" class="nc.ui.so.m32.billui.model.SaleInvoiceManageModel">
+		<property name="service" ref="ManageModelService"></property>
+		<property name="billType" value="32" />
+		<property name="businessObjectAdapterFactory" ref="boadatorfactory"></property>
+		<property name="context" ref="context"></property>
+	</bean>
+
+	<!-- 数据模型管理器，主要负责各种方式的模型初始化 -->
+	<bean id="modelDataManager" class="nc.ui.scmpub.page.model.SCMBillPageModelDataManager">
+		<property name="model" ref="ManageAppModel"></property>
+		<property name="pageQuery" ref="pageQuery"></property>
+		<property name="pageDelegator" ref="pageDelegator"></property>
+		<property name="pagePanel" ref="listToolbarPnl" />
+	</bean>
+	<!--查询数据处理 <bean id="ModelDataPrc" class="nc.ui.so.m32.billui.model.SaleInvoiceModelDataPrc"> 
+		<property name="model" ref="ManageAppModel"></property> </bean> -->
+	<!-- 交易类型发布节点开始 -->
+	<bean id="trantypeTempMender"
+		class="nc.ui.pubapp.uif2app.funcnode.trantype.TrantypeBillTemplateMender">
+		<constructor-arg ref="context" />
+	</bean>
+	<!-- 模板容器，负责对模板的统一装载 -->
+	<bean id="templateContainer" class="nc.ui.pubapp.uif2app.view.TemplateContainer"
+		init-method="load">
+		<property name="context" ref="context" />
+		<property name="billTemplateMender" ref="trantypeTempMender"></property>
+	</bean>
+
+	<bean id="rowNoMediator" class="nc.ui.pubapp.uif2app.view.RowNoMediator">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+
+	<!-- 界面元素 ########################################################### -->
+	<!-- 列表视图 -->
+	<bean id="listView" class="nc.ui.so.m32.billui.view.SaleInvoiceListView"
+		init-method="initUI">
+		<property name="model" ref="ManageAppModel"></property>
+		<property name="multiSelectionMode" value="0" />
+		<property name="templateContainer" ref="templateContainer"></property>
+		<property name="paginationBar" ref="pageBar"/>
+		<!-- 列表自定义项处理 -->
+		<property name="userdefitemListPreparator">
+			<bean class="nc.ui.pubapp.uif2app.view.CompositeBillListDataPrepare">
+				<property name="billListDataPrepares">
+					<list>
+						<ref bean="userdefitemlistPreparator" />
+						<ref bean="marAsstPreparator" />
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!--卡控件 -->
+	<bean id="billFormEditor" class="nc.ui.so.m32.billui.view.SaleInvoiceEditor"
+		init-method="initUI">
+		<property name="model" ref="ManageAppModel"></property>
+		<property name="templateContainer" ref="templateContainer" />
+		<!-- 是否进行模板非空校验 -->
+		<property name="templateNotNullValidate" value="true" />
+		<!-- 是否自动增行 -->
+		<property name="autoAddLine" value="true" />
+		<!-- 卡片自定义项处理 -->
+		<!-- 卡片自定义项处理 -->
+		<property name="userdefitemPreparator">
+			<bean class="nc.ui.pubapp.uif2app.view.CompositeBillDataPrepare">
+				<property name="billDataPrepares">
+					<list>
+						<ref bean="userdefitemPreparator" />
+						<ref bean="marAsstPreparator" />
+					</list>
+				</property>
+			</bean>
+		</property>
+		<!-- 空行过滤器，卡片界面根据此过滤器删除表体空行 -->
+		<property name="blankChildrenFilter">
+			<!-- 简单的根据一个字段是否为空的空行过滤器，因为多数情况下都是判断存货是否为空来过滤空行 -->
+			<bean
+				class="nc.ui.pubapp.uif2app.view.value.SingleFieldBlankChildrenFilter">
+				<!-- 指定用来判断空行的字段名称，可能多数情况下是存货字段 这里由于考虑合并编辑物料可能是空的 所以使用主数量 -->
+				<property name="fieldName" value="cmaterialvid" />
+			</bean>
+		</property>
+		<!-- 卡片需要清除的超链接注册 -->
+		<property name="clearHyperlink">
+			<list>
+				<value>vbillcode</value>
+			</list>
+		</property>
+		<!-- 表体行操作按钮注册，与表体右键菜单保持一致 -->
+		<property name="bodyLineActions">
+			<list>
+				<!-- 提供了一组默认实现 -->
+				<bean class="nc.ui.pubapp.uif2app.actions.BodyAddLineAction"></bean>
+				<bean class="nc.ui.pubapp.uif2app.actions.BodyInsertLineAction"></bean>
+				<bean class="nc.ui.so.m32.billui.action.line.InvoiceBodyDelLineAction"></bean>
+				<bean class="nc.ui.pubapp.uif2app.actions.BodyCopyLineAction"></bean>
+				<bean class="nc.ui.so.m32.billui.action.line.InvoiceBodyPasteLineAction">
+					<property name="clearItems">
+						<list>
+							<value>csaleinvoicebid</value>
+							<value>ts</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="nc.ui.so.m32.billui.action.line.InvoiceBodyPasteToTailAction">
+					<property name="clearItems">
+						<list>
+							<value>csaleinvoicebid</value>
+							<value>ts</value>
+						</list>
+					</property>
+				</bean>
+				<ref bean="linebarseparatorAction" />
+				<bean class="nc.ui.pubapp.uif2app.actions.RearrangeRowNoBodyLineAction" />
+				<ref bean="linebarseparatorAction" />
+				<bean class="nc.ui.pubapp.uif2app.actions.DefaultBodyZoomAction">
+					<property name="pos" value="1" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 双击列表行后显示卡片 -->
+	<bean id="mouseClickShowPanelMediator" class="nc.ui.pubapp.uif2app.view.MouseClickShowPanelMediator">
+		<property name="listView" ref="listView" />
+		<property name="showUpComponent" ref="billFormEditor" />
+	</bean>
+	<!-- 更改组织后同步设置界面上所有参照的组织值 -->
+	<bean id="cardPanelOrgSetterForAllRefMediator"
+		class="nc.ui.pubapp.uif2app.view.CardPanelOrgSetterForAllRefMediator">
+		<constructor-arg ref="billFormEditor" />
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+	<!-- model与界面的表体排序同步组件(先支持页签关联元数据对象、非关联的不支持)我们也可以改PUB_BILLTEMPLET_T表 -->
+	<bean id="billBodySortMediator" class="nc.ui.pubapp.uif2app.model.BillBodySortMediator">
+		<constructor-arg ref="ManageAppModel" />
+		<constructor-arg ref="billFormEditor" />
+		<constructor-arg ref="listView" />
+	</bean>
+	<!-- 编辑事件 -->
+	<bean id="appEventHandlerMediator" class="nc.ui.pubapp.uif2app.model.AppEventHandlerMediator">
+		<property name="model" ref="ManageAppModel" />
+		<property name="handlerMap">
+			<map>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailBeforeEditEvent">
+					<list>
+						<bean class="nc.ui.so.m32.billui.editor.headevent.HeadBeforeEditHandler" />
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailAfterEditEvent">
+					<list>
+						<bean class="nc.ui.so.m32.billui.editor.headevent.HeadAfterEditHandler">
+							<property name="model" ref="ManageAppModel" />
+							<property name="editor" ref="billFormEditor" />
+						</bean>
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyBeforeEditEvent">
+					<list>
+						<bean class="nc.ui.so.m32.billui.editor.bodyevent.BodyBeforeEditHandler">
+							<property name="model" ref="ManageAppModel" />
+						</bean>
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyAfterEditEvent">
+					<list>
+						<bean class="nc.ui.so.m32.billui.editor.bodyevent.BodyAfterEditHandler" />
+					</list>
+				</entry>
+				<!-- 表体行操作（增行、插入行、删行等） -->
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyAfterRowEditEvent">
+					<list>
+						<bean
+							class="nc.ui.so.m32.billui.editor.bodyevent.CardBodyAfterRowEditHandler" />
+					</list>
+				</entry>
+				<entry key="nc.ui.pubapp.uif2app.event.OrgChangedEvent">
+					<list>
+						<bean class="nc.ui.so.m32.billui.editor.orgevent.OrgEditHandler">
+							<constructor-arg ref="billFormEditor" />
+							<constructor-arg ref="context" />
+						</bean>
+					</list>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+	<!-- 查询方案 -->
+	<bean id="queryArea" class="nc.ui.pubapp.uif2app.tangramlayout.UEQueryAreaShell"
+		init-method="initUI">
+		<property name="queryAreaCreator" ref="queryAction" />
+	</bean>
+	<!-- 列表顶端工具栏面板 -->
+	<bean id="listToolbarPnl" class="nc.ui.uif2.tangramlayout.CardLayoutToolbarPanel">
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+	<!-- 卡片顶端工具栏面板 -->
+	<bean id="cardToolbarPnl"
+		class="nc.ui.pubapp.uif2app.tangramlayout.UECardLayoutToolbarPanel">
+		<property name="titleAction">
+			<bean id="returnaction" class="nc.ui.pubapp.uif2app.actions.UEReturnAction">
+				<property name="goComponent" ref="listView" />
+				<property name="saveAction" ref="saveAction" />
+				<property name="model" ref="ManageAppModel" />
+			</bean>
+		</property>
+		<property name="model" ref="ManageAppModel" />
+		<property name="rightExActions">
+			<list>
+				<bean class="nc.ui.pub.beans.ActionsBar$ActionsBarSeparator" />
+				<bean id="headZoomAction" class="nc.ui.pubapp.uif2app.actions.DefaultHeadZoomAction">
+					<property name="billForm" ref="billFormEditor" />
+					<property name="model" ref="ManageAppModel" />
+					<property name="pos" value="0" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 页面装载 -->
+	<bean id="container" class="nc.ui.uif2.TangramContainer"
+		init-method="initUI">
+		<property name="model" ref="ManageAppModel" />
+		<property name="tangramLayoutRoot">
+			<bean class="nc.ui.uif2.tangramlayout.node.TBNode">
+				<property name="showMode" value="CardLayout"></property>
+				<property name="tabs">
+					<list>
+						<bean class="nc.ui.uif2.tangramlayout.node.HSNode">
+							<property name="left">
+								<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+									<property name="component" ref="queryArea" />
+								</bean>
+							</property>
+							<property name="right">
+								<bean class="nc.ui.uif2.tangramlayout.node.VSNode">
+									<property name="up">
+										<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+											<property name="component" ref="listToolbarPnl" />
+										</bean>
+									</property>
+									<property name="down">
+										<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+											<!-- <property name="name" value="列表" /> -->
+											<property name="name">
+												<bean class="nc.ui.uif2.I18nFB">
+													<property name="resDir" value="common" />
+													<property name="resId" value="UC001-0000107" />
+													<property name="defaultValue" value="列表" />
+												</bean>
+											</property>
+											<property name="component" ref="listView" />
+										</bean>
+									</property>
+									<property name="dividerLocation" value="25f" />
+								</bean>
+							</property>
+							<property name="dividerLocation" value="0.22f" />
+						</bean>
+						<bean class="nc.ui.uif2.tangramlayout.node.VSNode">
+							<property name="up">
+								<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+									<property name="component" ref="cardToolbarPnl" />
+								</bean>
+							</property>
+							<property name="down">
+								<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+									<!-- <property name="name" value="卡片" /> -->
+									<property name="name">
+										<bean class="nc.ui.uif2.I18nFB">
+											<property name="resDir" value="common" />
+											<property name="resId" value="UC001-0000106" />
+											<property name="defaultValue" value="卡片" />
+										</bean>
+									</property>
+									<property name="component" ref="billFormEditor" />
+								</bean>
+							</property>
+							<property name="dividerLocation" value="30f" />
+						</bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 此处配置的Action始终可见 -->
+	<!-- 此bean不是必须的，如果没有各个界面按钮的差异，可以将一下三个bean都去掉 -->
+	<bean id="toftpanelActionContributors" class="nc.ui.uif2.actions.ActionContributors">
+		<property name="contributors">
+			<list>
+				<ref bean="actionsOfList" />
+				<ref bean="actionsOfCard" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 构造方法中传入的界面显示时，配置的Action才可见 -->
+	<bean id="actionsOfList" class="nc.ui.uif2.actions.StandAloneToftPanelActionContainer">
+		<constructor-arg ref="listView" />
+		<!-- 可以配置非编辑状态下和编辑状态下分别可见的Action，没有此需求时可以配置得一样 -->
+		<property name="actions">
+			<list>
+				<ref bean="addMenuAction" />
+				<ref bean="editAction" />
+				<ref bean="deleteAction" />
+				<ref bean="separatorAction" />
+				<ref bean="queryAction" />
+				<ref bean="refreshAction" />
+				<ref bean="showTypeAction" />
+				<ref bean="separatorAction" />
+				<ref bean="commitGroupAction" />
+				<ref bean="approveGroupAction" />
+				<ref bean="browAstFuncActionGroup" />
+				<ref bean="separatorAction" />
+				<ref bean="browLinkActionGroup" />
+				<ref bean="separatorAction" />
+				<ref bean="printActionGroup" />
+				<ref bean="separatorAction" />
+				<ref bean="receiveAction" />
+				<ref bean="sendAction" />
+				<ref bean="separatorAction" />
+				<ref bean="sendysdAction" />
+				<ref bean="UNsendysdAction"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 构造方法中传入的界面显示时，配置的Action才可见 -->
+	<bean id="actionsOfCard" class="nc.ui.uif2.actions.StandAloneToftPanelActionContainer">
+		<constructor-arg ref="billFormEditor" />
+		<property name="model" ref="ManageAppModel" />
+		<!-- 可以配置非编辑状态下和编辑状态下分别可见的Action，没有此需求时可以配置得一样 -->
+		<property name="actions">
+			<list>
+				<ref bean="addMenuAction" />
+				<ref bean="editAction" />
+				<ref bean="deleteAction" />
+				<ref bean="separatorAction" />
+				<ref bean="queryAction" />
+				<ref bean="cardRefreshAction" />
+				<ref bean="showTypeAction" />
+				<ref bean="separatorAction" />
+				<ref bean="commitGroupAction" />
+				<ref bean="approveGroupAction" />
+				<ref bean="browAstFuncActionGroup" />
+				<ref bean="separatorAction" />
+				<ref bean="browLinkActionGroup" />
+				<ref bean="separatorAction" />
+				<ref bean="printActionGroup" />
+				<ref bean="separatorAction" />
+				<ref bean="receiveAction" />
+				<ref bean="sendAction" />
+				<ref bean="separatorAction" />
+				<ref bean="sendysdAction" />
+				<ref bean="UNsendysdAction"/>
+			</list>
+		</property>
+		<property name="editActions">
+			<list>
+				<ref bean="saveAction" />
+				<ref bean="saveandcommitAction" />
+				<ref bean="separatorAction" />
+				<ref bean="cancelAction" />
+				<ref bean="separatorAction" />
+				<ref bean="refAddLineAction" />
+				<ref bean="editAstFuncActionGroup" />
+				<ref bean="separatorAction" />
+				<ref bean="editLinkActionGroup" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Actions ########################################################### -->
+	<!-- 分割按钮 实现UE规范按钮分区 -->
+	<bean id="separatorAction" class="nc.funcnode.ui.action.SeparatorAction" />
+	<!-- 分割按钮(行操作) 实现UE规范按钮分区 -->
+	<bean id="linebarseparatorAction" class="nc.ui.pub.beans.ActionsBar$ActionsBarSeparator" />
+	<!-- 显示方式切换 -->
+	<bean id="showTypeAction" class="nc.ui.so.m32.billui.action.SaleInvoiceShowChgAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="listView" ref="listView" />
+		<property name="lasilyLoder" ref="LasilyLodadMediator" />
+	</bean>
+	<!-- 提交 -->
+	<bean id="commitAction" class="nc.ui.so.m32.billui.action.SaleInvoiceCommitAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" /><!-- 单据卡片 -->
+		<property name="filledUpInFlow" value="true" />
+		<property name="actionName" value="SAVE" />
+		<!-- 送审脚本名字，如果为规范名字，可以省略 -->
+		<property name="billType" value="32" /><!--单据类型 -->
+		<property name="validationService" ref="powercommitvalidservice" />
+	</bean>
+
+	<!-- 保存提交 -->
+	<bean id="saveandcommitAction" class="nc.ui.so.m32.billui.action.SaleInvoiceSaveCommitAction">
+		<constructor-arg ref="saveAction" />
+		<constructor-arg ref="commitAction" />
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+
+	<!--收回 -->
+	<bean id="unCommitAction" class="nc.ui.so.m32.billui.action.SaleInvoiceUnCommitAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" /><!-- 单据卡片 -->
+		<property name="filledUpInFlow" value="true" />
+		<property name="actionName" value="UNSAVE" />
+		<!-- 送审脚本名字，如果为规范名字，可以省略 -->
+		<property name="billType" value="32" /><!--单据类型 -->
+		<property name="validationService" ref="poweruncommitvalidservice" />
+	</bean>
+	<!-- 取消审核 -->
+	<bean id="unApproveAction" class="nc.ui.so.m32.billui.action.SaleInvoiceUnApproveAction">
+		<property name="model" ref="ManageAppModel" /><!-- 领域模型 -->
+		<property name="editor" ref="billFormEditor" />
+		<property name="filledUpInFlow" value="true" />	<!-- 是否需要在后台流程中补全vo，主要用于相关审批交验 -->
+		<property name="actionName" value="UNAPPROVE" />
+		<!-- 脚本名字，标准名字可以省略 -->
+		<property name="billType" value="32" /><!--单据类型 -->
+		<property name="validationService" ref="powerunapprovevalidservice" />
+	</bean>
+
+	<!-- 审核 -->
+	<bean id="approveAction" class="nc.ui.so.m32.billui.action.SaleInvoiceApproveAction">
+		<property name="model" ref="ManageAppModel" /><!-- 领域模型 -->
+		<property name="editor" ref="billFormEditor" />
+		<property name="filledUpInFlow" value="true" />	<!-- 是否需要在后台流程中补全vo，主要用于相关审批交验 -->
+		<property name="actionName" value="APPROVE" />
+		<!-- 脚本名字，标准名字可以省略 -->
+		<property name="billType" value="32" /><!--单据类型 -->
+		<property name="validationService" ref="powerapprovevalidservice" />
+	</bean>
+
+	<!-- 提交收回按钮组 begin -->
+	<bean id="commitGroupAction" class="nc.funcnode.ui.action.GroupAction">
+		<property name="actions">
+			<list>
+				<ref bean="commitAction" />
+				<ref bean="unCommitAction" />
+			</list>
+		</property>
+	</bean>
+	<!-- 提交收回按钮组 end -->
+
+	<!-- 审批按钮组 begin -->
+	<bean id="approveGroupAction" class="nc.funcnode.ui.action.GroupAction">
+		<property name="actions">
+			<list>
+				<ref bean="approveAction" />
+				<ref bean="unApproveAction" />
+				<ref bean="separatorAction" />
+				<ref bean="auditFlowAction" />
+			</list>
+		</property>
+	</bean>
+	<!-- 审批按钮组 end -->
+	<!-- 查询 -->
+	<bean id="queryAction" class="nc.ui.pubapp.uif2app.query2.action.DefaultQueryAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="dataManager" ref="modelDataManager" />
+		<!-- 查询模板加载 -->
+		<property name="templateContainer" ref="queryTemplateContainer"></property>
+		<property name="qryCondDLGInitializer" ref="saleinvoiceQryCondDLGInitializer"></property>
+	    <property name="showUpComponent" ref="listView" />
+	</bean>
+	<bean name="saleinvoiceQryCondDLGInitializer"
+		class="nc.ui.so.m32.billui.query.SaleInvoiceQryCondDLGInitializer">
+	</bean>
+
+	<!-- 刷新 -->
+	<bean id="refreshAction" class="nc.ui.pubapp.uif2app.query2.action.DefaultRefreshAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="dataManager" ref="modelDataManager" />
+		<!-- <property name="interceptor"> <bean class="nc.ui.pubapp.uif2app.actions.interceptor.ShowUpComponentInterceptor"> 
+			<property name="showUpComponent" ref="listView" /> </bean> </property> -->
+	</bean>
+	<!-- 卡片下刷新 -->
+	<bean id="cardRefreshAction" class="nc.ui.so.m32.billui.action.InvoiceRefreshSingleAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="dataManager" ref="modelDataManager" />
+	</bean>
+	<!-- 新增菜单 begin -->
+	<bean id="addMenuAction" class="nc.ui.so.m32.billui.action.add.InvoiceAddMenuAction"
+		init-method="initUI">
+		<!-- 当前单据的单据类型 -->
+		<property name="billType" value="32" />
+		<property name="actions">
+			<list>
+				<ref bean="refOrderAction" />
+				<ref bean="refOutAction" />
+				<!-- 应收费用结算单、原料销售结算单、成套销售结算单、钢材代理结算单、非钢代理结算单、进口原料报账单 -->
+				<ref bean="refYlxsAction"/>
+				
+				<ref bean="refYffyAction"/>
+				
+				<ref bean="refCtxsAction"/>
+				<ref bean="refGcdlAction"/>
+				
+				<ref bean="refFgdlAction"/>
+				<ref bean="refJkylAction"/>
+				<ref bean="addHyfjsdAction"/>
+			</list>
+		</property>
+		<property name="model" ref="ManageAppModel" />
+		<property name="pfAddInfoLoader" ref="pfAddInfoLoader"></property>
+	</bean>
+	<!-- 销售发票拉海运费结算单开始 -->
+	<bean id="addHyfjsdAction" class="nc.ui.so.m32.billref.hyfjsd.AddUpActionHyfjsd">
+		<!-- 来源单据类型编码 -->
+		<property name="sourceBillType" value="HY01" />
+		<!-- 来源单据类型名称 -->
+		<property name="sourceBillName" value="海运费结算单" />
+
+		<!-- 是否流程单据，如果是流程单据，可以删除 -->
+		<property name="flowBillType" value="false" />
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferProcessorforhyfjsd" />
+	</bean>
+	
+	<bean name="transferProcessorforhyfjsd" class="nc.ui.pubapp.billref.dest.TransferViewProcessor">
+		<property name="list" ref="listView" />
+		<property name="actionContainer" ref="actionsOfList" />
+		<property name="cardActionContainer" ref="actionsOfCard" />
+		<property name="transferLogic" ref="transferLogicforhyfjsd" />
+		<property name="billForm" ref="billFormEditor" />
+		<property name="cancelAction" ref="cancelAction" />
+		<property name="saveAction" ref="saveAction" />
+	</bean>
+	
+	<bean name="transferLogicforhyfjsd" class="nc.ui.so.m32.billref.hyfjsd.UpRefDownTRansferBillDataLogicHyfjsd">
+		<property name="billForm" ref="billFormEditor" />
+	</bean>
+	<!-- 销售发票拉海运费结算单结束 -->
+	<!--参照销售订单新增 -->
+	<bean id="refOrderAction" class="nc.ui.so.m32.billui.action.add.RefOrderAddAction">
+		<!-- 单据类型30 -->
+		<property name="sourceBillType" value="30" />
+		<!-- 按钮的名称 -->
+		<!-- <property name="sourceBillName" value="销售订单" /> -->
+		<property name="sourceBillName">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0119" />
+				<property name="defaultValue" value="销售订单" />
+			</bean>
+		</property>
+
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	<!-- 参照销售出库单新增 -->
+	<bean id="refOutAction" class="nc.ui.so.m32.billui.action.add.RefOutAddAction">
+		<!-- 单据类型4C -->
+		<property name="sourceBillType" value="4C" />
+		<!-- 按钮的名称 -->
+		<!-- <property name="sourceBillName" value="销售出库单" /> -->
+		<property name="sourceBillName">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0120" />
+				<property name="defaultValue" value="销售出库单" />
+			</bean>
+		</property>
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	<!-- 应付费用结算单、原料销售结算单、成套销售结算单、钢材代理结算单、非钢代理结算单、进口原料报账单 -->
+	
+	<!-- 应付费用结算单新增 -->
+	<bean id="refYffyAction" class="nc.ui.so.m32.billui.action.add.RefYffyAddAction">
+		<!-- 单据类型LM22 -->
+		<property name="sourceBillType" value="LM21" />
+		<!-- 按钮的名称 -->
+		<property name="sourceBillName" value="应付费用结算单" />
+	
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	<!-- 原料销售结算单新增 -->
+	<bean id="refYlxsAction" class="nc.ui.so.m32.billui.action.add.RefYlxsAddAction">
+		<!-- 单据类型IT02 -->
+		<property name="sourceBillType" value="IT02" />
+		<!-- 按钮的名称 -->
+		<property name="sourceBillName" value="原料销售结算单" />
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	<!-- 成套销售结算单新增 -->
+	<bean id="refCtxsAction" class="nc.ui.so.m32.billui.action.add.RefCtxsAddAction">
+		<!-- 单据类型IT01 -->
+		<property name="sourceBillType" value="IT01" />
+		<property name="sourceBillName" value="成套销售结算单" />
+		<!-- 按钮的名称 -->
+		<!-- <property name="sourceBillName" value="销售出库单" /> -->
+		<!-- <property name="sourceBillName">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0173" />
+			</bean>
+		</property> -->
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	<!-- 钢材代理结算单新增 -->
+	<bean id="refGcdlAction" class="nc.ui.so.m32.billui.action.add.RefGcdlAddAction">
+		<!-- 单据类型ET03 -->
+		<property name="sourceBillType" value="ET03" />
+		<!-- 按钮的名称 -->
+		<property name="sourceBillName" value="钢材代理结算单" />
+		<!-- <property name="sourceBillName">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0174" />
+				<property name="defaultValue" value="钢材代理结算单" />
+			</bean>
+		</property> -->
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	<!-- 非钢代理结算单新增 -->
+	<bean id="refFgdlAction" class="nc.ui.so.m32.billui.action.add.RefFgdlAddAction">
+		<!-- 单据类型ET02 -->
+		<property name="sourceBillType" value="ET02" />
+		<!-- 按钮的名称 -->
+		<property name="sourceBillName" value="非钢代理结算单" />
+		<!-- <property name="sourceBillName">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0175" />
+				<property name="defaultValue" value="非钢代理结算单" />
+			</bean>
+		</property> -->
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	<!-- 进口原料报账单新增 -->
+	<bean id="refJkylAction" class="nc.ui.so.m32.billui.action.add.RefJkyltestAddAction">
+		<!-- 单据类型LM40 -->
+		<property name="sourceBillType" value="LM40" />
+		<!-- 按钮的名称 -->
+		<property name="sourceBillName" value="进口原料报账单" />
+		<!-- <property name="sourceBillName" >
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0176" />
+				<property name="defaultValue" value="进口原料报账单" />
+			</bean>
+		</property> -->
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	
+	<!-- 新增菜单 end -->
+
+	<!-- 参照增行菜单 begin -->
+	<bean id="refAddLineAction" class="nc.ui.so.m32.billui.action.add.InvoiceAddMenuAction"
+		init-method="initUI">
+		<!-- 当前单据的单据类型 -->
+		<property name="billType" value="32" />
+		<property name="code">
+			<value>RefAddLine</value>
+		</property>
+		<!-- <property name="name" value="参照增行" /> -->
+		<property name="name">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0124" />
+				<property name="defaultValue" value="参照增行" />
+			</bean>
+		</property>
+		<property name="actions">
+			<list>
+				<ref bean="refOrderlineAction" />
+				<ref bean="refOutlineAction" />
+			</list>
+		</property>
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+	<!--参照销售订单增行 -->
+	<bean id="refOrderlineAction" class="nc.ui.so.m32.billui.action.line.RefOrderAddLineAction">
+		<!-- 单据类型30 -->
+		<property name="sourceBillType" value="30" />
+		<!-- 按钮的名称 -->
+		<!-- <property name="sourceBillName" value="销售订单" /> -->
+		<property name="sourceBillName">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0119" />
+				<property name="defaultValue" value="销售订单" />
+			</bean>
+		</property>
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	<!--参照销售出库单增行 -->
+	<bean id="refOutlineAction" class="nc.ui.so.m32.billui.action.line.RefOutAddLineAction">
+		<!-- 单据类型4C -->
+		<property name="sourceBillType" value="4C" />
+		<!-- 按钮的名称 -->
+		<!-- <property name="sourceBillName" value="销售出库单" /> -->
+		<property name="sourceBillName">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0120" />
+				<property name="defaultValue" value="销售出库单" />
+			</bean>
+		</property>
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="transferViewProcessor" ref="transferViewProcessor" />
+	</bean>
+	<!-- 参照增行菜单 end -->
+
+	<!-- 修改 -->
+	<bean id="editAction" class="nc.ui.so.m32.billui.action.SaleInvoiceEditAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="interceptor">
+			<bean
+				class="nc.ui.pubapp.uif2app.actions.interceptor.ShowUpComponentInterceptor">
+				<property name="showUpComponent" ref="billFormEditor" />
+			</bean>
+		</property>
+	</bean>
+	<!-- 删除 -->
+	<bean id="deleteAction" class="nc.ui.so.m32.billui.action.SaleInvoiceDeleteAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="actionName" value="DELETE" />
+		<property name="billType" value="32" />
+		<property name="validationService" ref="powerdeletevalidservice" />
+	</bean>
+	<!-- 保存 -->
+	<bean id="saveAction" class="nc.ui.so.m32.billui.action.SaleInvoiceSaveAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="validationService" ref="compositevalidateService" />
+		<property name="actionName" value="WRITE" />	<!--需要执行的流程平台动作脚本名称 -->
+		<property name="billType" value="32" /><!--单据类型 -->
+		<!-- 不支持保存维护权限 <property name="validationService" ref="powerwritevalidservice" 
+			/> -->
+	</bean>
+	<!-- 组合校验器 -->
+	<bean id="compositevalidateService" class="nc.ui.pubapp.uif2app.validation.CompositeValidation">
+		<property name="validators">
+			<list>
+				<ref bean="validateService" />
+				<!-- 不支持保存维护权限 <ref bean="powerwritevalidservice" /> -->
+			</list>
+		</property>
+	</bean>
+	<!-- 非空校验服务 -->
+	<bean id="validateService" class="nc.ui.so.m32.billui.model.SaleInvoiceValidationService">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!-- 取消 -->
+	<bean id="cancelAction" class="nc.ui.so.m32.billui.action.SaleInvoiceCancelAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+
+	<!-- 浏览状态下辅助功能 菜单 begin -->
+	<bean id="browAstFuncActionGroup" class="nc.funcnode.ui.action.MenuAction">
+		<property name="code" value="BrowAstFunc" />
+		<!-- <property name="name" value="辅助功能" /> -->
+		<property name="name">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0121" />
+				<property name="defaultValue" value="辅助功能" />
+			</bean>
+		</property>
+		<property name="actions">
+			<list>
+				<ref bean="opposeAddAction" />
+				<ref bean="imptTaxCodeAction" />
+				<ref bean="exptGoldTaxAction" />
+				<ref bean="exptGoldTaxAction2" />
+				<ref bean="exptGoldTaxAction3" />
+				<ref bean="exptGoldTaxAction4" />
+				<ref bean="separatorAction" />
+				<ref bean="vatSubTotalAction" />
+				<ref bean="separatorAction" />
+				<ref bean="docmngAction" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 对冲发票 -->
+	<bean id="opposeAddAction" class="nc.ui.so.m32.billui.action.add.OpposeAddAction">
+		<property name="sourceBillType" value="OpposeAdd" />
+		<!-- 按钮的名称 -->
+		<!-- <property name="sourceBillName" value="生成对冲发票" /> -->
+		<property name="sourceBillName">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0122" />
+				<property name="defaultValue" value="生成对冲发票" />
+			</bean>
+		</property>
+		<property name="model" ref="ManageAppModel" />
+		<property name="interceptor">
+			<bean
+				class="nc.ui.pubapp.uif2app.actions.interceptor.CompositeActionInterceptor">
+				<property name="interceptors">
+					<list>
+						<bean
+							class="nc.ui.pubapp.uif2app.actions.interceptor.ShowUpComponentInterceptor">
+							<property name="showUpComponent" ref="billFormEditor" />
+						</bean>
+					</list>
+				</property>
+			</bean>
+		</property>
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	
+	<!-- 接收 -->
+	<bean id="receiveAction" class="nc.ui.so.m32.billui.action.SaleInvoiceReceiveAction">
+		<property name="model" ref="ManageAppModel" />
+		<!--  <property name="editor" ref="billFormEditor" /> -->
+		<property name="btnName" value="接收" />
+		<property name="code" value="cdessss" />
+		
+	</bean>
+	<!-- 发送 -->
+	<bean id="sendAction" class="nc.ui.so.m32.billui.action.SaleInvoiceSendAction">
+		<property name="model" ref="ManageAppModel" />
+		<!--  <property name="editor" ref="billFormEditor" /> -->
+		<property name="btnName" value="发送" />
+		<property name="code" value="cdessss" />
+		
+	</bean>
+	<!-- 导入税票号 -->
+	<bean id="imptTaxCodeAction" class="nc.ui.so.m32.billui.action.ast.ImportTaxCodeAction">
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+	<!-- 传金税 -->
+	<bean id="exptGoldTaxAction" class="nc.ui.so.m32.billui.action.ast.ExportGoldTaxAction">
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+	
+	<!-- === lijj 添加 备件、内贸钢材、代理费 传金税按钮 -->
+	<!-- busiType值 1、2、3分别代表备件、内贸钢材、代理费  默认值为0 -->
+	<!-- 传备件金税 -->
+	<bean id="exptGoldTaxAction2" class="nc.ui.so.m32.billui.action.ast.ExportGoldTaxAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="busiType" value="1"/>
+	</bean>
+	
+	<!-- 传内贸钢材金税 -->
+	<bean id="exptGoldTaxAction3" class="nc.ui.so.m32.billui.action.ast.ExportGoldTaxAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="busiType" value="2"/>
+	</bean>
+	
+	<!-- 传代理费金税 -->
+	<bean id="exptGoldTaxAction4" class="nc.ui.so.m32.billui.action.ast.ExportGoldTaxAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="busiType" value="3"/>
+	</bean>
+	<!-- === lijj 添加 备件、内贸钢材、代理费 传金税按钮 -->
+	
+	<!-- 税额小计 -->
+	<bean id="vatSubTotalAction" class="nc.ui.so.m32.billui.action.ast.VatSubTotalAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!-- 附件管理 -->
+	<bean id="docmngAction" class="nc.ui.so.pub.actions.SOManageDocumentAction">
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+	<!-- 浏览状态下辅助功能菜单 end -->
+
+	<!-- 编辑状态下辅助功能 菜单 begin -->
+	<bean id="editAstFuncActionGroup" class="nc.funcnode.ui.action.MenuAction">
+		<property name="code" value="EditAstFunc" />
+		<!-- <property name="name" value="辅助功能" /> -->
+		<property name="name">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0121" />
+				<property name="defaultValue" value="辅助功能" />
+			</bean>
+		</property>
+		<property name="actions">
+			<list>
+				<ref bean="fetchCostAction" />
+				<ref bean="separatorAction" />
+				<ref bean="uniteArsubAction" />
+				<ref bean="cancelUniteAction" />
+				<ref bean="separatorAction" />
+				<ref bean="vatSubTotalAction" />
+			</list>
+		</property>
+	</bean>
+	<!-- 取成本价 -->
+	<bean id="fetchCostAction" class="nc.ui.so.m32.billui.action.ast.FetchCostAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!--费用冲抵 -->
+	<bean id="uniteArsubAction" class="nc.ui.so.m32.billui.action.ast.UniteArsubAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<property name="cancelUniteBtn" ref="cancelUniteAction" />
+	</bean>
+	<!-- 取消费用冲抵 -->
+	<bean id="cancelUniteAction" class="nc.ui.so.m32.billui.action.ast.CancelUniteAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!-- 编辑状态下辅助功能菜单 end -->
+
+	<!-- 浏览状态下联查菜单 begin -->
+	<bean id="browLinkActionGroup" class="nc.funcnode.ui.action.MenuAction">
+		<property name="code" value="BrowLink" />
+		<!-- <property name="name" value="联查" /> -->
+		<property name="name">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0123" />
+				<property name="defaultValue" value="联查" />
+			</bean>
+		</property>
+		<property name="actions">
+			<list>
+				<ref bean="linkQueryAction" />
+				<ref bean="custCreditAction" />
+				<ref bean="custInfoAction" />
+				<ref bean="estProfitAction" />
+				<ref bean="execQueryAction" />
+				<ref bean="queryCashArsubAction" />
+			</list>
+		</property>
+	</bean>
+	<!-- 联查单据 -->
+	<bean id="linkQueryAction" class="nc.scmmm.ui.uif2.actions.SCMLinkQueryAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="billType" value="32" />
+		<property name="openMode" value="1" />
+	</bean>
+	<!-- 审批流状态 -->
+	<bean id="auditFlowAction"
+		class="nc.ui.pubapp.uif2app.actions.pflow.PFApproveStatusInfoAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!-- 信用查询 -->
+	<bean id="custCreditAction" class="nc.ui.so.m32.billui.action.link.QueryCustCreditAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!-- 客户信息 -->
+	<bean id="custInfoAction" class="nc.ui.so.m32.billui.action.link.QueryCustInfoAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!-- 毛利预估 -->
+	<bean id="estProfitAction" class="nc.ui.so.m32.billui.action.link.EstimateProfitAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!-- 发票执行情况 -->
+	<bean id="execQueryAction" class="nc.ui.so.m32.billui.action.link.QueryExecInfoAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+	</bean>
+	<!-- 费用兑付明细 -->
+	<bean id="queryCashArsubAction" class="nc.ui.so.m32.billui.action.link.QueryArsubFor32Action">
+	    <property name="model" ref="ManageAppModel" />
+	    <property name="editor" ref="billFormEditor" />
+ 	 </bean>
+	<!-- 浏览状态下联查菜单 end -->
+
+	<!-- 编辑状态下联查菜单 begin -->
+	<bean id="editLinkActionGroup" class="nc.funcnode.ui.action.MenuAction">
+		<property name="code" value="EditLink" />
+		<!-- <property name="name" value="联查" /> -->
+		<property name="name">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="4006008_0" />
+				<property name="resId" value="04006008-0123" />
+				<property name="defaultValue" value="联查" />
+			</bean>
+		</property>
+		<property name="actions">
+			<list>
+				<ref bean="custCreditAction" />
+				<ref bean="custInfoAction" />
+				<ref bean="estProfitAction" />
+				<ref bean="queryCashArsubAction" />
+			</list>
+		</property>
+	</bean>
+	<!-- 浏览状态下联查菜单 end -->
+
+	<!-- 打印菜单 begin -->
+	<bean id="printActionGroup" class="nc.funcnode.ui.action.GroupAction">
+		<property name="code" value="printMenuAction" />
+		<!-- <property name="name" value="打印" /> -->
+		<property name="name">
+			<bean class="nc.ui.uif2.I18nFB">
+				<property name="resDir" value="common" />
+				<property name="resId" value="UC001-0000007" />
+				<property name="defaultValue" value="打印" />
+			</bean>
+		</property>
+		<property name="actions">
+			<list>
+				<ref bean="printAction" />
+				<ref bean="previewAction" />
+				<ref bean="outputAction" />
+				<ref bean="printCountQueryAction" />
+			</list>
+		</property>
+	</bean>
+	<!-- 输出... -->
+	<bean id="outputAction" class="nc.ui.pubapp.uif2app.actions.OutputAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="parent" ref="billFormEditor" />
+		<property name="beforePrintDataProcess" ref="printProcessor" />
+	</bean>
+	<!-- 预览 -->
+	<bean id="previewAction"
+		class="nc.ui.so.m32.billui.action.print.InvoiceMetaDataBasedPrintAction">
+		<property name="preview" value="true" />
+		<property name="model" ref="ManageAppModel" />
+		<property name="beforePrintDataProcess" ref="printProcessor" />
+	</bean>
+	<!-- 打印 -->
+	<bean id="printAction"
+		class="nc.ui.so.m32.billui.action.print.InvoiceMetaDataBasedPrintAction">
+		<property name="preview" value="false" />
+		<property name="model" ref="ManageAppModel" />
+		<property name="beforePrintDataProcess" ref="printProcessor" />
+	</bean>
+	<!-- 打印调用类 -->
+	<bean id="printProcessor"
+		class="nc.ui.so.m32.billui.action.print.SaleinvoicePrintProcessor">
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+
+	<!-- 打印次数查询 -->
+	<bean id="printCountQueryAction" class="nc.ui.scmpub.action.SCMPrintCountQueryAction">
+		<property name="model" ref="ManageAppModel" />
+		<!-- 单据日期属性名称 -->
+		<property name="billdateFieldName" value="dbilldate" />
+		<!-- 单据类型编码 -->
+		<property name="billType" value="32" />
+	</bean>
+
+	<!-- 合并显示 <bean id="combinAction" class="nc.ui.so.m32.billui.action.SaleInvoiceCombinAction"> 
+		<property name="model" ref="ManageAppModel" /> </bean> -->
+	<!-- 打印菜单 end -->
+
+	<!-- 转单后公共代码处理 <bean id="tranProcessor" class="nc.ui.pubapp.billref.dest.TransferBillViewProcessor"> 
+		<property name="list" ref="listView" /> <property name="transferLogic"> <bean 
+		class="nc.ui.so.m32.billui.action.add.TransferSaleInvoiceLogic"> <property 
+		name="billForm" ref="billFormEditor" /> </bean> </property> <property name="billForm" 
+		ref="billFormEditor" /> <property name="actionContainer" ref="actionsOfList" 
+		/> </bean> -->
+	<!-- 转单后公共代码处理 -->
+	<bean id="transferViewProcessor" class="nc.ui.so.m32.billui.action.add.TransferSaleInvoiceLogic">
+		<property name="list" ref="listView" />
+		<!-- 列表按钮容器 -->
+		<property name="actionContainer" ref="actionsOfList" />
+		<!-- 卡片按钮容器 -->
+		<property name="cardActionContainer" ref="actionsOfCard" />
+		<!-- 单据保存按钮 -->
+		<property name="saveAction" ref="saveAction" />
+		<!-- 单据提交按钮 -->
+		<property name="commitAction" ref="commitAction" />
+		<!-- 单据取消按钮 -->
+		<property name="cancelAction" ref="cancelAction" />
+		<property name="billForm" ref="billFormEditor" />
+		<property name="transferLogic">
+			<bean class="nc.ui.so.pub.ref.add.SODefaultBillDataLogic">
+				<property name="billForm" ref="billFormEditor" />
+			</bean>
+		</property>
+	</bean>
+	<!-- 自动修正卡片界面的分数显示控件(换算率) -->
+	<bean id="fractionFixMediator" class="nc.ui.pubapp.uif2app.view.FractionFixMediator"
+		init-method="initUI">
+		<constructor-arg>
+			<list>
+				<ref bean="billFormEditor" />
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="listView" />
+			</list>
+		</constructor-arg>
+	</bean>
+	<!-- 卡片自定义项处理 -->
+	<bean name="userdefitemPreparator" class="nc.ui.uif2.editor.UserdefitemContainerPreparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.saleinvoice" />
+					<property name="pos" value="0" />
+					<property name="prefix" value="vdef" />
+				</bean>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.saleinvoice_b" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vbdef" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 列表自定义项处理 -->
+	<bean name="userdefitemlistPreparator" class="nc.ui.uif2.editor.UserdefitemContainerListPreparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.saleinvoice" />
+					<property name="pos" value="0" />
+					<property name="prefix" value="vdef" />
+				</bean>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam">
+					<property name="mdfullname" value="so.saleinvoice_b" />
+					<property name="pos" value="1" />
+					<property name="prefix" value="vbdef" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 自由项组件的配置 -->
+	<bean id="marAsstPreparator"
+		class="nc.ui.pubapp.uif2app.view.material.assistant.MarAsstPreparator">
+		<property name="model" ref="ManageAppModel" />
+		<property name="container" ref="userdefitemContainer" />
+		<property name="prefix" value="vfree" />
+		<property name="materialField" value="cmaterialid" />
+		<!-- 以下四个为物料固定辅助属性，可以选择配置 -->
+		<!-- <property name="storeStateField" value="cstateid" /> -->
+		<property name="projectField" value="cprojectid" />
+		<property name="supplierField" value="cvendorid" />
+		<property name="productorField" value="cproductorid" />
+		<property name="signatureField" value="cmffileid" />
+	</bean>
+	<bean id="userdefitemContainer" class="nc.ui.uif2.userdefitem.UserDefItemContainer">
+		<property name="context" ref="context" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.saleinvoice" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="mdfullname" value="so.saleinvoice_b" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="rulecode" value="materialassistant" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- 权限 -->
+	<!-- 删除权限 -->
+	<bean id="powerdeletevalidservice" class="nc.ui.pubapp.pub.power.PowerValidateService">
+		<property name="actionCode" value="delete" />
+		<property name="billCodeFiledName" value="vbillcode" />
+		<property name="permissionCode" value="32" />
+	</bean>
+	<!-- 不支持保存维护权限 <bean id="powerwritevalidservice" class="nc.ui.pubapp.pub.power.PowerSaveValidateService"> 
+		<property name="insertActionCode" value="insert" /> <property name="editActionCode" 
+		value="edit" /> <property name="billCodeFiledName" value="vbillcode" /> <property 
+		name="permissionCode" value="32" /> </bean> -->
+	<!-- 审核权限 -->
+	<bean id="powerapprovevalidservice" class="nc.ui.pubapp.pub.power.PowerValidateService">
+		<property name="actionCode" value="approve" />
+		<property name="billCodeFiledName" value="vbillcode" />
+		<property name="permissionCode" value="32" />
+	</bean>
+	<!-- 取消审核权限 -->
+	<bean id="powerunapprovevalidservice" class="nc.ui.pubapp.pub.power.PowerValidateService">
+		<property name="actionCode" value="unapprove" />
+		<property name="billCodeFiledName" value="vbillcode" />
+		<property name="permissionCode" value="32" />
+	</bean>
+
+	<!-- 提交权限 -->
+	<bean id="powercommitvalidservice" class="nc.ui.pubapp.pub.power.PowerValidateService">
+		<property name="actionCode" value="commit" />
+		<property name="billCodeFiledName" value="vbillcode" />
+		<property name="permissionCode" value="32" />
+	</bean>
+
+	<!-- 收回权限 -->
+	<bean id="poweruncommitvalidservice" class="nc.ui.pubapp.pub.power.PowerValidateService">
+		<property name="actionCode" value="uncommit" />
+		<property name="billCodeFiledName" value="vbillcode" />
+		<property name="permissionCode" value="32" />
+	</bean>
+	
+	<!-- 推应收单   guowei -->
+	<bean id="sendysdAction" class="nc.ui.so.m32.billui.action.SaleInvoiceSendysdAction">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		<!--  <property name="editor" ref="billFormEditor" /> -->
+		<property name="btnName" value="推应收单" />
+		<property name="code" value="cdessss" />
+		
+	</bean>
+	<!-- 取消传应收单 CancleSaleInvoiceToRecbill  add by lianll 20180228-->
+		<bean id="UNsendysdAction" class="nc.ui.so.m32.billui.action.CancleSaleInvoiceToRecbill">
+		<property name="model" ref="ManageAppModel" />
+		<property name="editor" ref="billFormEditor" />
+		
+	</bean>
+	
+	<!-- 取消传应收单  add by lianll 20180228-->
+
+	<!-- 懒加载 -->
+	<bean id="billLazilyLoader" class="nc.ui.so.m32.billui.query.SaleInvoiceBillLazilyLoader">
+		<property name="model" ref="ManageAppModel" />
+	</bean>
+	<bean id="LasilyLodadMediator" class="nc.ui.pubapp.uif2app.lazilyload.LazilyLoadManager">
+		<property name="model" ref="ManageAppModel" />
+		<property name="loader" ref="billLazilyLoader" />
+		<property name="lazilyLoadSupporter">
+			<list>
+				<bean class="nc.ui.pubapp.uif2app.lazilyload.CardPanelLazilyLoad">
+					<property name="billform" ref="billFormEditor" />
+				</bean>
+				<bean class="nc.ui.pubapp.uif2app.lazilyload.ListPanelLazilyLoad">
+					<property name="listView" ref="listView" />
+				</bean>
+				<bean class="nc.ui.pubapp.uif2app.lazilyload.ActionLazilyLoad">
+					<property name="model" ref="ManageAppModel" />
+					<property name="actionList">
+						<list>
+							<ref bean="printAction" />
+							<ref bean="previewAction" />
+							<ref bean="outputAction" />
+							<ref bean="showTypeAction" />
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 界面单据号控制类 -->
+	<bean id="billCodeMediator" class="nc.ui.scmpub.listener.BillCodeEditMediator"
+		init-method="initUI">
+		<!-- 模板上的单据号字段key -->
+		<property name="billCodeKey" value="vbillcode" />
+		<!-- 单据类型 -->
+		<property name="billType" value="32" />
+		<!-- billform -->
+		<property name="billForm" ref="billFormEditor" />
+	</bean>
+	<!-- 单据号UI规范设置Mediator -->
+	<bean id="doubleClickMediator" class="nc.ui.pubapp.uif2app.view.MouseClickShowPanelMediator">
+		<property name="listView" ref="listView" />
+		<property name="showUpComponent" ref="billFormEditor" />
+		<property name="hyperLinkColumn" value="vbillcode" />
+	</bean>
+
+	<!-- 源头单据号超链接 -->
+	<bean id="linkQueryHyperlinkMediator"
+		class="nc.ui.pubapp.uif2app.linkquery.LinkQueryHyperlinkMediator">
+		<property name="model" ref="ManageAppModel" />
+		<property name="srcBillIdField" value="cfirstid" />
+		<!-- 超链字段名 -->
+		<property name="srcBillNOField" value="vfirstcode" />
+		<!-- 保存源单据类型的字段名 -->
+		<property name="srcBillTypeField" value="vfirsttype" />
+		<!-- 保存源单据类型的字段所在位置，0：表头；1：表体 -->
+		<property name="srcBillTypeFieldPos" value="1" />
+	</bean>
+
+	<bean id="alinkQueryHyperlinkMediator"
+		class="nc.ui.pubapp.uif2app.linkquery.LinkQueryHyperlinkMediator">
+		<property name="model" ref="ManageAppModel" />
+		<property name="srcBillIdField" value="csrcid" />
+		<!-- 超链字段名 -->
+		<property name="srcBillNOField" value="vsrccode" />
+		<!-- 保存源单据类型的字段名 -->
+		<property name="srcBillTypeField" value="vsrctype" />
+		<!-- 保存源单据类型的字段所在位置，0：表头；1：表体 -->
+		<property name="srcBillTypeFieldPos" value="1" />
+	</bean>
+	<!-- 关闭节点的提示 -->
+	<bean id="ClosingListener" class="nc.ui.uif2.FunNodeClosingHandler">
+		<property name="model" ref="ManageAppModel" />
+		<property name="saveaction" ref="saveAction" />
+		<property name="cancelaction" ref="cancelAction" />
+	</bean>
+	<!-- 打开节点监听 -->
+	<bean id="InitDataListener"
+		class="nc.ui.so.m32.billui.view.YshtInitDataListener">
+		<property name="model" ref="ManageAppModel" />
+		<property name="queryAction" ref="queryAction" />
+		<property name="multiLinkQueryEnable" value="true" />
+		<!-- VO的类名 -->
+		<property name="voClassName" value="nc.vo.so.m32.entity.SaleInvoiceVO" />
+		<!-- 打开节点节点后要显示的界面 -->
+		<property name="autoShowUpComponent" ref="billFormEditor" />
+		<property name="processorMap">
+			<map>
+				<entry><!-- 自定义的初始化数据类型 -->
+					<key>
+						<value>0</value>
+					</key>
+					<bean class="nc.ui.so.m32.billui.view.SaleInvoiceInitDataProcesser">
+						<property name="model" ref="ManageAppModel"></property>
+					</bean>
+				</entry>
+				<!-- <entry>自定义的初始化数据类型
+					<key>
+						<value>2832</value>
+					</key>
+					<bean class="nc.ui.so.m32.billui.view.XsfpInvoiceInitDataProcesser">
+						<property name="model" ref="ManageAppModel"></property>
+					</bean>
+				</entry> -->
+			</map>
+		</property>
+	</bean>
+</beans>

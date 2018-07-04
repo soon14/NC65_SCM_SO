@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+  <public>
+    <!--销售结算:销售出库单、销售发票审核弃审时调用-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.ic.m4c.ISquare33For4C</interface>
+      <implementation>nc.pubimpl.so.m33.ic.m4c.Square33For4CImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.so.m32.ISquare33For32</interface>
+      <implementation>nc.pubimpl.so.m33.so.m32.Square33For32Impl</implementation>
+    </component>
+    
+    <!--销售结算:销售出库单手工结算、手工计入发出商品、暂估应收-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m33.maintain.m4c.ISaleOutSettleMaintain</interface>
+      <implementation>nc.impl.so.m33.m4c.SaleOutSettleMaintainImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m33.maintain.m4c.ISaleOutETMaintain</interface>
+      <implementation>nc.impl.so.m33.m4c.SaleOutETMaintainImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m33.maintain.m4c.ISaleOutREGMaintain</interface>
+      <implementation>nc.impl.so.m33.m4c.SaleOutREGMaintainImpl</implementation>
+    </component>
+
+    <!--销售结算:销售出库单、销售发票结算动作脚本中调用-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.ic.m4c.ISquareAcionFor4C</interface>
+      <implementation>nc.pubimpl.so.m33.ic.m4c.Square33For4CActionImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.so.m32.ISquareAcionFor32</interface>
+      <implementation>nc.pubimpl.so.m33.so.m32.Square33For32ActionImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.ic.m4453.ISquareAcionFor4453</interface>
+      <implementation>nc.pubimpl.so.m33.ic.m4453.Square33For4453ActionImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.self.pub.ISquare434CQuery</interface>
+      <implementation>nc.pubimpl.so.m33.self.pub.Square434CQueryImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.self.pub.ISquare4332Query</interface>
+      <implementation>nc.pubimpl.so.m33.self.pub.Square4332QueryImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.self.pub.ISquare4353Query</interface>
+      <implementation>nc.pubimpl.so.m33.self.pub.Square4353QueryImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.ic.m4c.ICheckCostRegionFor4C</interface>
+      <implementation>nc.pubimpl.so.m33.ic.m4c.CheckCRegionFor4CImpl</implementation>
+    </component>
+
+    <!-- 销售结算给销售订单结算关闭提供的接口 -->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.so.m30.ISquare32QryFor30SqEnd</interface>
+      <implementation>nc.pubimpl.so.m33.so.m30.Square32QryFor30SqEndImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.so.m30.ISquare4CQryFor30SqEnd</interface>
+      <implementation>nc.pubimpl.so.m33.so.m30.Square4CQryFor30SqEndImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.so.m30.IProcess4CAdjustFor30BalEnd</interface>
+      <implementation>nc.pubimpl.so.m33.so.m30.Process4CAdjustFor30BalEndImpl</implementation>
+    </component>
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.so.m30.IQuerySquareBillFor30SqEnd</interface>
+      <implementation>nc.pubimpl.so.m33.so.m30.QuerySquareBillFor30SqEndImpl</implementation>
+    </component>
+
+    <!-- 销售发票结算回写销售出库单累计下游确认应收数量 -->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.self.m4332.IRewrite434CFor4332</interface>
+      <implementation>nc.pubimpl.so.m33.self.m4332.Rewrite434CFor4332Impl</implementation>
+    </component>
+    
+    <!-- 提供给自己的查询服务 -->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.m33.IM33MainTain</interface>
+      <implementation>nc.impl.so.m33.M33MainTainImpl</implementation>
+    </component>
+    
+    <!-- 提供给存货核算的回写销售出库单的服务 -->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.ia.IRewriteCostPriceSOForIA</interface>
+      <implementation>nc.pubimpl.so.m33.ia.RewriteCostPriceSOForIAImpl</implementation>
+    </component>
+
+    <!-- 提供应收单的日期查询服务 -->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.arap.IQueryAccountDateFromM33</interface>
+      <implementation>nc.pubimpl.so.m33.arap.ar.QueryAccountDateFromM33Impl</implementation>
+    </component>
+
+    <!-- 提供给销售出库单回写销售出库待结算单价格的服务 -->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.ic.m4c.IRewriteSquareOutPrice</interface>
+      <implementation>nc.pubimpl.so.m33.ic.m4c.RewriteSquareOutPriceImpl</implementation>
+    </component>
+
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.so.m32.ISquare33For32Rush</interface>
+      <implementation>nc.pubimpl.so.m33.so.m32.Square33For32RushImpl</implementation>
+    </component>
+
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.ic.m4c.ISquareOutRushLinkQuery</interface>
+      <implementation>nc.pubimpl.so.m33.ic.m4c.SquareOutRushLinkQueryImpl</implementation>
+    </component>
+    
+	<!-- 提供给存货核算关帐检查的查询服务 -->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.m33.ia.ISaleSettleQueryForIA</interface>
+      <implementation>nc.pubimpl.so.m33.ia.SaleSettleQueryForIAImpl</implementation>
+    </component>
+  </public>
+
+  <private>
+
+  </private>
+
+
+</module>
+

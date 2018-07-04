@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+	<public>
+		<!--发货单-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m4331.IDeliveryMaintain</interface>
+			<implementation>nc.impl.so.m4331.DeliveryMaintainImpl</implementation>
+		</component>
+		<!--发货单关闭打开-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m4331.IDeliveryAssitFunc</interface>
+			<implementation>nc.impl.so.m4331.DeliveryAssitFuncImpl</implementation>
+		</component>
+		<!--发货单交易类型-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m4331trantype.IM4331TranTypeService</interface>
+			<implementation>nc.impl.so.m4331trantype.M4331TranTypeImpl</implementation>
+		</component>
+		<!--销售出库单回写发货单-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.ic.m4c.IRewrite4331For4C</interface>
+			<implementation>nc.pubimpl.so.m4331.ic.m4c.Rewrite4331For4CImpl</implementation>
+		</component>
+		<!--调拨出库单回写发货单-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.ic.m4y.IRewrite4331For4Y</interface>
+			<implementation>nc.pubimpl.so.m4331.ic.m4y.Rewrite4331For4YImpl</implementation>
+		</component>
+		<!--销售订单关闭影响发货单-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.so.m30.IDeleteOrCloseFor30OutClose</interface>
+			<implementation>nc.pubimpl.so.m4331.so.m30.DeleteOrCloseFor30OutCloseImpl</implementation>
+		</component>
+		<!--调拨订单关闭影响发货单-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.to.m5x.IDeleteOrCloseFor5XOutClose</interface>
+			<implementation>nc.pubimpl.so.m4331.to.m5x.DeleteOrCloseFor5XOutCloseImpl</implementation>
+		</component>
+		<!--途损单回写发货单-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.ic.m4453.IRewrite4331For4453</interface>
+			<implementation>nc.pubimpl.so.m4331.ic.m4435.Rewrite4331For4435Impl</implementation>
+		</component>
+		<!--结算回写发货单-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.so.m33.IRewrite4331For33</interface>
+			<implementation>nc.pubimpl.so.m4331.so.m33.Rewrite4331For33Impl</implementation>
+		</component>
+		<!--发货单报检接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m4331.IDeliverycheckMaintain</interface>
+			<implementation>nc.impl.so.m4331.DeliverycheckMaintainImpl</implementation>
+		</component>
+		<!--报检单回写发货单接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.qc.mc001.IRewrite4331ForC001</interface>
+			<implementation>nc.pubimpl.so.m4331.qc.mc001.Rewrite4331ForC001Impl</implementation>
+		</component>
+		<!--质检单回写发货单接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.qc.mc003.IRewrite4331ForC003</interface>
+			<implementation>nc.pubimpl.so.m4331.qc.mc003.Rewrite4331ForC003Impl</implementation>
+		</component>
+		<!--发货单提供给销售订单的接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.so.m30.IDeliveryFor30</interface>
+			<implementation>nc.pubimpl.so.m4331.so.m30.DeliveryFor30Impl</implementation>
+		</component>
+		<!--发货单提供给调拨订单的接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.to.m5x.IDeliveryFor5X</interface>
+			<implementation>nc.pubimpl.so.m4331.to.m5x.DeliveryFor5XImpl</implementation>
+		</component>
+		<!--发货单提供给运输单的回写接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.dm.m4804.IRewrite4331For4804</interface>
+			<implementation>nc.pubimpl.so.m4331.dm.m4804.Rewrite4331For4804Impl</implementation>
+		</component>
+		<!--预留回写发货单接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.ic.m4480.IRewrite4331For4480</interface>
+			<implementation>nc.pubimpl.so.m4331.ic.m4480.Rewrite4331For4480Impl</implementation>
+		</component>
+		<!--联查质检报告-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.qc.mc003.IQueryReportVOForC003</interface>
+			<implementation>nc.pubimpl.so.m4331.qc.mc003.QueryReportVOForC003Impl</implementation>
+		</component>
+		<!--发货单提供给出库单的接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m4331.ic.m4c.IDeliveryFor4C</interface>
+			<implementation>nc.pubimpl.so.m4331.ic.m4c.DeliveryFor4CImpl</implementation>
+		</component>
+		<!--发货单提供给操作脚本的接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m4331.IDeliveryScriptMaintain</interface>
+			<implementation>nc.impl.so.m4331.DeliveryScriptMaintainImpl</implementation>
+		</component>
+		<!--发货单分页查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="true">
+			<interface>nc.itf.so.m4331.IDeliveryMaintainApp</interface>
+			<implementation>nc.impl.so.m4331.DeliveryMaintainAppImpl</implementation>
+		</component>
+		<!--出库通知单 从发货单拉单配置-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="true">
+			<interface>nc.pubitf.so.m4331.lm.lm03.IM4331RefQueryService</interface>
+			<implementation>nc.pubimpl.so.m4331.lm.lm03.M4331RefQueryServiceImpl</implementation>
+		</component>
+	</public>
+</module>
+

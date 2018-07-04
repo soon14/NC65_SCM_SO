@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><component conRouterType="手动" createIndustry="0" createTime="2011-04-13 12:42:45" creator="" description="" displayName="销售发票业务操作" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="100a6af0-de64-4b17-ae3b-7f65af048db1" industry="0" industryChanged="false" industryIncrease="false" industryName="基础行业" isSource="false" isbizmodel="true" mainEntity="" metaType=".bpf" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:44:06" name="m32business" namespace="so" ownModule="so" preLoad="false" programcode="0" resModuleName="4006008_2" resid="2400600803-0000" version="34" versionType="0">
+    <celllist>
+        <busioperation componentID="100a6af0-de64-4b17-ae3b-7f65af048db1" createIndustry="0" createTime="2011-04-13 12:43:23" creator="" dataType="08958fdf-e3fa-4cc9-96d6-1c15cec4645f" dbtype="" description="" displayName="修改操作" fullClassName="nc.voso.m32business.edit" height="100" help="BUSILOG" id="028ce666-e471-4ce9-ab49-5318c2d435c4" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="MODIFY" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:44:06" name="edit" needlog="true" resid="2400600803-0001" typeDisplayName="销售发票主实体" typeName="saleinvoice" version="" versionType="0" visibility="public" width="80" x="251" y="99">
+            <refoperationlist>
+                <refoperation id="c73e4b03-10f5-4c63-98ef-a030f3fe95bd" industry="0" isAuthorization="true" isSource="false" opItfID="5ff917f9-b628-412f-9ef7-016bbcc34387" ownerElementID="028ce666-e471-4ce9-ab49-5318c2d435c4" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="100a6af0-de64-4b17-ae3b-7f65af048db1" createIndustry="0" createTime="2011-04-13 12:43:25" creator="" dataType="08958fdf-e3fa-4cc9-96d6-1c15cec4645f" dbtype="" description="" displayName="打印操作" fullClassName="nc.voso.m32business.print" height="100" help="" id="c25a49a7-b4d6-49de-b85e-cf877f98b3f5" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:44:06" name="print" needlog="false" resid="2400600803-0007" typeDisplayName="销售发票主实体" typeName="saleinvoice" version="" versionType="0" visibility="public" width="80" x="363" y="91">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="100a6af0-de64-4b17-ae3b-7f65af048db1" createIndustry="0" createTime="2011-04-13 12:43:26" creator="" dataType="08958fdf-e3fa-4cc9-96d6-1c15cec4645f" dbtype="" description="" displayName="取消审批操作" fullClassName="nc.voso.m32business.unapprove" height="100" help="BUSILOG" id="12bed7a6-11ca-4c16-9a4d-936cdc7328ff" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="DELETE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:44:06" name="unapprove" needlog="true" resid="2400600803-0004" typeDisplayName="销售发票主实体" typeName="saleinvoice" version="" versionType="0" visibility="public" width="80" x="249" y="239">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="100a6af0-de64-4b17-ae3b-7f65af048db1" createIndustry="0" createTime="2011-04-13 12:43:28" creator="" dataType="08958fdf-e3fa-4cc9-96d6-1c15cec4645f" dbtype="" description="" displayName="审批操作" fullClassName="nc.voso.m32business.approve" height="100" help="BUSILOG" id="a83d665b-4ba1-4d36-9b7a-56e281149408" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="DELETE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:44:06" name="approve" needlog="true" resid="2400600803-0003" typeDisplayName="销售发票主实体" typeName="saleinvoice" version="" versionType="0" visibility="public" width="80" x="122" y="235">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="100a6af0-de64-4b17-ae3b-7f65af048db1" createIndustry="0" createTime="2011-04-13 12:43:30" creator="" dataType="08958fdf-e3fa-4cc9-96d6-1c15cec4645f" dbtype="" description="" displayName="删除操作" fullClassName="nc.voso.m32business.delete" height="100" help="BUSILOG" id="826d22d0-9c0d-4fad-9f69-1f097214c59d" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="DELETE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:44:06" name="delete" needlog="true" resid="2400600803-0002" typeDisplayName="销售发票主实体" typeName="saleinvoice" version="" versionType="0" visibility="public" width="80" x="368" y="236">
+            <refoperationlist>
+                <refoperation id="3c7f1b30-4cdd-440c-bc89-ca99d94f0451" industry="0" isAuthorization="true" isSource="false" opItfID="5ff917f9-b628-412f-9ef7-016bbcc34387" ownerElementID="826d22d0-9c0d-4fad-9f69-1f097214c59d" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+        <busioperation componentID="100a6af0-de64-4b17-ae3b-7f65af048db1" createIndustry="0" createTime="2011-04-13 12:49:25" creator="" dataType="08958fdf-e3fa-4cc9-96d6-1c15cec4645f" dbtype="" description="" displayName="提交操作" fullClassName="nc.voso.m32business.commit" height="100" help="" id="f69fae0b-af64-40f3-813f-95c5765a6f1d" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:44:06" name="commit" needlog="false" resid="2400600803-0005" typeDisplayName="销售发票主实体" typeName="saleinvoice" version="" versionType="0" visibility="public" width="80" x="133" y="380">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="100a6af0-de64-4b17-ae3b-7f65af048db1" createIndustry="0" createTime="2011-04-13 12:49:27" creator="" dataType="08958fdf-e3fa-4cc9-96d6-1c15cec4645f" dbtype="" description="" displayName="收回操作" fullClassName="nc.voso.m32business.uncommit" height="100" help="" id="f4f10678-b260-4a81-b859-2704936ff2a5" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="IGNORE" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:44:06" name="uncommit" needlog="false" resid="2400600803-0006" typeDisplayName="销售发票主实体" typeName="saleinvoice" version="" versionType="0" visibility="public" width="80" x="255" y="388">
+            <refoperationlist/>
+        </busioperation>
+        <opinterface componentID="100a6af0-de64-4b17-ae3b-7f65af048db1" createIndustry="0" createTime="2012-04-27 14:19:43" creator="" description="" displayName="销售发票" fullClassName="nc.itf.so.m32.ISaleInvoiceScriptMaintain" height="100" help="BUSILOG" id="5ff917f9-b628-412f-9ef7-016bbcc34387" implClsName="nc.impl.so.m32.SaleInvoiceScriptMaintainImpl" industryChanged="false" isAuthorization="true" isBusiActivity="false" isBusiOperation="false" isSource="false" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:46:42" name="ISaleInvoiceScriptMaintain" remote="true" resid="2400600803-0009" singleton="true" transprop="CMT" version="" versionType="0" visibility="public" width="80" x="483" y="155">
+            <operationlist>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="保存" forBusinessEntity="N" help="" id="680c4656-e3ac-4a65-9f74-b0ff04a829a4" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="saleInvoiceInsert" opItfID="5ff917f9-b628-412f-9ef7-016bbcc34387" ownerElementID="5ff917f9-b628-412f-9ef7-016bbcc34387" resid="ActionRegistry-000000" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售发票vos" isAggVO="true" name="vos" operationID="680c4656-e3ac-4a65-9f74-b0ff04a829a4" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="用户操作" isAggVO="false" name="userObj" operationID="680c4656-e3ac-4a65-9f74-b0ff04a829a4" paramTypeForLog="7" paramdefclassname="" sequence="1" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="删除" forBusinessEntity="N" help="" id="3c7f1b30-4cdd-440c-bc89-ca99d94f0451" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="saleInvoiceDelete" opItfID="5ff917f9-b628-412f-9ef7-016bbcc34387" ownerElementID="5ff917f9-b628-412f-9ef7-016bbcc34387" resid="BatchDelLineAction-000000" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售发票vos" isAggVO="true" name="vos" operationID="3c7f1b30-4cdd-440c-bc89-ca99d94f0451" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+                <operation dataTypeStyle="SINGLE" defclassname="" displayName="修改" forBusinessEntity="N" help="" id="c73e4b03-10f5-4c63-98ef-a030f3fe95bd" isAggVOReturn="false" isBusiActivity="false" methodException="nc.vo.pub.BusinessException" name="saleInvoiceUpdate" opItfID="5ff917f9-b628-412f-9ef7-016bbcc34387" ownerElementID="5ff917f9-b628-412f-9ef7-016bbcc34387" resid="ActionRegistry-000005" transKind="NEVER" versionType="0" visibility="public">
+                    <paramlist>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="销售发票主实体" isAggVO="true" name="vos" operationID="c73e4b03-10f5-4c63-98ef-a030f3fe95bd" paramTypeForLog="0" paramdefclassname="" sequence="0" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                        <parameter dataType="BS000010000100001051" dataTypeStyle="SINGLE" dbtype="char" description="" displayName="用户数据" isAggVO="false" name="userobj" operationID="c73e4b03-10f5-4c63-98ef-a030f3fe95bd" paramTypeForLog="7" paramdefclassname="" sequence="1" typeDisplayName="UFID" typeName="UFID" versionType="0"/>
+                    </paramlist>
+                </operation>
+            </operationlist>
+            <opImpllist/>
+        </opinterface>
+        <busioperation componentID="100a6af0-de64-4b17-ae3b-7f65af048db1" createIndustry="0" createTime="2012-07-05 09:33:27" creator="" dataType="08958fdf-e3fa-4cc9-96d6-1c15cec4645f" dbtype="" description="" displayName="新增操作" fullClassName="nc.voso.m32business.add" height="100" help="BUSILOG" id="91e942b4-2678-40b6-ace1-e310a93f96de" industryChanged="false" isAuthorization="true" isBusiActivity="false" isSource="false" logtype="ADD" modifier="YONYOU NC" modifyIndustry="0" modifyTime="2015-11-24 14:44:06" name="add" needlog="true" resid="2400600803-0008" typeDisplayName="销售发票主实体" typeName="saleinvoice" version="" versionType="0" visibility="public" width="80" x="148" y="101">
+            <refoperationlist>
+                <refoperation id="680c4656-e3ac-4a65-9f74-b0ff04a829a4" industry="0" isAuthorization="true" isSource="false" opItfID="5ff917f9-b628-412f-9ef7-016bbcc34387" ownerElementID="91e942b4-2678-40b6-ace1-e310a93f96de" versiontype="0"/>
+            </refoperationlist>
+        </busioperation>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+  <public>
+    <!--客户物料关系维护-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.custmatrel.ICustMatRelMaintain</interface>
+      <implementation>nc.impl.so.custmatrel.CustMatRelMaintainImpl</implementation>
+    </component>
+    <!--部门物料关系维护-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.depmatrel.IDepMatRelMaintain</interface>
+      <implementation>nc.impl.so.depmatrel.DepMatRelMaintainImpl</implementation>
+    </component>
+    <!--订单类型物料关系维护-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.tranmatrel.ITranMatRelMaintain</interface>
+      <implementation>nc.impl.so.tranmatrel.TranMatRelMaintainImpl</implementation>
+    </component>
+    <!--客户与物料关系检查-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.custmatrel.ICustMatRelFor30</interface>
+      <implementation>nc.pubimpl.so.custmatrel.CustMatRelFor30Impl</implementation>
+    </component>
+    <!--部门与物料关系检查-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.deptmatrel.IDeptMatRelFor30</interface>
+      <implementation>nc.pubimpl.so.deptmatrel.DeptMatRelFor30Impl</implementation>
+    </component>
+    <!--单据类型与物料关系检查-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.tanmatrel.ITranMatRelFor30</interface>
+      <implementation>nc.pubimpl.so.tranmatrel.TranMatRelFor30Impl</implementation>
+    </component>
+    
+	<!--提供者给订单统一处理中心的接口：根据输入的销售组织+客户+物料集合得到允许销售的客户+物料集合-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.pubitf.so.custmatrel.opc.mecc.ICustMatRelForOPC</interface>
+      <implementation>nc.pubimpl.so.custmatrel.opc.mecc.CustMatRelForOPCImpl</implementation>
+    </component>
+    
+    <!--客户与物料关系查询条件赋值到表头-->
+    <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+      <interface>nc.itf.so.custmatrel.ICustMatRelQueryResult</interface>
+      <implementation>nc.impl.so.custmatrel.CustMatRelQueryResultImpl</implementation>
+    </component>
+  </public>
+</module>
+

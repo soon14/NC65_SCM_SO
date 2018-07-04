@@ -1,0 +1,131 @@
+<nc.vo.ses.sesobject.SesSource>
+  <name>销售订单</name>
+  <nodecode>40060301</nodecode>
+  <billtype>30</billtype>
+  <modules>
+    <string>供应链管理</string>
+  </modules>
+  <parentElement class="nc.vo.ses.sesobject.SesElement">
+    <beanID>e2bc1226-81bc-45c7-b387-99d21433335b</beanID>
+    <tableName>so_sale</tableName>
+    <fields>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>TITLE</code>
+        <name>标题</name>
+        <type>STRING</type>
+        <isACL>false</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>CONTENT</code>
+        <name>内容</name>
+        <type reference="../../nc.vo.ses.sesobject.field.SesField/type"/>
+        <isACL>false</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>CORPID</code>
+        <name>公司主键</name>
+        <type reference="../../nc.vo.ses.sesobject.field.SesField/type"/>
+        <isACL>true</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>CORP</code>
+        <name>公司名称</name>
+        <type reference="../../nc.vo.ses.sesobject.field.SesField/type"/>
+        <isACL>false</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>DEPT</code>
+        <name>部门名称</name>
+        <type reference="../../nc.vo.ses.sesobject.field.SesField/type"/>
+        <isACL>false</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>CUST</code>
+        <name>客商名称</name>
+        <type reference="../../nc.vo.ses.sesobject.field.SesField/type"/>
+        <isACL>false</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>BUSITYPE</code>
+        <name>交易类型</name>
+        <type reference="../../nc.vo.ses.sesobject.field.SesField/type"/>
+        <isACL>false</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>BILLCODE</code>
+        <name>单据号</name>
+        <type reference="../../nc.vo.ses.sesobject.field.SesField/type"/>
+        <isACL>false</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>BILLMAKER</code>
+        <name>制单人</name>
+        <type reference="../../nc.vo.ses.sesobject.field.SesField/type"/>
+        <isACL>false</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+      <nc.vo.ses.sesobject.field.SesField>
+        <code>MAKEDATE</code>
+        <name>单据日期</name>
+        <type reference="../../nc.vo.ses.sesobject.field.SesField/type"/>
+        <isACL>false</isACL>
+      </nc.vo.ses.sesobject.field.SesField>
+    </fields>
+    <selectSql>select 
+&apos;销售订单 单据号 &apos; + T0.vreceiptcode + &apos; 客商编码 &apos; + T4.custcode + &apos; 客商名称 &apos; + T4.custname as &quot;TITLE&quot;,
+&apos;所属公司 &apos; + T1.unitname + &apos; 单据号 &apos; + T0.vreceiptcode + &apos; 客商名称 &apos; + T4.custname + &apos; 客商编码 &apos; + T4.custcode + &apos; 单据日期 &apos; + T0.dbilldate + &apos; 销售组织 &apos; + T6.vsalestruname + &apos; 部门 &apos; + T2.deptname + &apos; 业务员 &apos; + T5.psnname + &apos; 制单人 &apos; + T7.user_name as &quot;CONTENT&quot;,
+T0.pk_corp as &quot;CORPID&quot;,
+T1.unitname as &quot;CORP&quot;,
+T2.deptname as &quot;DEPT&quot;,
+T4.custname as &quot;CUST&quot;,
+T0.vreceiptcode as &quot;BILLCODE&quot;,
+T7.user_name as &quot;BILLMAKER&quot;,
+T0.dbilldate as &quot;MAKEDATE&quot;</selectSql>
+    <fromSql> from 
+so_sale T0 left outer join bd_corp T1 on T0.pk_corp = T1.pk_corp 
+  left outer join bd_deptdoc T2 on T0.cdeptid = T2.pk_deptdoc 
+  left outer join bd_cumandoc T3 on T0.ccustomerid = T3.pk_cumandoc 
+  left outer join bd_cubasdoc T4 on T3.pk_cubasdoc = T4.pk_cubasdoc 
+  left outer join bd_psndoc T5 on T0.cemployeeid = T5.pk_psndoc 
+  left outer join bd_salestru T6 on T0.csalecorpid = T6.csalestruid 
+  left outer join sm_user T7 on T0.coperatorid = T7.cuserid 
+   where T0.dr=0  
+ </fromSql>
+  </parentElement>
+  <childrenElements>
+    <nc.vo.ses.sesobject.SesElement>
+      <beanID>4fda785e-ff37-4778-a98e-1d0b8622017c</beanID>
+      <tableName>so_saleorder_b</tableName>
+      <fields>
+        <nc.vo.ses.sesobject.field.SesField>
+          <code>TITLE</code>
+          <name>标题</name>
+          <type reference="../../../../../parentElement/fields/nc.vo.ses.sesobject.field.SesField/type"/>
+          <isACL>false</isACL>
+        </nc.vo.ses.sesobject.field.SesField>
+        <nc.vo.ses.sesobject.field.SesField>
+          <code>CONTENT</code>
+          <name>内容</name>
+          <type reference="../../../../../parentElement/fields/nc.vo.ses.sesobject.field.SesField/type"/>
+          <isACL>false</isACL>
+        </nc.vo.ses.sesobject.field.SesField>
+      </fields>
+      <selectSql>select 
+&apos;销售订单明细&apos; as &quot;TITLE&quot;,
+&apos;存货编码 &apos; + T1.invcode + &apos; 存货名称 &apos; + T1.invname as &quot;CONTENT&quot;</selectSql>
+      <fromSql> from 
+so_saleorder_b T0 left outer join bd_invbasdoc T1 on T0.cinvbasdocid = T1.pk_invbasdoc 
+  where T0.dr=0  
+ </fromSql>
+    </nc.vo.ses.sesobject.SesElement>
+  </childrenElements>
+  <beanID__fk__map>
+    <entry>
+      <string>4fda785e-ff37-4778-a98e-1d0b8622017c</string>
+      <string>csaleid</string>
+    </entry>
+    <entry>
+      <string>e2bc1226-81bc-45c7-b387-99d21433335b</string>
+      <string>csaleid</string>
+    </entry>
+  </beanID__fk__map>
+</nc.vo.ses.sesobject.SesSource>

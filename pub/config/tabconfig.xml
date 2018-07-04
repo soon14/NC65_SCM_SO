@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:dbCacheConfig activate="true" configurable="true" lfuMax="10000"
+    refreshInterval="30" autoRefresh="false" appliable="false"
+    tableType="MEMORY" pagedSize="1000" xmlns:ns2="http://www.ufida.com.cn/NC/dbcache/cacheconfig">
+    <table name="so_m4331trantype" strategy="FULL" primaryKey="pk_trantype">
+    	<column name="pk_trantype" system="false"/>
+        <column name="pk_group" system="false"/>
+        <column name="vtrantypecode" system="false"/>
+        <column name="bonceoutflag" system="false"/>
+        <column name="ctrantypeid" system="false"/>
+        <column name="dr" system="false"/>
+        <filterSql><![CDATA[]]></filterSql>
+    </table>
+    <table name="so_m30trantype" strategy="FULL" primaryKey="pk_trantype">
+    	<column name="pk_trantype" system="false"/>
+        <column name="ctrantypeid" system="false"/>
+        <column name="fdirecttype" system="false"/>
+        <column name="fsalemode" system="false"/>
+        <column name="bmorerows" system="false"/>
+        <column name="bcanchangeout" system="false"/>
+        <column name="faskqtrule" system="false"/>
+        <column name="bmodifyaskedqt" system="false"/>
+        <column name="bmodifyunaskedqt" system="false"/>
+        <column name="flargessgetqtrule" system="false"/>
+        <column name="bmodifydiscount" system="false"/>
+        <column name="pk_group" system="false"/>
+        <column name="vtrantypecode" system="false"/>
+        <column name="breviseprice" system="false"/>
+        <column name="bredorderpay" system="false"/>
+        <column name="flargessdistype" system="false"/>
+        <column name="blargesspriceno" system="false"/>
+        <column name="barrangeinv" system="false"/>
+        <column name="barrangeout" system="false"/>
+        <column name="bnofindpricehit" system="false"/>
+        <column name="fmodifymny" system="false"/>
+        <column name="blossrenew" system="false"/>
+        <column name="dr" system="false"/>
+        <filterSql><![CDATA[]]></filterSql>
+    </table>
+    <table name="so_m38trantype" strategy="FULL" primaryKey="pk_trantype">
+    	<column name="pk_trantype" system="false"/>
+        <column name="bmorerows" system="false"/>
+        <column name="faskqtrule" system="false"/>
+        <column name="bmodifyaskedqt" system="false"/>
+        <column name="bmodifyunaskedqt" system="false"/>
+        <column name="bnofindpricehit" system="false"/>
+        <column name="flargessgetqtrule" system="false"/>
+        <column name="bmodifydiscount" system="false"/>
+        <column name="barrange" system="false"/>
+        <column name="pk_group" system="false"/>
+        <column name="ctrantypeid" system="false"/>
+        <column name="vtrantypecode" system="false"/>
+        <column name="fmodifymny" system="false"/>
+        <column name="dr" system="false"/>
+        <filterSql><![CDATA[]]></filterSql>
+    </table>
+    <table name="so_m32trantype" strategy="FULL" primaryKey="pk_trantype">
+    	<column name="pk_trantype" system="false"/>
+        <column name="ctrantypeid" system="false"/>
+        <column name="pk_group" system="false"/>
+        <column name="vtrantypecode" system="false"/>
+        <column name="fadjuster" system="false"/>
+        <column name="dr" system="false"/>
+        <filterSql><![CDATA[]]></filterSql>
+    </table>
+    <table name="so_m35trantype" strategy="FULL" primaryKey="pk_trantype">
+    	<column name="pk_trantype" system="false"/>
+        <column name="ctrantypeid" system="false"/>
+        <column name="pk_group" system="false"/>
+        <column name="vtrantypecode" system="false"/>
+        <column name="bsubinvcustflag" system="false"/>
+        <column name="bsubsaleorgflag" system="false"/>
+        <column name="fpaymentflag" system="false"/>
+        <column name="boffsetorderflag" system="false"/>
+        <column name="boffsetinvoiceflag" system="false"/>
+        <column name="bautovoucherflag" system="false"/>
+        <column name="dr" system="false"/>
+        <filterSql><![CDATA[]]></filterSql>
+    </table>
+</ns2:dbCacheConfig>

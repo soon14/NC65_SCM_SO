@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+	<public>
+		<!--销售订单维护-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.self.ISaleOrderMaintain</interface>
+			<implementation>nc.impl.so.m30.self.SaleOrderMaintainImpl</implementation>
+		</component>
+		<!--销售订单关闭管理维护-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.closemanage.ISaleOrderCloseManageMaintain</interface>
+			<implementation>nc.impl.so.m30.closemanage.SaleOrderCloseManageMaintainImpl</implementation>
+		</component>
+		<!--销售组织委托关系服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.ISaleOrgPubService</interface>
+			<implementation>nc.impl.so.m30.SaleOrgPubServiceImpl</implementation>
+		</component>
+		<!--销售订单交易类型-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30trantype.IM30TranTypeService</interface>
+			<implementation>nc.itf.so.m30trantype.M30TranTypeServiceImpl</implementation>
+			<extension class="nc.bs.framework.server.ClientWeaverExtensionProcessor">
+				<wrapWeaver>
+					<wrapper>nc.itf.so.m30trantype.M30TranTypeServiceImpl</wrapper>
+				</wrapWeaver>
+			</extension>
+		</component>
+		<!--销售订单交易类型(自己用的)-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30trantype.IM30TranTypeSelfService</interface>
+			<implementation>nc.pubimpl.so.m30arrange.M30TranTypeSelfServiceImpl</implementation>
+		</component>
+		<!--销售订单供预订单安排推式保存服务接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.m38.IPushSave30For38Arrange</interface>
+			<implementation>nc.pubimpl.so.m30.so.m38.PushSave30For38ArrangeImpl</implementation>
+		</component>
+		<!--销售订单发货安排查询-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.m4331.IQueryFor4331Arrange</interface>
+			<implementation>nc.pubimpl.so.m30.so.m4331.QueryFor4331ArrangeImpl</implementation>
+		</component>
+		<!--销售订单补货直运安排维护-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.arrange.IM30ArrangeMaintain</interface>
+			<implementation>nc.impl.so.m30.arrange.M30ArrangeMaintainImpl</implementation>
+		</component>
+		<!--销售结算回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.m33.IRewrite30For33</interface>
+			<implementation>nc.pubimpl.so.m30.so.m33.Rewrite30For33Impl</implementation>
+		</component>
+		<!--出库回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.ic.m4c.IRewrite30For4C</interface>
+			<implementation>nc.pubimpl.so.m30.ic.m4c.Rewrite30For4CImpl</implementation>
+		</component>
+		<!--发货单回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.m4331.IRewrite30For4331</interface>
+			<implementation>nc.pubimpl.so.m30.so.m4331.Rewrite30For4331Impl</implementation>
+		</component>
+		<!--发票回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.m32.IRewrite30For32</interface>
+			<implementation>nc.pubimpl.so.m30.so.m32.Rewrite30For32Impl</implementation>
+		</component>
+		<!--请购单回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30arrange.po.m20.IRewrite30For20</interface>
+			<implementation>nc.pubimpl.so.m30arrange.Rewrite30ArrangeImpl</implementation>
+		</component>
+		<!--采购订单回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30arrange.po.m21.IRewrite30For21</interface>
+			<implementation>nc.pubimpl.so.m30arrange.Rewrite30ArrangeImpl</implementation>
+		</component>
+		<!--调入申请回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30arrange.to.m5a.IRewrite30For5A</interface>
+			<implementation>nc.pubimpl.so.m30arrange.Rewrite30ArrangeImpl</implementation>
+		</component>
+		<!--调拨订单回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30arrange.to.m5x.IRewrite30For5X</interface>
+			<implementation>nc.pubimpl.so.m30arrange.Rewrite30ArrangeImpl</implementation>
+		</component>
+		<!--委外订单回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30arrange.sc.m61.IRewrite30For61</interface>
+			<implementation>nc.pubimpl.so.m30arrange.Rewrite30ArrangeImpl</implementation>
+		</component>
+		<!--生产订单回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30arrange.mm.m55a2.IRewrite30For55A2</interface>
+			<implementation>nc.pubimpl.so.m30arrange.Rewrite30ArrangeImpl</implementation>
+		</component>
+		<!--计划订单回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30arrange.mmpps.plo.IRewrite30For55B4</interface>
+			<implementation>nc.pubimpl.so.m30arrange.Rewrite30ArrangeImpl</implementation>
+		</component>
+		<!--退货订单回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.withdraw.IRewriteSaleOrderByWithdraw</interface>
+			<implementation>nc.pubimpl.so.m30.so.withdraw.RewriteSaleOrderByWitdrawImpl</implementation>
+		</component>
+		<!--预留回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.ic.m4480.IRewrite30For4480</interface>
+			<implementation>nc.pubimpl.so.m30.ic.m4480.Rewrite30For4480Impl</implementation>
+		</component>
+		<!--途损单回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.ic.m4453.IRewrite30For4453</interface>
+			<implementation>nc.pubimpl.so.m30.ic.m4453.Rewrite30For4453Impl</implementation>
+		</component>
+		<!--销售订单结算关闭服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.balend.ISaleOrderBalEndSrv</interface>
+			<implementation>nc.pubimpl.so.m30.balend.SaleOrderBalEndSrv</implementation>
+		</component>
+		<!--销售订单修订服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.revise.IM30ReviseMaintain</interface>
+			<implementation>nc.impl.so.m30.revise.M30ReviseMaintainImpl</implementation>
+		</component>
+		<!--销售订单收款-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.sobalance.ISOBalanceQuery</interface>
+			<implementation>nc.impl.so.m30.sobalance.SOBalanceQueryImpl</implementation>
+		</component>
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.sobalance.ISOBalanceMaintain</interface>
+			<implementation>nc.impl.so.m30.sobalance.SOBalanceMaintainImpl</implementation>
+		</component>
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.sobalance.ISOBalanceQueryForArap</interface>
+			<implementation>nc.pubimpl.so.m30.sobalance.SoBalanceQueryImpl</implementation>
+		</component>
+		<!--采购订单推式生成销售订单-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.pu.m21.IPush21To30</interface>
+			<implementation>nc.pubimpl.so.m30.pu.m21.PushM21ToM30Impl</implementation>
+		</component>
+		<!--销售订单给采购订单提供的查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.pu.m21.ISaleorderQryFor21</interface>
+			<implementation>nc.pubimpl.so.m30.pu.m21.SaleorderQryFor21Impl</implementation>
+		</component>
+		<!--销售订单给TO提供的查询单价接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.to.pub.IQuery30PriceForTO</interface>
+			<implementation>nc.pubimpl.so.m30.to.pub.Query30PriceForTOImpl</implementation>
+		</component>
+		<!--销售订单提供给存货核算接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.ia.pub.ISaleOrderForIA</interface>
+			<implementation>nc.pubimpl.so.m30.ia.pub.SaleOrderForIAImpl</implementation>
+		</component>
+		<!--销售订单相关业务接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.self.ISaleOrderBusi</interface>
+			<implementation>nc.impl.so.m30.self.SaleOrderBusiImpl</implementation>
+		</component>
+		<!--销售订单提供生产制造MPS运算接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mmpps.calc.ISaleOrderForMPS</interface>
+			<implementation>nc.pubimpl.so.m30.mmpps.calc.SaleOrderForMPSImpl</implementation>
+		</component>
+		<!--销售订单为库存计划提供接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.invp.ISaleOrderForInvp</interface>
+			<implementation>nc.pubimpl.so.m30.invp.SaleOrderForInvpImpl</implementation>
+		</component>
+		<!--销售订单为生产制造装配订单提供接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mm.mmpac.ISaleOrderForMMPac</interface>
+			<implementation>nc.pubimpl.so.m30.mm.mmpac.SaleOrderForMMPacImpl</implementation>
+		</component>
+		<!--销售订单为途损单提供接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.ic.m4453.ISaleOrderFor4453</interface>
+			<implementation>nc.pubimpl.so.m30.ic.m4453.SaleOrderFor4453Impl</implementation>
+		</component>
+		<!--销售订单为销售合同提供接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.ct.mz3.ISaleOrderForZ3</interface>
+			<implementation>nc.pubimpl.so.m30.ct.mz3.SaleOrderForZ3Impl</implementation>
+		</component>
+		<!--销售订单为发货单提供接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.m4331.ISaleOrderFor4331</interface>
+			<implementation>nc.pubimpl.so.m30.so.m4331.SaleOrderFor4331Impl</implementation>
+		</component>
+		<!--销售订单为出库单提供接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.ic.m4c.ISaleOrderFor4C</interface>
+			<implementation>nc.pubimpl.so.m30.ic.m4c.SaleOrderFor4CImpl</implementation>
+		</component>
+		<!--销售订单为销售结算提供接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.m33.ISaleOrderFor33</interface>
+			<implementation>nc.pubimpl.so.m30.so.m33.SaleOrderFor33Impl</implementation>
+		</component>
+		<!--协同时采购订单回写销售订单接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.pu.m21.IRewrite30For21</interface>
+			<implementation>nc.pubimpl.so.m30.pu.m21.Rewrite30For21Impl</implementation>
+		</component>
+		<!--销售订单提供调入申请接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.to.m5a.ISaleOrderFor5A</interface>
+			<implementation>nc.pubimpl.so.m30.to.m5a.SaleOrderFor5AImpl</implementation>
+		</component>
+		<!--销售订单提供销售发票接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.m32.ISaleOrderFor32</interface>
+			<implementation>nc.pubimpl.so.m30.so.m32.SaleOrderFor32Impl</implementation>
+		</component>
+		<!--销售订单提供采购订单接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.pu.m21.ISaleOrderFor21</interface>
+			<implementation>nc.pubimpl.so.m30.pu.m21.SaleOrderFor21Impl</implementation>
+		</component>
+		<!--销售订单提供请购单接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.pu.m20.ISaleOrderFor20</interface>
+			<implementation>nc.pubimpl.so.m30.pu.m20.SaleOrderFor20Impl</implementation>
+		</component>
+		<!--销售订单提供内部交易公共接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.to.pub.ISaleOrderForTO</interface>
+			<implementation>nc.pubimpl.so.m30.to.pub.SaleOrderForTOImpl</implementation>
+		</component>
+		<!--销售订单提供订单核销接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.balance.IRewrite30ForBalance</interface>
+			<implementation>nc.pubimpl.so.m30.so.balance.Rewrite30ForBalanceImpl</implementation>
+		</component>
+		<!--销售订单提供运输单接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.dm.m4804.ISaleOrderFor4804</interface>
+			<implementation>nc.pubimpl.so.m30.dm.m4804.SaleOrderFor4804Impl</implementation>
+		</component>
+		<!--销售订单提供订单核销关系接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.balance.ISaleOrderForBalance</interface>
+			<implementation>nc.pubimpl.so.m30.so.balance.SaleOrderForBalanceImpl</implementation>
+		</component>
+		<!--销售订单提供按照业务委托关系分单接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.split.ISaleOrderOrgRelaSplit</interface>
+			<implementation>nc.pubimpl.so.m30.split.SaleOrderOrgRelaSplitImpl</implementation>
+		</component>
+		<!--销售订单毛利预估接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.profit.ISaleOrderProfitCal</interface>
+			<implementation>nc.impl.so.m30.profit.SaleOrderProfitCalImpl</implementation>
+		</component>
+		<!--根据客户、销售组织及物料获取行上的发货库存组织、结算财务组织ID、应收组织ID、利润中心ID、默认物流组织接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.IQueryRelationOrg</interface>
+			<implementation>nc.impl.so.m30.QueryRelationOrgImpl</implementation>
+		</component>
+		<!--补货/直运提供给下游查询销售订单接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30arrange.IM30ArrangeForPub</interface>
+			<implementation>nc.pubimpl.so.m30arrange.M30ArrangeForPubImpl</implementation>
+		</component>
+		<!--销售订单提供核销监听接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.balance.IRewrite30ForVerify</interface>
+			<implementation>nc.pubimpl.so.m30.so.balance.Rewrite30ForVerifyImpl</implementation>
+		</component>
+
+		<!--销售订单提供外部的公共接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.pub.ISaleOrderForPub</interface>
+			<implementation>nc.pubimpl.so.m30.pub.SaleOrderForPubImpl</implementation>
+		</component>
+
+		<!--销售订单提供给生产管理的接口-->
+		<component remote="true" tx="NONE" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mmdp.sop.ISaleOrderForSop</interface>
+			<implementation>nc.pubimpl.so.m30.mmdp.sop.SaleOrderForSopImpl</implementation>
+		</component>
+		<component remote="true" tx="NONE" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mmdp.pid.ISaleOrderForPid</interface>
+			<implementation>nc.pubimpl.so.m30.mmdp.pid.SaleOrderForPidImpl</implementation>
+		</component>
+		<component remote="true" tx="NONE" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mmdp.aid.ISaleOrderForAid</interface>
+			<implementation>nc.pubimpl.so.m30.mmdp.aid.SaleOrderForAidImpl</implementation>
+		</component>
+		<component remote="true" tx="NONE" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mmdp.altc.IQueryToExcuteSaleOrderViewVOs</interface>
+			<implementation>nc.pubimpl.so.m30.mmdp.altc.QueryToExcuteSaleOrderViewVOsImpl</implementation>
+		</component>
+		<!--销售订单提供给订单统一处理中心的接口：根据订单统一处理中心预订单头ID、行ID获取下游销售订单头ID、行ID-->
+		<component remote="true" tx="NONE" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.opc.mecc.ISaleOrderQueryForMecc</interface>
+			<implementation>nc.pubimpl.so.m30.opc.mecc.SaleOrderQueryForMeccImpl</implementation>
+		</component>
+
+		<!--销售订单提供给订单统一处理中心的接口：推式生成销售订单-->
+		<component remote="true" tx="NONE" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.opc.mecc.IPushSave30ForOPCArrange</interface>
+			<implementation>nc.pubimpl.so.m30.opc.mecc.PushSave30ForOPCArrangeImpl</implementation>
+		</component>
+		<!--销售订单提供给操作脚本的接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m30.self.ISaleOrderScriptMaintain</interface>
+			<implementation>nc.impl.so.m30.self.SaleOrderScriptMaintainImpl</implementation>
+		</component>
+		<!--销售订单我的订单查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mobile.IMySaleOrderQuery</interface>
+			<implementation>nc.pubimpl.so.m30.mobile.MySaleOrderQueryImpl</implementation>
+		</component>
+		<!--销售订单为生产制造提供的接口SA-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mmpps.planbusi.IQuerySaleOrderMapForSA</interface>
+			<implementation>nc.pubimpl.so.m30.mmpps.planbusi.QuerySaleOrderMapForSAImpl</implementation>
+		</component>
+		<!--销售订单为生产制造提供的接口DT-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mmdp.dt.IQuerySaleOrderMapForDT</interface>
+			<implementation>nc.pubimpl.so.m30.mmdp.dt.QuerySaleOrderMapForDTImpl</implementation>
+		</component>
+	       <!--销售订单为返利提供的预置函数-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.sr.formula.so.saleorder.ISaleOrderSRFormula</interface>
+			<implementation>nc.pubimpl.so.m30.sr.formula.SaleOrderSRFormulaImpl</implementation>
+		</component>
+	       <!--订单核销为返利提供的预置函数-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.sr.formula.so.sobalance.ISOBalanceSRFormula</interface>
+			<implementation>nc.pubimpl.so.m30.sr.formula.SOBalanceSRFormulaImpl</implementation>
+		</component>
+		<!-- 为报价单提供查询销售订单服务 -->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.so.m4310.IQuery30For4310</interface>
+			<implementation>nc.pubimpl.so.m30.so.m4310.Query30For4310Impl</implementation>
+		</component>
+		<!--销售订单导入公共接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.api.ISaleOrderExternal</interface>
+			<implementation>nc.impl.so.m30.api.SaleOrderExternalImpl</implementation>
+		</component>
+		<!--销售订单为离散制造提供的单据追溯接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.mmpps.lotreg.IQuerySaleOrderForLotreg</interface>
+			<implementation>nc.pubimpl.so.m30.mmpps.lotreg.QuerySaleOrderForLotRegImpl</implementation>
+		</component>
+		<!--销售订单为CRM提供的查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.crm.ISaleOrderQueryForCRM</interface>
+			<implementation>nc.pubimpl.so.m30.crm.SaleOrderQueryForCRMImpl</implementation>
+		</component>
+		<!--销售订单针对外模块生成销售订单时提供的补全数据接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.pub.ISaleOrderFillDataForPub</interface>
+			<implementation>nc.pubimpl.so.m30.pub.SaleOrderFillDataForPubImpl</implementation>
+		</component>
+		<!--进口合同回写销售订单服务-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.it.m5801.IRewrite30For5801</interface>
+			<implementation>nc.pubimpl.so.m30.it.m5801.Rewrite30For5801Impl</implementation>
+		</component>
+		<!--销售订单提供给库存单据触发客户费用单传凭证接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.ic.pub.IArsubToVoucherForIC</interface>
+			<implementation>nc.pubimpl.so.m30.ic.pub.ArsubToVoucherForICImpl</implementation>
+		</component>
+		<!--销售提供给B2B预订单的查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m30.opc.b2b.ISaleOrderQueryForB2B</interface>
+			<implementation>nc.pubimpl.so.m30.opc.b2b.SaleOrderQueryForB2BImpl</implementation>
+		</component>
+		<!--销售订单分页查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="true">
+			<interface>nc.itf.so.m30.self.ISaleOrderMaintainApp</interface>
+			<implementation>nc.impl.so.m30.self.SaleOrderMaintainAppImpl</implementation>
+		</component>
+		<!--销售订单修订分页查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="true">
+			<interface>nc.itf.so.m30.revise.ISaleOrderReviseMaintainApp</interface>
+			<implementation>nc.impl.so.m30.revise.SaleOrderReviseMaintainAppImpl</implementation>
+		</component>
+</public>
+</module>

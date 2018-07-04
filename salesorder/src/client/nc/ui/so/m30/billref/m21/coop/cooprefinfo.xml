@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="queryAction" class="nc.ui.so.m30.billref.m21.coop.CoopQueryAction">
+		<property name="refContext" ref="refContext"></property>
+	</bean>
+	<!-- 转单参照单据信息 -->
+	<bean id="refInfo" class="nc.ui.pubapp.billref.src.RefInfo">
+		<property name="userdefitemListPreparator" ref="userdefitemListPreparator" />
+		<property name="singleUserdefitemListPreparator" ref="singleUserdefitemListPreparator" />
+		<property name="headVO">
+			<bean class="nc.vo.so.m30.entity.SaleOrderHVO">
+			</bean>
+		</property>
+		<property name="bodyVO">
+			<bean class="nc.vo.so.m30.entity.SaleOrderBVO">
+			</bean>
+		</property>
+		<property name="billVO">
+			<bean class="nc.vo.so.m30.entity.SaleOrderVO">
+			</bean>
+		</property>
+		<property name="viewVO">
+   			<bean class="nc.vo.so.m30.entity.SaleOrderViewVO">
+   			</bean>
+  		</property>
+		<property name="billNodeKey" value ="CoopOn30_C"></property>
+		<property name="billViewNodeKey" value ="CoopOn30_L"></property>
+		<property name="sourcevoPkName" value ="csaleorderid"></property>
+		<property name="sourcevoBillNOName" value ="vbillcode"></property>
+
+		<!-- 单据查询服务 nc.ui.pubapp.uif2app.model.IQueryService -->
+		<property name="queryService">		
+			<bean class="nc.ui.so.m30.billui.model.QueryServiceForCoop">
+			</bean>
+		</property>
+		<!-- 单据参照UI初始化处理器，可以处理精度，显示或其它-->
+		<property name="refBillPanelInit">
+			<bean class="nc.ui.so.m30.billref.m21.coop.CoopUIInit">
+			</bean>
+		</property>
+		<!-- 转单界面过滤项 -->
+		<property name="defaultFilterItem">
+	   		<list>
+	   			<value>vbillcode</value>
+	   			<value>dbilldate</value>
+	   		</list>
+	  	 </property>
+	</bean>
+    	<!-- 主子表自定义项配置 -->
+	<bean id="userdefitemListPreparator" class="nc.ui.pubapp.uif2app.view.CompositeBillListDataPrepare">
+		<property name="billListDataPrepares">
+			<list>
+				<ref bean="listPreparator" />
+				<ref bean="marAsstPreparator" />
+			</list>
+		</property>
+	</bean>
+	<!-- 主子表自定义项处理 -->
+	<bean name="listPreparator" class="nc.ui.uif2.editor.UserdefitemContainerListPreparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam"> 
+					<property name="rulecode" value="30_H" /> 
+					<property name="pos" value="0" /> 
+					<property name="prefix" value="vdef" />
+				</bean>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam"> 
+					<property name="rulecode" value="30_B" /> 
+					<property name="pos" value="1" /> 
+					<property name="prefix" value="vbdef" /> 
+					<property name="tabcode" value="bodytable1" />
+				</bean> 
+			</list>
+		</property>
+	</bean>
+	<!-- 单表自定义项处理 -->
+	<bean name="singleListPreparator" class="nc.ui.uif2.editor.UserdefitemContainerListPreparator">
+		<property name="container" ref="userdefitemContainer" />
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam"> 
+					<property name="rulecode" value="30_H" /> 
+					<property name="pos" value="0" /> 
+					<property name="prefix" value="vdef" />
+				</bean>
+				<bean class="nc.ui.uif2.editor.UserdefQueryParam"> 
+					<property name="rulecode" value="30_B" /> 
+					<property name="pos" value="0" /> 
+					<property name="prefix" value="vbdef" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+		<!-- 物料辅助属性组件配置 -->
+	<bean id="marAsstPreparator" class="nc.ui.pubapp.billref.push.MarAsstBillRefPushPreparator">
+		<property name="container" ref="userdefitemContainer" /> 
+		<property name="prefix" value="vfree" /> 
+		<property name="materialField" value="cmaterialid" />
+		<!-- 以下四个为物料固定辅助属性，可以选择配置 -->
+		<!-- <property name="storeStateField" value="cstateid" /> -->
+		<property name="projectField" value="cprojectid" />
+		<property name="supplierField" value="cvendorid" />
+		<property name="productorField" value="cproductorid" />
+	</bean>
+	<!-- 单表自定义项配置 -->
+	<bean id="singleUserdefitemListPreparator" class="nc.ui.pubapp.uif2app.view.CompositeBillListDataPrepare">
+		<property name="billListDataPrepares">
+			<list>
+				<ref bean="singleListPreparator" />
+				<ref bean="marAsstPreparator" />
+			</list>
+		</property>
+	</bean>
+	<bean id="userdefitemContainer"
+		class="nc.ui.pubapp.billref.src.editor.BillRefUserDefItemContainer">
+		<property name="params">
+			<list>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam"> 
+					<property name="rulecode" value="30_H" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam"> 
+					<property name="rulecode" value="30_B" />
+				</bean>
+				<bean class="nc.ui.uif2.userdefitem.QueryParam">
+					<property name="rulecode" value="materialassistant" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>

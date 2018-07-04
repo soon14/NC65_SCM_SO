@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module>
+	<public>
+		<component name="cgag000002">
+			<interface>nc.itf.so.m30.msg.IMsgCgag000002</interface>
+			<implementation>nc.impl.so.m30.msg.MsgCgag000002Impl</implementation>
+			<extension class="nc.uap.ws.deploy.OxbWSExtensionProcessor">
+				<wsdl>/nc/itf/so/m30/msg/IMsgCgag000002.wsdl</wsdl>
+				<address>/cgag000002</address>
+			</extension>
+		</component>
+	</public>
+	<private>
+	</private>
+</module>

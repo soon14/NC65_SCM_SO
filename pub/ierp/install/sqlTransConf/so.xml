@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="gb2312"?>
+<sqltransconf>
+  <tables>
+    <table name="so_m35trantype" pk="pk_trantype" />
+  </tables>
+</sqltransconf>

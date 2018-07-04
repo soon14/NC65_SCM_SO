@@ -1,0 +1,4 @@
+"*导入须知:;1.表格中不能增、删、改列及固有内容;2.所有内容必须为文本格式;表格中有多个档案名称字段是为了实现多语,如果没有多语只录第一个名称字段即可;3.枚举项输入错误时，则按默认值处理;勾选框的导入需输入N、Y;4.导入带有子表的档案时,表格中主表与子表之间必须有一空行,且主、子表对应数据需加上相同的行号",,,,,,,,,,,,,
+"""checkitem,pk_checkitem,moduleid,code,name,pk_checktype,associpoint,checkattr,isexecute,checkstrategy,ispreset,checklinkpoint,checkpanel,checkclass,checkonclose""",月结检查项主键,所属模块,检查项编码,检查项名称,检查项类别,关联节点,检查项属性,执行,检查策略,预置,检查环节,检查项界面,服务器端检查项,关账时检查
+,1001Z81000000003QINN,2014,20141636,~,201408,1001Z81000000003UPTZ,1,Y,2,Y,0,nc.ui.so.pub.closingcheck.IACloseCheckPanel,nc.pubimpl.so.m33.closingcheck.BackstageClosingCheck,N
+,1001Z81000000003QING,2014,20141634,~,201408,1001Z81000000003UPTV,1,Y,2,Y,0,nc.ui.so.pub.closingcheck.IACloseCheckPanel,nc.pubimpl.so.m32.closingcheck.BackstageClosingCheck,N

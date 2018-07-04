@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding='gb2312'?>
+<items docType="SDP_SCRIPT_ITEM">
+
+	<item>
+		<itemKey>0001</itemKey>
+		<itemName>单据模版</itemName>
+		<itemRule>pub_billtemplet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>nodecode</grpField>
+		<fixedWhere>bill_templetname='SYSTEM' and nodecode like '400602%'
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0002</itemKey>
+		<itemName>查询模版</itemName>
+		<itemRule>pub_query_templet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>node_code</grpField>
+		<fixedWhere>node_code like '400602%' and pk_corp = '@@@@'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0002</itemKey>
+		<itemName>打印模版</itemName>
+		<itemRule>pub_print_template</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>vnodecode</grpField>
+		<fixedWhere>vnodecode = '40060201'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0003</itemKey>
+		<itemName>默认模版</itemName>
+		<itemRule>pub_systemplate_base</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>funnode</grpField>
+		<fixedWhere>funnode in ('40060201','40060202','40060203')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0004</itemKey>
+		<itemName>单据类型</itemName>
+		<itemRule>bd_billtype</itemRule>
+		<sysField>systemcode</sysField>
+		<corpField></corpField>
+		<grpField>pk_billtypecode</grpField>
+		<fixedWhere>pk_billtypecode = '38' or (pk_billtypecode = '38-01' and
+			pk_group = 'global00000000000000')</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0005</itemKey>
+		<itemName>功能节点</itemName>
+		<itemRule>sm_funcregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>funcode like '400602%' or funcode='1317SCM70'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0006</itemKey>
+		<itemName>单据号对象</itemName>
+		<itemRule>pub_bcr_nbcr</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere> code ='38'</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0008</itemKey>
+		<itemName>交易类型</itemName>
+		<itemRule>so_m38trantype</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>vtrantypecode = '38-01' and pk_group =
+			'global00000000000000'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0009</itemKey>
+		<itemName>自定义菜单</itemName>
+		<itemRule>sm_menuitemreg</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>menuitemcode like '400905%' or menuitemcode='13171070'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>BD111</itemKey>
+		<itemName>用户自定义项</itemName>
+		<itemRule>bd_userdefrule</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>code in ('38_H','38_B')</fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0010</itemKey>
+		<itemName>事件类型</itemName>
+		<itemRule>pub_eventtype</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>sourceid='575c639d-8dcb-4692-b151-c91f38525c70'</fixedWhere>
+	</item>
+</items>

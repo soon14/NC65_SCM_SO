@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding='gb2312'?>
+<items docType="SDP_SCRIPT_ITEM">
+
+	<item>
+		<itemKey>0001</itemKey>
+		<itemName>单据模版</itemName>
+		<itemRule>pub_billtemplet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>nodecode</grpField>
+		<fixedWhere>bill_templetname='SYSTEM' and nodecode like '40060501%'
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0002</itemKey>
+		<itemName>查询模版</itemName>
+		<itemRule>pub_query_templet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>node_code</grpField>
+		<fixedWhere>node_code in ('40060501','40060503')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0003</itemKey>
+		<itemName>打印模版</itemName>
+		<itemRule>pub_print_template</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>vnodecode</grpField>
+		<fixedWhere>vnodecode = '40060501'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0004</itemKey>
+		<itemName>默认模版</itemName>
+		<itemRule>pub_systemplate_base</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>funnode</grpField>
+		<fixedWhere>funnode in ('40060501','40060503','40060505','40060506')
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0005</itemKey>
+		<itemName>单据类型</itemName>
+		<itemRule>bd_billtype</itemRule>
+		<sysField>systemcode</sysField>
+		<corpField></corpField>
+		<grpField>pk_billtypecode</grpField>
+		<fixedWhere>pk_billtypecode in('32','32-01','32-02') and pk_group in
+			('global00000000000000','~') </fixedWhere>
+	</item>
+
+	<item>
+		<itemKey>0006</itemKey>
+		<itemName>功能节点</itemName>
+		<itemRule>sm_funcregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>funcode in
+			('400605','40060501','40060503','40060505','40060506')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0007</itemKey>
+		<itemName>单据号对象</itemName>
+		<itemRule>pub_bcr_nbcr</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere> code ='32'</fixedWhere>
+	</item>
+
+
+	<item>
+		<itemKey>0009</itemKey>
+		<itemName>数据交换</itemName>
+		<itemRule>pub_vochange</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>dest_billtype ='32' and pk_group = 'global00000000000000'
+		</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0010</itemKey>
+		<itemName>发票交易类型</itemName>
+		<itemRule>so_m32trantype</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>vtrantypecode in ('32-01','32-02') and pk_group =
+			'global00000000000000'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0011</itemKey>
+		<itemName>自定义菜单</itemName>
+		<itemRule>sm_menuitemreg</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>menuitemcode like ('400926%')</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0012</itemKey>
+		<itemName>分单条件</itemName>
+		<itemRule>pub_vosplititem</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>dest_billtype = '32'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0013</itemKey>
+		<itemName>用户自定义项</itemName>
+		<itemRule>bd_userdefrule</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>code in ('32_H','32_B')</fixedWhere>
+	</item>
+
+	<!--item> <itemKey>FIP04</itemKey> <itemName>会计平台-单据项目</itemName> <itemRule>fip_billitem</itemRule> 
+		<sysField></sysField> <corpField></corpField> <grpField></grpField> <fixedWhere>pk_billtype 
+		in ('32') and pk_group = 'GLOBLE00000000000000'</fixedWhere> </item -->
+	<item>
+		<itemKey>FIP04</itemKey>
+		<itemName>会计平台-平台设置</itemName>
+		<itemRule>fip_config</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>src_billtype in ('32','32-01','32-02') and pk_group =
+			'GLOBLE00000000000000'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>FIP08</itemKey>
+		<itemName>会计平台-转换模板</itemName>
+		<itemRule>fip_transtemplate</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>src_billtype in ('32','32-01','32-02') and pk_group =
+			'GLOBLE00000000000000'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0014</itemKey>
+		<itemName>流程平台回写</itemName>
+		<itemRule>pub_writebacksetting</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere> pk_billtype ='32'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>0015</itemKey>
+		<itemName>流程平台回写预置规则</itemName>
+		<itemRule>pub_pluginitem</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere> vcomponentname ='component#32'</fixedWhere>
+	</item>
+</items>

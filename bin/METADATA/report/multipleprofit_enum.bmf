@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createIndustry="0" createTime="2012-10-18 13:25:36" creator="" description="" displayName="multipleprofit_enum" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="e0909820-4a7a-422f-a0a3-ac36fdf31194" industry="0" industryChanged="false" industryIncrease="false" industryName="基础行业" isSource="false" isbizmodel="false" mainEntity="" modifier="" modifyIndustry="0" modifyTime="2013-01-24 09:26:28" name="multipleprofit_enum" namespace="so" ownModule="so" preLoad="false" programcode="" resModuleName="4006005_2" resid="2400600503-0015" version="10" versionType="0">
+    <celllist>
+        <Enumerate componentID="e0909820-4a7a-422f-a0a3-ac36fdf31194" createIndustry="0" createTime="2012-10-18 13:31:43" creator="" dataType="BS000010000100001001" dbtype="varchar" description="" displayName="综合毛利分析汇总枚举" fullClassName="nc.voso.multipleprofit_enum.enum" height="304" help="" id="08832b1e-347f-4702-b139-d8b2ea9308cb" industryChanged="false" isSource="false" modInfoClassName="" modifier="" modifyIndustry="0" modifyTime="2013-01-24 09:26:28" name="enum" resid="2400600503-0012" typeDisplayName="String" typeName="String" versionType="0" visibility="public" width="131" x="85" y="58">
+            <enumitemlist>
+                <enumitem createIndustry="0" description="" enumDisplay="结算财务组织" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="pk_org" hidden="false" id="50dd81fa-fd1d-4b3c-a4d9-c7e88367b816" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0000" sequence="0" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="销售来源" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="sourcesystem" hidden="false" id="9a756efa-386e-48e7-a183-8756dcdc4eb4" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0002" sequence="1" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="销售组织" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="csaleorgid" hidden="false" id="d3ce2a1a-5028-43e9-8136-0fad9e4f95c6" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0006" sequence="2" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="部门" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="cdptid" hidden="false" id="19975b39-cae6-4df2-95e6-fa0051750409" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0010" sequence="3" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="业务员" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="cbizid" hidden="false" id="56e943d6-43cd-4da9-ab21-298e76f7d2e8" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0004" sequence="4" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="客户基本分类" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="pk_custclass" hidden="false" id="3ef29133-37d8-4390-b5d5-cc1cced280fd" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0003" sequence="5" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="客户销售分类" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="pk_custsaleclass" hidden="false" id="b4b8a982-0cab-4c7c-ad5e-0f9fa055c809" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0013" sequence="6" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="地区分类" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="pk_areacl" hidden="false" id="bcb8d413-fdb1-4bf5-85c7-b69e30d05410" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0001" sequence="7" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="订单客户" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="ccustomerid" hidden="false" id="a9fe842b-07f9-439d-a11c-bdd70ae7d663" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0008" sequence="8" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="产品线" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="cprodlineid" hidden="false" id="af3ecce2-6849-4e75-bdb3-1e8e618f8a89" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0009" sequence="9" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="物料基本分类" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="pk_marbasclass" hidden="false" id="c31a1c4a-407e-44b5-90b2-125b5dbe33de" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0011" sequence="10" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="物料销售分类" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="pk_marsaleclass" hidden="false" id="2fd349ef-5e59-45c5-8063-96e68e914282" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0005" sequence="11" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="物料" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="cmaterialid" hidden="false" id="c09fd781-cf94-40d3-8949-69f5c28547bf" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0014" sequence="12" versionType="0"/>
+                <enumitem createIndustry="0" description="" enumDisplay="批次" enumID="08832b1e-347f-4702-b139-d8b2ea9308cb" enumValue="vbatchcode" hidden="false" id="cb19714c-6357-422d-a54b-1b40ebd2686b" industryChanged="false" isSource="false" modifyIndustry="0" resid="2400600503-0007" sequence="13" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

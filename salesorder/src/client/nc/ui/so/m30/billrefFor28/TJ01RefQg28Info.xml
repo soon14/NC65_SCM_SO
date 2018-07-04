@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- 转单参照单据信息 -->
+	<bean id="refInfo" class="nc.ui.pubapp.billref.src.RefInfo">
+	    <!-- 上游单据主表 -->
+		<property name="headVO">
+			<bean class="nc.vo.pp.m28.entity.PriceAuditHeaderVO">	</bean>
+		</property>
+		<!-- 上游单据子表 -->
+		<property name="bodyVO">
+			<bean class="nc.vo.pp.m28.entity.PriceAuditItemVO">	</bean>
+		</property>
+		<!-- 上游单据聚合VO -->
+		<property name="billVO">
+			<bean class="nc.vo.pp.m28.entity.PriceAuditVO">  </bean>
+		</property>
+		<!-- 上游单据视图VO -->
+		<property name="viewVO">
+  			<bean class="nc.vo.pp.m28.entity.PriceAuditViewVO">   </bean>
+ 		</property>
+		<property name="billNodeKey" value ="28TO30"></property>
+		<property name="billViewNodeKey" value ="28TO30"></property>
+		<property name="sourcevoPkName" value ="csourcebillhid"></property>
+		<property name="sourcevoBillNOName" value ="vsourcebillcode"></property>
+		<property name="queryService">		
+			<bean class="nc.ui.so.m30.billrefFor28.QG30QueryServiceFor28">  </bean>
+		</property>
+	</bean> 
+</beans>

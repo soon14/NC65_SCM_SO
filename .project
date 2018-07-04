@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>SCM_SO</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.yonyou.studio.udt.core.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.yonyou.ria.g2.riabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.yonyou.uapstudio.build.check.buildcheckBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>com.yonyou.studio.udt.core.nature</nature>
+		<nature>com.yonyou.ria.g2.rianature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>so</name>
+			<type>2</type>
+			<location>E:/yonyou/home/module/so</location>
+		</link>
+	</linkedResources>
+</projectDescription>

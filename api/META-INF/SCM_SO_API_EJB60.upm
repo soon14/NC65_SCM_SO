@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+	<public>
+		<!--销售订单维护接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="true">
+		    <interface>nc.pubitf.so.m30.api.ISaleOrderMaintainAPI</interface>
+		    <implementation>nc.pubimpl.so.m30.api.SaleOrderMaintainAPIImpl</implementation>
+		</component>
+		
+		<!--销售订单查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="true">
+		    <interface>nc.pubitf.so.m30.api.ISaleOrderQueryAPI</interface>
+		    <implementation>nc.pubimpl.so.m30.api.SaleOrderQueryAPIImpl</implementation>
+		</component>
+		
+		  <!--买赠设置查询接口-->
+   	        <component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+                    <interface>nc.pubitf.so.mbuylagress.api.IGwpruleQueryAPI</interface>
+                    <implementation>nc.pubimpl.so.mbuylargess.api.GwpruleQueryAPIImpl</implementation>
+                </component>
+		  
+                 <!--报价单查询服务查询接口-->
+                <component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+                    <interface>nc.pubitf.so.m4310.api.ISaleQuotationQueryAPI</interface>
+                    <implementation>nc.pubimpl.so.m4310.api.SaleQuotationQueryAPIImpl</implementation>
+                </component>
+    
+		<!--销售发票查询服务接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+		    <interface>nc.pubitf.so.m32.api.ISaleinvoiceQueryAPI</interface>
+		    <implementation>nc.pubimpl.so.m32.api.SaleinvoiceQueryAPIImpl</implementation>
+		</component>
+		
+		<!--发货单查询服务接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="true">
+		    <interface>nc.pubitf.so.m4331.api.IDeliveryQueryAPI</interface>
+		    <implementation>nc.pubimpl.so.m4331.api.DeliveryQueryAPIImpl</implementation>
+		</component>
+	</public>
+</module>
+

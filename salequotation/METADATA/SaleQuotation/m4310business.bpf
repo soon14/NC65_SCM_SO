@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createTime="2011-04-13 13:55:50" creator="" description="" displayName="销售报价单业务操作" gencodestyle="NC传统样式" help="" id="34b2b1f7-209d-46de-91c0-8a74736929cf" isbizmodel="true" mainEntity="" modifier="" modifyTime="2012-03-19 16:01:20" name="m4310business" namespace="so" ownModule="so" preLoad="false" resModuleName="4006009_2" resid="2400600903-0000" version="17" versionType="0">
+    <celllist>
+        <busioperation componentID="34b2b1f7-209d-46de-91c0-8a74736929cf" createTime="2011-04-13 13:55:56" creator="" dataType="288c9102-654a-4dec-8832-8856edfc5dcd" dbtype="" description="" displayName="取消审批" fullClassName="nc.voso.m4310business.unapprove" height="100" help="" id="ea92d0b2-f53f-467b-a112-a8a928518406" isAuthorization="true" isBusiActivity="false" modifier="" modifyTime="2012-03-19 16:01:20" name="unapprove" resid="2400600903-0004" typeDisplayName="报价单表头" typeName="SalequotationHVO" version="" versionType="0" visibility="public" width="80" x="233" y="328">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="34b2b1f7-209d-46de-91c0-8a74736929cf" createTime="2011-04-13 14:52:56" creator="" dataType="288c9102-654a-4dec-8832-8856edfc5dcd" dbtype="" description="" displayName="打印" fullClassName="nc.voso.m4310business.print" height="100" help="" id="eec2fbc1-ceb2-44ba-98cd-33d7272f1f22" isAuthorization="true" isBusiActivity="false" modifier="" modifyTime="2012-03-19 16:01:20" name="print" resid="2400600903-0007" typeDisplayName="报价单表头" typeName="SalequotationHVO" version="" versionType="0" visibility="public" width="80" x="371" y="324">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="34b2b1f7-209d-46de-91c0-8a74736929cf" createTime="2011-04-13 14:53:00" creator="" dataType="288c9102-654a-4dec-8832-8856edfc5dcd" dbtype="" description="" displayName="删除" fullClassName="nc.voso.m4310business.delete" height="100" help="" id="dc85ece7-d4ad-4474-a8b5-5f02641c4d3c" isAuthorization="true" isBusiActivity="false" modifier="" modifyTime="2012-03-19 16:01:20" name="delete" resid="2400600903-0002" typeDisplayName="报价单表头" typeName="SalequotationHVO" version="" versionType="0" visibility="public" width="80" x="482" y="204">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="34b2b1f7-209d-46de-91c0-8a74736929cf" createTime="2011-04-13 14:53:01" creator="" dataType="288c9102-654a-4dec-8832-8856edfc5dcd" dbtype="" description="" displayName="修改" fullClassName="nc.voso.m4310business.edit" height="100" help="" id="fa02999f-c71a-4dcc-a5bf-a06970fd5007" isAuthorization="true" isBusiActivity="false" modifier="" modifyTime="2012-03-19 16:01:20" name="edit" resid="2400600903-0001" typeDisplayName="报价单表头" typeName="SalequotationHVO" version="" versionType="0" visibility="public" width="80" x="462" y="47">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="34b2b1f7-209d-46de-91c0-8a74736929cf" createTime="2011-04-13 14:53:03" creator="" dataType="288c9102-654a-4dec-8832-8856edfc5dcd" dbtype="" description="" displayName="审批" fullClassName="nc.voso.m4310business.approve" height="100" help="" id="b8c36f37-1a40-4d59-8fe4-0d878f74d8cf" isAuthorization="true" isBusiActivity="false" modifier="" modifyTime="2012-03-19 16:01:20" name="approve" resid="2400600903-0003" typeDisplayName="报价单表头" typeName="SalequotationHVO" version="" versionType="0" visibility="public" width="80" x="134" y="203">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="34b2b1f7-209d-46de-91c0-8a74736929cf" createTime="2012-02-05 11:06:08" creator="" dataType="288c9102-654a-4dec-8832-8856edfc5dcd" dbtype="" description="" displayName="提交操作" fullClassName="nc.voso.m4310business.commit" height="100" help="" id="624bb87d-2c45-4aad-8e6c-a10b3b62c005" isAuthorization="true" isBusiActivity="false" modifier="" modifyTime="2012-03-19 16:01:20" name="commit" resid="2400600903-0005" typeDisplayName="报价单表头" typeName="SalequotationHVO" version="" versionType="0" visibility="public" width="80" x="303" y="35">
+            <refoperationlist/>
+        </busioperation>
+        <busioperation componentID="34b2b1f7-209d-46de-91c0-8a74736929cf" createTime="2012-02-05 11:06:11" creator="" dataType="288c9102-654a-4dec-8832-8856edfc5dcd" dbtype="" description="" displayName="收回操作" fullClassName="nc.voso.m4310business.uncommit" height="100" help="" id="7278d235-f124-41c3-a0dd-5d93d9faf97d" isAuthorization="true" isBusiActivity="false" modifier="" modifyTime="2012-03-19 16:01:20" name="uncommit" resid="2400600903-0006" typeDisplayName="报价单表头" typeName="SalequotationHVO" version="" versionType="0" visibility="public" width="80" x="170" y="53">
+            <refoperationlist/>
+        </busioperation>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

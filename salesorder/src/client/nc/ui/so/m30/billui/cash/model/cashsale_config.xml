@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<!-- 环境变量 -->
+	<bean id="context" class="nc.vo.uif2.LoginContext" />
+
+	<!--
+		模型部分配置###########################################################
+	-->
+
+	<!-- 应用服务类，负责进行模型操作的处理 -->
+	<bean id="CashSaleArsubModelService" class="nc.ui.so.m30.billui.cash.model.CashSaleArsubModelService">
+	</bean>
+	<bean id="CashSaleSobalanceModelService" class="nc.ui.so.m30.billui.cash.model.CashSaleSobalanceModelService">
+	</bean>
+
+
+	<!-- 对象转换器工厂，由此获取操作对象的特征信息 -->
+	<bean id="boadatorfactory"
+		class="nc.ui.pubapp.uif2app.view.value.CAVO2BDObjectAdapterFactory" />
+
+	<!-- 管理应用模型 -->
+	<!-- 费用冲抵模型 -->
+	<bean id="arsubModel" class="nc.ui.so.m30.billui.cash.model.CashSaleArsubModel">
+		<property name="service" ref="CashSaleArsubModelService"></property>
+		<property name="businessObjectAdapterFactory" ref="boadatorfactory"></property>
+		<property name="context" ref="context"></property>
+	</bean>
+
+	<!-- 收款核销模型 -->
+	<bean id="sobalanceModel" class="nc.ui.so.m30.billui.cash.model.CashSaleSobalanceModel">
+		<property name="service" ref="CashSaleSobalanceModelService"></property>
+		<property name="businessObjectAdapterFactory" ref="boadatorfactory"></property>
+		<property name="context" ref="context"></property>
+	</bean>
+
+	<!-- 模板容器，负责对模板的统一装载 -->
+	<bean id="ArsubtemplateContainer" class="nc.ui.so.m30.billui.cash.view.ArsubTemplateContainer"
+		init-method="load">
+		<property name="context" ref="context" />
+		<property name="nodeKeies">
+			<list>
+				<value>35TO30OR32</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="SobalancetemplateContainer" class="nc.ui.so.m30.billui.cash.view.SobalanceTemplateContainer"
+		init-method="load">
+		<property name="context" ref="context" />
+		<property name="nodeKeies">
+			<list>
+				<value>4006039902</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 界面元素 ###########################################################-->
+	<!-- 现销表头  -->
+	<bean id="toppanel" class="nc.ui.so.m30.billui.cash.view.CashSaleTopPanel"
+		init-method="initUI">
+	</bean>
+	<bean id="componentValueManager" class="nc.ui.so.m30.billui.cash.view.CashBillCardPanelBodyVOValueAdapter">
+		<property name="bodyVOName" value="nc.vo.so.m30.sobalance.entity.SoBalanceViewVO" />
+	</bean>
+	<bean id="arsubcomponentValueManager" class="nc.ui.so.m30.billui.cash.view.CashBillCardPanelBodyVOValueAdapter">
+		<property name="bodyVOName" value="nc.vo.so.m35.entity.ArsubViewVO" />
+	</bean>
+	<!-- 费用冲抵列表视图  -->
+	<bean id="ArsublistView" class="nc.ui.so.m30.billui.cash.view.CashSaleArsubView"
+		init-method="initUI">
+		<property name="model" ref="ArsubModel" />
+		<property name="templateContainer" ref="ArsubtemplateContainer" />
+		<property name="nodekey" value="35TO30OR32" />
+		<property name="componentValueManager" ref="arsubcomponentValueManager" />
+		<property name="voClassName" value="nc.vo.so.m35.entity.ArsubViewVO" />
+		<property name="isBodyAutoAddLine" value="false" />
+		<property name="bodyMultiSelectEnable" value="true" />
+	</bean>
+	<!--收款核销列表视图-->
+	<bean id="SobalanceListView" class="nc.ui.so.m30.billui.cash.view.CashSaleSobalanceView"
+		init-method="initUI">
+		<property name="model" ref="SobalanceModel" />
+		<property name="templateContainer" ref="SobalancetemplateContainer" />
+		<property name="nodekey" value="4006039902" />
+		<property name="componentValueManager" ref="componentValueManager" />
+		<property name="voClassName" value="nc.vo.so.m30.sobalance.entity.SoBalanceViewVO" />
+		<property name="isBodyAutoAddLine" value="false" />
+		<property name="bodyMultiSelectEnable" value="true" />
+	</bean>
+	
+	<!--
+		双击列表行后显示卡片 <bean
+		class="nc.ui.pubapp.uif2app.view.MouseClickShowPanelMediator">
+		<property name="listView" ref="listView" /> <property
+		name="showUpComponent" ref="billFormEditor" /> </bean>
+	-->
+
+	<!-- 编辑事件 -->
+	<bean id="appEventHandlerMediator" class="nc.ui.pubapp.uif2app.model.AppEventHandlerMediator">
+		<property name="model" ref="ArsubModel" />
+		<property name="handlerMap">
+			<map>
+<!--				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailBeforeEditEvent">-->
+<!--					<list>-->
+<!--						<bean class="nc.ui.so.m30.billui.cash.eventhandler.ArsubHeadBeforeEditEventHandler">-->
+<!--						</bean>-->
+<!--					</list>-->
+<!--				</entry>-->
+<!--				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailAfterEditEvent">-->
+<!--					<list>-->
+<!--						<bean class="nc.ui.so.m30.billui.cash.eventhandler.ArsubHeadAfterEditEventHandler">-->
+<!--						</bean>-->
+<!--					</list>-->
+<!--				</entry>-->
+<!--				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyBeforeEditEvent">-->
+<!--					<list>-->
+<!--						<bean class="nc.ui.so.m30.billui.cash.eventhandler.ArsubBodyBeforeEditEventHandler">-->
+<!--						</bean>-->
+<!--					</list>-->
+<!--				</entry>-->
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyAfterEditEvent">
+					<list>
+						<bean class="nc.ui.so.m30.billui.cash.editor.bodyevent.ArsubBodyAfterEditHandler">
+							<property name="topPanel" ref="toppanel" />
+							<property name="arsubModel" ref="arsubModel" />
+						</bean>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="aappEventHandlerMediator" class="nc.ui.pubapp.uif2app.model.AppEventHandlerMediator">
+		<property name="model" ref="SobalanceModel" />
+		<property name="handlerMap">
+			<map>
+<!--				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailBeforeEditEvent">-->
+<!--					<list>-->
+<!--						<bean class="nc.ui.so.m30.billui.cash.eventhandler.SobalanceHeadBeforeEditEventHandler">-->
+<!--						</bean>-->
+<!--					</list>-->
+<!--				</entry>-->
+<!--				<entry key="nc.ui.pubapp.uif2app.event.card.CardHeadTailAfterEditEvent">-->
+<!--					<list>-->
+<!--						<bean class="nc.ui.so.m30.billui.cash.eventhandler.SobalanceHeadAfterEditEventHandler">-->
+<!--						</bean>-->
+<!--					</list>-->
+<!--				</entry>-->
+<!--				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyBeforeEditEvent">-->
+<!--					<list>-->
+<!--						<bean class="nc.ui.so.m30.billui.cash.eventhandler.SobalanceBodyBeforeEditEventHandler">-->
+<!--						</bean>-->
+<!--					</list>-->
+<!--				</entry>-->
+				<entry key="nc.ui.pubapp.uif2app.event.card.CardBodyAfterEditEvent">
+					<list>
+						<bean class="nc.ui.so.m30.billui.cash.editor.bodyevent.SobalanceBodyAfterEditHandler">
+							<property name="topPanel" ref="toppanel" />
+							<property name="sobalanceModel" ref="sobalanceModel" />
+						</bean>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+
+	<!--
+		界面布局总装###########################################################
+	-->
+	<bean id="container" class="nc.ui.uif2.TangramContainer"
+		init-method="initUI">
+		<property name="tangramLayoutRoot">
+			<bean class="nc.ui.uif2.tangramlayout.node.VSNode">
+				<property name="dividerLocation" value="0.1f" />
+				<property name="up">
+					<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+						<!--<property name="name" value="现销处理"></property>-->
+						<property name="name">
+                        <bean class="nc.ui.uif2.I18nFB">
+                          <property name="resDir" value="4006011_0" />
+                          <property name="resId" value="04006011-0463" />
+                          <property name="defaultValue" value="现销处理" />
+                        </bean>
+                      </property>
+						<property name="component" ref="toppanel"></property>
+					</bean>
+				</property>
+				<property name="down">
+					<bean class="nc.ui.uif2.tangramlayout.node.VSNode">
+						<property name="dividerLocation" value="0.5f" />
+						<property name="up">
+							<bean class="nc.ui.uif2.tangramlayout.node.TBNode">
+								<property name="tabs">
+									<list>
+										<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+											<property name="name">
+                                                <bean class="nc.ui.uif2.I18nFB">
+                                                    <property name="resDir" value="40060304"/>
+                                                    <property name="resId" value="1400603040015"/>
+                                                    <property name="defaultValue" value="费用冲抵"/>
+                                                </bean>
+                                            </property>
+											<property name="component" ref="ArsublistView" />
+										</bean>
+									</list>
+								</property>
+							</bean>
+						</property>
+						<property name="down">
+							<bean class="nc.ui.uif2.tangramlayout.node.TBNode">
+								<property name="tabs">
+									<list>
+										<bean class="nc.ui.uif2.tangramlayout.node.CNode">
+                                            <property name="name">
+                                                <bean class="nc.ui.uif2.I18nFB">
+                                                    <property name="resDir" value="40060304"/>
+                                                    <property name="resId" value="1400603040016"/>
+                                                    <property name="defaultValue" value="收款核销"/>
+                                                </bean>
+                                            </property>
+											<property name="component" ref="SobalanceListView" />
+										</bean>
+									</list>
+								</property>
+							</bean>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+		<!-- 此处配置的Action始终可见 -->
+		<property name="actions">
+			<list>
+				<ref bean="ConfirmAction" />
+				<ref bean="CancelAction" />
+			</list>
+		</property>
+	</bean>
+
+	<!--
+		Actions ###########################################################
+	-->
+	<bean id="ConfirmAction" class="nc.ui.so.m30.billui.cash.actions.ConfirmAction">
+		<property name="code" value="confirmAction" />
+		<property name="btnName">
+            <bean class="nc.ui.uif2.I18nFB">
+                <property name="resDir" value="40060304"/>
+                <property name="resId" value="1400603040017"/>
+                <property name="defaultValue" value="确定"/>
+            </bean>
+        </property> 
+		<property name="arsublistView" ref="ArsublistView" />
+		<property name="sobalanceListView" ref="SobalanceListView" />
+		<property name="arsubmodel" ref="ArsubModel" />
+		<property name="sobalancemodel" ref="SobalanceModel" />
+		<property name="toppanel" ref="toppanel" />
+	</bean>
+	<bean id="CancelAction" class="nc.ui.so.m30.billui.cash.actions.CancelAction">
+		<property name="arsublistView" ref="ArsublistView" />
+		<property name="sobalanceListView" ref="SobalanceListView" />
+		<property name="arsubmodel" ref="ArsubModel" />
+		<property name="sobalancemodel" ref="SobalanceModel" />
+	</bean>
+
+	<bean id="InitDataListener"
+		class="nc.ui.so.m30.billui.cash.editor.listener.FuncNodeInitDataHandler">
+		<property name="arsubmodel" ref="ArsubModel" />
+		<property name="sobalancemodel" ref="SobalanceModel" />
+		<property name="toppanel" ref="toppanel" />
+	</bean>
+	
+</beans>

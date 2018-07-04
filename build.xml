@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!-- ======================================================================                                                         
+     NC_SCM_SO Build File (for independent building)     
+            供应链6.0模块打jar包Ant脚本模板 （带有*号处需要修改）             
+            孔晓东      
+           使用方法：hijack build.properties文件，把里面设置成本机 对应属性。  然后运行ant编译   
+     Updated: 2010-08-26                                                          
+     ======================================================================  -->
+<project name="so" basedir="." default="all">
+	<description>
+		NC_SCM_6.0 Build File (for independent building)
+	</description>
+	<!--变量设置区域     -->
+	<property file="build.properties" />
+	<property name="project_name" value="nc_${product}_${module}" />
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+
+	<!--目标jar包路径，此处不用修改     -->
+	<property name="jar_public_dir" value="${export.jar.destination}\modules\${module}\lib" />
+	<property name="jar_client_dir" value="${export.jar.destination}\modules\${module}\client\lib" />
+	<property name="jar_private_dir" value="${export.jar.destination}\modules\${module}\META-INF\lib" />
+
+	<!-- set the javac path-->
+	<property name="javacpath" value="${jdk.dir}\bin\javac" />
+
+
+	<!-- *依赖关系path设置，此处不做太多约束，直接依赖于ncmodules里的所有jar包，方便大家打包，此处不用作修改 -->
+	<path id="classpath_self_public">
+		<fileset dir="${jar_public_dir}">
+			<exclude name="*_src.jar" />
+		</fileset>
+	</path>
+	<path id="classpath_self_client">
+		<fileset dir="${jar_public_dir}">
+			<exclude name="*_src.jar" />
+		</fileset>
+		<fileset dir="${jar_client_dir}">
+			<exclude name="*_src.jar" />
+		</fileset>
+	</path>
+	<path id="classpath_self_private">
+		<fileset dir="${jar_public_dir}">
+			<exclude name="*_src.jar" />
+		</fileset>
+		<fileset dir="${jar_private_dir}">
+			<exclude name="*_src.jar" />
+		</fileset>
+	</path>
+
+	<path id="classpath_public">
+		<fileset dir="${nc.home}">
+			<include name="*.jar" />
+			<include name="lib/*.jar" />
+			<include name="middleware/*.jar" />
+			<include name="framework/*.jar" />
+			<include name="external/lib/*.jar" />
+		</fileset>
+		<fileset dir="${export.jar.destination}/modules">
+			<include name="*/lib/*.jar" />
+		</fileset>
+		<dirset dir="${nc.home}/modules">
+			<include name="*/classes" />
+		</dirset>
+		<fileset dir="${nc.home}/modules">
+			<include name="*/lib/*.jar" />
+		</fileset>
+	</path>
+	<path id="classpath_client">
+		<fileset dir="${export.jar.destination}/modules">
+			<include name="*/client/lib/*.jar" />
+		</fileset>
+		<dirset dir="${nc.home}/modules">
+			<include name="*/client/classes" />
+		</dirset>
+		<fileset dir="${nc.home}/modules">
+			<include name="*/client/lib/*.jar" />
+		</fileset>
+	</path>
+
+	<!-- *清理并建立中间文件夹和目标文件夹， 此处需要安组件修改 ，格式如下 -->
+	<target name="clean">
+		<delete dir="${basedir}\${output.dir}" />
+
+		<foreach target="mkdir_output" param="component" list="${components}" />
+
+		<delete dir="${export.jar.destination}/modules/${module}" />
+		<mkdir dir="${jar_public_dir}" />
+		<mkdir dir="${jar_client_dir}" />
+		<mkdir dir="${jar_private_dir}" />
+	</target>
+
+	<target name="mkdir_output">
+		<mkdir dir="${basedir}\${output.dir}\${component}\public" />
+		<mkdir dir="${basedir}\${output.dir}\${component}\client" />
+		<mkdir dir="${basedir}\${output.dir}\${component}\private" />
+	</target>
+
+	<!-- *public编译任务，安组件修改 -->
+	<target name="build_public">
+		<javac executable="${javacpath}" debug="${debug.flag}" srcdir="${basedir}\${component}\src\public" destdir="${basedir}\${output.dir}\${component}\public">
+			<classpath refid="classpath_self_public" />
+			<classpath refid="classpath_public" />
+		</javac>
+
+		<!--  *打class jar包 -->
+		<jar destfile="${jar_public_dir}/pub${module}_${component}.jar">
+			<fileset dir="${basedir}\${output.dir}\${component}\public">
+				<include name="**/*.class" />
+			</fileset>
+		</jar>
+		<!-- *打src jar包 -->
+		<jar destfile="${jar_public_dir}/pub${module}_${component}_src.jar">
+			<fileset dir="${basedir}\${component}\src\public">
+				<include name="**/*.java" />
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- *client编译任务，安组件修改 -->
+	<target name="build_client">
+		<javac executable="${javacpath}" debug="${debug.flag}" srcdir="${basedir}\${component}\src\client" destdir="${basedir}\${output.dir}\${component}\client">
+			<classpath refid="classpath_self_public" />
+			<classpath refid="classpath_public" />
+			<classpath refid="classpath_self_client" />
+			<classpath refid="classpath_client" />
+		</javac>
+		<copy todir="${basedir}\${output.dir}\${component}\client">
+			<fileset dir="${basedir}\${component}\src\client">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+
+		<jar destfile="${jar_client_dir}/ui${module}_${component}.jar">
+			<fileset dir="${basedir}\${output.dir}\${component}\client">
+				<include name="**/*.class" />
+			</fileset>
+			<fileset dir="${basedir}\${component}\src\client">
+				<include name="**/*.xml" />
+			</fileset>
+		</jar>
+
+		<jar destfile="${jar_client_dir}/ui${module}_${component}_src.jar">
+			<fileset dir="${basedir}\${component}\src\client">
+				<include name="**/*.java" />
+			</fileset>
+			<fileset dir="${basedir}\${component}\src\client">
+				<include name="**/*.xml" />
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- *priate编译任务，安组件修改 -->
+	<target name="build_private">
+		<javac executable="${javacpath}" debug="${debug.flag}" srcdir="${basedir}\${component}\src\private" destdir="${basedir}\${output.dir}\${component}\private">
+			<classpath refid="classpath_self_private" />
+			<classpath refid="classpath_self_public" />
+			<classpath refid="classpath_public" />
+		</javac>
+		<copy todir="${basedir}\${output.dir}\${component}\private">
+			<fileset dir="${basedir}\${component}\src\private">
+				<include name="**/*.upm" />
+			</fileset>
+		</copy>
+
+		<jar destfile="${jar_private_dir}/${module}_${component}.jar">
+			<fileset dir="${basedir}\${output.dir}\${component}\private">
+				<include name="**/*.class" />
+			</fileset>
+		</jar>
+
+		<jar destfile="${jar_private_dir}/${module}_${component}_src.jar">
+			<fileset dir="${basedir}\${component}\src\private">
+				<include name="**/*.java" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="copy_module">
+		<copy todir="${export.jar.destination}/modules/${module}/META-INF" overwrite="true">
+			<fileset dir="${basedir}/META-INF">
+				<exclude name="*.keep" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build_all">
+		<foreach target="build_public" param="component" list="${components}" />
+		<foreach target="build_client" param="component" list="${components}" />
+		<foreach target="build_private" param="component" list="${components}" />
+	</target>
+
+	<target name="all" depends="clean, build_all, copy_module">
+		<echo>Building ${project_name} is complete.</echo>
+	</target>
+</project>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component conRouterType="手动" createTime="2011-03-09 10:10:34" creator="" description="" displayName="销售报表枚举" fromSourceBmf="true" gencodestyle="NC传统样式" help="" id="cffa88f9-e50c-43d7-813f-e279a98df2ac" isbizmodel="false" mainEntity="" modifier="" modifyTime="2012-03-16 10:29:20" name="report_enum" namespace="so" ownModule="so" preLoad="false" resModuleName="4006005_2" resid="2400600501-0043" version="26" versionType="0">
+    <celllist>
+        <Enumerate componentID="cffa88f9-e50c-43d7-813f-e279a98df2ac" createTime="2011-03-09 10:10:42" creator="" dataType="BS000010000100001001" dbtype="varchar" description="" displayName="毛利分析汇总参数枚举" fullClassName="nc.vo.so.report.enumeration.SumPara" height="319" help="" id="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" modInfoClassName="" modifier="" modifyTime="2012-03-16 10:28:50" name="enum" resid="2400600501-0008" typeDisplayName="String" typeName="String" versionType="0" visibility="public" width="218" x="208" y="61">
+            <enumitemlist>
+                <enumitem description="" enumDisplay="销售组织" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="pk_org" hidden="false" id="d96873df-f508-4c6d-b874-e1d7331b7ff6" resid="2UC000-000996" sequence="0" versionType="0"/>
+                <enumitem description="" enumDisplay="部门" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="cdeptid" hidden="false" id="ad70d0cf-ca9c-4616-8ed2-a17855e3adfe" resid="2UC000-000972" sequence="1" versionType="0"/>
+                <enumitem description="" enumDisplay="业务员" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="cemployeeid" hidden="false" id="c37a8a5e-c21d-4f63-ac3f-da793c73576a" resid="2UC000-000013" sequence="2" versionType="0"/>
+                <enumitem description="" enumDisplay="销售渠道类型" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="cchanneltypeid" hidden="false" id="5c767c0b-8a9e-4893-aa40-44abc37194cb" resid="2UC000-000995" sequence="3" versionType="0"/>
+                <enumitem description="" enumDisplay="客户基本分类" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="pk_custclass" hidden="false" id="af3f25cb-33f0-43ad-9fdb-a5c958a17a3b" resid="2400600501-0009" sequence="4" versionType="0"/>
+                <enumitem description="" enumDisplay="客户销售分类" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="pk_custsaleclass" hidden="false" id="bbef4d5d-a24c-42f8-b939-43d1ec1c4405" resid="2UC000-000286" sequence="5" versionType="0"/>
+                <enumitem description="" enumDisplay="地区分类" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="pk_areacl" hidden="false" id="cec10961-a4d9-4196-83f9-bb1633c273e8" resid="2400600501-0033" sequence="6" versionType="0"/>
+                <enumitem description="" enumDisplay="订单客户" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="ccustomerid" hidden="false" id="e673f9db-82a7-4487-b38c-fe03aecb023e" resid="2UC000-000878" sequence="7" versionType="0"/>
+                <enumitem description="" enumDisplay="开票客户" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="cinvoicecustid" hidden="false" id="4ec7531a-2032-42f1-9c42-a0eea5fe30ac" resid="2UC000-000340" sequence="8" versionType="0"/>
+                <enumitem description="" enumDisplay="物料基本分类" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="pk_marbasclass" hidden="false" id="cba1038d-6056-474b-a861-b34a9794f343" resid="2UC000-000602" sequence="9" versionType="0"/>
+                <enumitem description="" enumDisplay="物料销售分类" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="pk_marsaleclass" hidden="false" id="f654099c-db77-4512-a50e-5941fd97b014" resid="2UC000-000611" sequence="10" versionType="0"/>
+                <enumitem description="" enumDisplay="物料" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="cmaterialid" hidden="false" id="14fb5b3e-4389-4f24-9ede-931e6b78ee83" resid="2UC000-000594" sequence="11" versionType="0"/>
+                <enumitem description="" enumDisplay="批次" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbatchcode" hidden="false" id="8f27f9d0-d959-4c1e-a3c9-72f98c2dae0c" resid="2UC000-000373" sequence="12" versionType="0"/>
+                <enumitem description="" enumDisplay="订单类型" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="ctrantypeid" hidden="false" id="76153f4c-4019-4117-84d1-5e2f77f4facb" resid="2UC000-000880" sequence="13" versionType="0"/>
+                <enumitem description="" enumDisplay="订单号" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbillcode" hidden="false" id="1b979fb4-f866-489e-ad8d-8079f1f2a301" resid="2UC000-000877" sequence="14" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项1" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef1" hidden="false" id="89fbfc89-0721-46ed-b0a9-ed17167672c7" resid="2400600501-0018" sequence="15" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项2" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef2" hidden="false" id="99b596de-104c-4ec0-aa05-2346ff407e2d" resid="2400600501-0019" sequence="16" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项3" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef3" hidden="false" id="47ca7ea4-6912-4aec-bddd-d99319cc154a" resid="2400600501-0014" sequence="17" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项4" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef4" hidden="false" id="0dd06791-210a-4289-aefe-e9b5a0b8c0a3" resid="2400600501-0016" sequence="18" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项5" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef5" hidden="false" id="dd78730d-7f5b-43ad-89e7-1a9d68afe197" resid="2400600501-0010" sequence="19" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项6" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef6" hidden="false" id="d068eb40-d343-4452-bfcf-6a3fa4ede51f" resid="2400600501-0012" sequence="20" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项7" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef7" hidden="false" id="4f9c4810-a3b1-4732-92fd-7d7c7eeebf22" resid="2400600501-0024" sequence="21" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项8" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef8" hidden="false" id="50d86927-2a23-4bc7-86a9-148e1825eca9" resid="2400600501-0026" sequence="22" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项9" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef9" hidden="false" id="f1e2a048-419f-4e3b-b9f0-f69bfb8a83f3" resid="2400600501-0021" sequence="23" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项10" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef10" hidden="false" id="e32d8906-56f0-452e-ab96-6a6ff5018863" resid="2400600501-0029" sequence="24" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项11" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef11" hidden="false" id="573a8d86-753b-4c52-874f-9ad17e8b1a37" resid="2400600501-0028" sequence="25" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项12" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef12" hidden="false" id="5d31ed7a-a06e-44d4-8c1a-a4f00e1afa53" resid="2400600501-0041" sequence="26" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项13" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef13" hidden="false" id="a5ef8c20-14ce-48c0-b215-906e31708ee0" resid="2400600501-0042" sequence="27" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项14" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef14" hidden="false" id="fe1dfa0a-b82b-4118-9534-52669f691bc3" resid="2400600501-0039" sequence="28" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项15" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef15" hidden="false" id="778bccbe-1d22-414a-8233-bcf2979bbdac" resid="2400600501-0040" sequence="29" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项16" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef16" hidden="false" id="08a9407c-6472-4db7-97b0-f70f84977f20" resid="2400600501-0037" sequence="30" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项17" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef17" hidden="false" id="6045ff55-28db-436a-8855-0b7bae36942d" resid="2400600501-0038" sequence="31" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项18" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef18" hidden="false" id="f7366edb-ac45-46ff-81e4-54db4cd0a932" resid="2400600501-0035" sequence="32" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项19" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef19" hidden="false" id="c097d069-7a34-43f0-8f8e-7cafe4a68db1" resid="2400600501-0036" sequence="33" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表头自定义项20" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vdef20" hidden="false" id="d32610cc-4aaa-44f2-ad2f-7e1baceff10e" resid="2400600501-0034" sequence="34" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项1" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef1" hidden="false" id="a9e55aeb-4cfe-4794-9692-834699cb1d0f" resid="2400600501-0020" sequence="35" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项2" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef2" hidden="false" id="9a592bdd-cdae-4696-b78f-042772aef1f1" resid="2400600501-0022" sequence="36" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项3" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef3" hidden="false" id="ebfdb9b4-bdf4-4a65-b1f4-84182a46575a" resid="2400600501-0023" sequence="37" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项4" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef4" hidden="false" id="d462a024-2d0f-41f0-a41b-a68691c5401f" resid="2400600501-0025" sequence="38" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项5" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef5" hidden="false" id="fdf00d1a-1990-46c7-bcda-4c1faf0dbba5" resid="2400600501-0027" sequence="39" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项6" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef6" hidden="false" id="804d7c9a-9f8c-4a3d-846f-7ab829058cc7" resid="2400600501-0011" sequence="40" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项7" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef7" hidden="false" id="78754a70-ee6d-49ce-87de-a600783a10af" resid="2400600501-0013" sequence="41" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项8" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef8" hidden="false" id="aeb56586-b1ed-4a11-a078-3a0378571274" resid="2400600501-0015" sequence="42" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项9" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef9" hidden="false" id="76b3980f-f399-4141-928f-58fb66326954" resid="2400600501-0017" sequence="43" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项10" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef10" hidden="false" id="50b28068-0a7e-4cd9-aaa5-966eabbff054" resid="2400600501-0030" sequence="44" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项11" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef11" hidden="false" id="c3b95476-1508-43b3-926b-620eab0f450c" resid="2400600501-0031" sequence="45" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项12" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef12" hidden="false" id="6446445b-c1a3-4658-a9a2-6c131129a41a" resid="2400600501-0032" sequence="46" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项13" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef13" hidden="false" id="9aad1442-27d6-4287-b141-dd0bff898c80" resid="2400600501-0000" sequence="47" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项14" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef14" hidden="false" id="20a1b7eb-384c-4c1b-95b7-3dc309d769c1" resid="2400600501-0001" sequence="48" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项15" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef15" hidden="false" id="b17099db-108d-4932-9d39-8361fbb1418e" resid="2400600501-0002" sequence="49" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项16" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef16" hidden="false" id="f535ede5-7fd1-403a-97e6-0ebb27441e66" resid="2400600501-0003" sequence="50" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项17" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef17" hidden="false" id="69746d56-2764-4d71-ba89-1f053f42141c" resid="2400600501-0004" sequence="51" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项18" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef18" hidden="false" id="1c1c17bf-cee7-4e1e-a4c7-e7bcd08769eb" resid="2400600501-0005" sequence="52" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项19" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef19" hidden="false" id="7582e2cc-0339-4e77-8412-13c99a733f8d" resid="2400600501-0006" sequence="53" versionType="0"/>
+                <enumitem description="" enumDisplay="订单表体自定义项20" enumID="29588f9f-b292-4ebb-b2ce-4ac426d8f32f" enumValue="vbdef20" hidden="false" id="5f415e14-285c-4a6a-9a80-50aa610ed911" resid="2400600501-0007" sequence="54" versionType="0"/>
+            </enumitemlist>
+        </Enumerate>
+    </celllist>
+    <connectlist/>
+    <refdepends/>
+    <refdependLoseIDs/>
+    <cellRemoveLog/>
+    <rulers>
+        <ruler isHorizontal="true" unit="0">
+            <guideList/>
+        </ruler>
+        <ruler isHorizontal="false" unit="0">
+            <guideList/>
+        </ruler>
+    </rulers>
+</component>

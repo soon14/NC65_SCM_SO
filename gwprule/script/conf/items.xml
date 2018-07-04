@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding='gb2312'?>
+<items docType="SDP_SCRIPT_ITEM">
+
+    <item>
+		<itemKey>CFG_120201</itemKey>
+		<itemName>单据模版</itemName>
+		<itemRule>pub_billtemplet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>nodecode</grpField>
+		<fixedWhere>bill_templetname='SYSTEM' and nodecode like '40060102%'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>CFG_120202</itemKey>
+		<itemName>查询模版</itemName>
+		<itemRule>pub_query_templet</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>node_code</grpField>
+		<fixedWhere>node_code ='40060102'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>CFG_120203</itemKey>
+		<itemName>打印模版</itemName>
+		<itemRule>pub_print_template</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>vnodecode</grpField>
+		<fixedWhere>vnodecode = '40060102'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>CFG_120207</itemKey>
+		<itemName>默认模版</itemName>
+		<itemRule>pub_systemplate_base</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField>funnode</grpField>
+		<fixedWhere>funnode = '40060102'</fixedWhere>
+	</item>
+	<item>
+		<itemKey>CFG_120211</itemKey>
+		<itemName>功能节点</itemName>
+		<itemRule>sm_funcregister</itemRule>
+		<sysField></sysField>
+		<corpField></corpField>
+		<grpField></grpField>
+		<fixedWhere>funcode = '40060102'</fixedWhere>
+	</item>
+
+    <item>
+        <itemKey>CFG_120215</itemKey>
+        <itemName>自定义菜单</itemName>
+        <itemRule>sm_menuitemreg</itemRule>
+        <sysField></sysField>
+        <corpField></corpField>
+        <grpField></grpField>
+        <fixedWhere>menuitemcode like '40090104%'</fixedWhere>
+    </item>
+</items>

@@ -1,0 +1,5 @@
+<module priority="1025">
+    <aops>
+           <aspect class="nc.bs.aop.log.BusilogAspect"  component="nc.itf.so.m32.ISaleInvoiceScriptMaintain"/> 
+    </aops>
+</module>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="gb2312"?>
+<module name="SCM_SO_EJB">
+	<public>
+		<!--销售发票维护-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m32.ISaleInvoiceMaintain</interface>
+			<implementation>nc.impl.so.m32.SaleInvoiceMaintainImpl</implementation>
+		</component>
+		<!--销售订单结算关闭-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.so.m30.IQuery32For30</interface>
+			<implementation>nc.pubimpl.so.m32.so.m30.Query32For30Impl</implementation>
+		</component>
+		<!--销售出库单回写销售发票-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.ic.m4c.IRewrite32For4C</interface>
+			<implementation>nc.pubimpl.so.m32.ic.m4c.Rewrite32For4CImpl</implementation>
+		</component>
+		<!--消耗汇总回写销售发票-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.ic.m4c.ISaleInvoiceToVmi</interface>
+			<implementation>nc.pubimpl.so.m32.ic.m4c.SaleInvoiceToVmiImpl</implementation>
+		</component>
+		<!--销售结算单回写销售发票-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.so.m33.IRewrite32For33</interface>
+			<implementation>nc.pubimpl.so.m32.so.m33.Rewrite32For33Impl</implementation>
+		</component>
+		<!--发票交易类型-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m32trantype.IM32TranTypeService</interface>
+			<implementation>nc.impl.so.m32trantype.M32TranTypeImpl</implementation>
+		</component>
+		<!--销售发票给采购订单提供的查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.pu.m21.ISaleInvoiceQryFor21</interface>
+			<implementation>nc.pubimpl.so.m32.pu.m21.SaleInvoiceQryFor21Impl</implementation>
+		</component>
+		<!--销售发票执行查询接口 <component remote="true" tx="CMT" priority="0" singleton="true"
+			supportAlias="false"> <interface>nc.itf.so.m32.report.ISaleInvoiceReport</interface>
+			<implementation>nc.impl.so.m32.report.SaleInvoiceReportImpl</implementation>
+			</component>-->
+		<!--过滤销售发票已经做过汇总的记录-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.ic.m4c.IVmiFiter32For4C</interface>
+			<implementation>nc.pubimpl.so.m32.ic.m4c.VmiFiter32For4CImpl</implementation>
+		</component>
+		<!--销售发票给信用的接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.credit.ISaleInvoiceForCredit</interface>
+			<implementation>nc.pubimpl.so.m32.credit.SaleInvoiceForCreditImpl</implementation>
+		</component>
+		<!--销售发票毛利预估的接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m32.profit.ISaleInvoiceProfitCal</interface>
+			<implementation>nc.impl.so.m32.profit.SaleInvoiceProfitCalImpl</implementation>
+		</component>
+		<!--销售发票给欧盟报表的查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.ic.mnreport.ISaleInvoiceQueryForMN</interface>
+			<implementation>nc.pubimpl.so.m32.ic.mnreport.SaleInvoiceQueryForMNImpl</implementation>
+		</component>
+		<!--销售发票给业务日志接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m32.ISaleInvoiceScriptMaintain</interface>
+			<implementation>nc.impl.so.m32.SaleInvoiceScriptMaintainImpl</implementation>
+		</component>
+		<!--销售发票给销售出库的接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.so.report.IM32ForOutSum</interface>
+			<implementation>nc.pubimpl.so.m32.so.report.M32ForOutSumImpl</implementation>
+		</component>
+		<!--销售发票给电子销售查询发票信息的接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.opc.mecc.ISaleInvoiceForMecc</interface>
+			<implementation>nc.pubimpl.so.m32.opc.mecc.SaleInvoiceForMeccImpl</implementation>
+		</component>
+		<!--销售发票预置的返利取数接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.sr.formula.so.saleinvoice.ISaleInvoiceSRFormula</interface>
+			<implementation>nc.pubimpl.so.m32.sr.formula.SaleInvoiceSRFormulaImpl</implementation>
+		</component>
+		<!--销售发票为CRM查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.pubitf.so.m32.crm.ISaleInvoiceQueryForCRM</interface>
+			<implementation>nc.pubimpl.so.m32.crm.SaleInvoiceQueryForCRMImpl</implementation>
+		</component>
+		<!--销售发票分页查询接口-->
+		<component remote="true" tx="CMT" priority="0" singleton="true" supportAlias="false">
+			<interface>nc.itf.so.m32.ISaleInvoiceMaintainApp</interface>
+			<implementation>nc.impl.so.m32.SaleInvoiceMaintainAppImpl</implementation>
+		</component>
+		
+	</public>
+</module>
+
